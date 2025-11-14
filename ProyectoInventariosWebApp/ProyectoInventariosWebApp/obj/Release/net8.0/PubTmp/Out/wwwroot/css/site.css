@@ -1,0 +1,117 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f5f5f5;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+.logo {
+    max-width: 100px;
+}
+
+.navbar {
+    background-color: #1F4E79 !important; /* Azul acero */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+    .navbar .navbar-brand,
+    .navbar .nav-link {
+        color: #ffffff !important;
+        font-weight: 500;
+        transition: color 0.2s ease-in-out;
+    }
+
+        .navbar .nav-link:hover {
+            color: #F4B400 !important; /* Amarillo industrial */
+            text-decoration: none;
+        }
+
+main {
+    min-height: 70vh;
+    padding: 20px 0;
+}
+
+footer {
+    background-color: #e9ecef;
+    color: #6c757d;
+    font-size: 0.9rem;
+    padding: 15px 0;
+    text-align: center;
+    border-top: 1px solid #dee2e6;
+}
+
+.btn-primary {
+    background-color: #1F4E79; /* Azul acero */
+    border-color: #1F4E79;
+}
+
+    .btn-primary:hover {
+        background-color: #D35400; /* Naranja oxidado */
+        border-color: #D35400;
+    }
+
+h1, h2, h3, h4, h5 {
+    font-weight: 600;
+    color: #212529;
+}
+
+a {
+    color: #1F4E79; /* Azul acero */
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+    a:hover {
+        color: #F4B400; /* Amarillo industrial */
+        text-decoration: underline;
+    }
+
+.btn-cerrar-sesion {
+    background-color: #ffffff;
+    color: #1F4E79;
+    border: 1px solid #1F4E79;
+    transition: 0.3s;
+}
+
+    .btn-cerrar-sesion:hover {
+        background-color: #D35400; /* Naranja oxidado */
+        color: #ffffff;
+        border-color: #D35400;
+    }
+
+@media (max-width: 768px) {
+    .navbar .navbar-collapse {
+        background-color: #1F4E79;
+    }
+
+    .navbar .nav-link {
+        padding-left: 1rem;
+    }
+}
+
+.loginContainer {
+    background-color: #8f9da9 !important;
+}
+
+html, body {
+    height: 100%;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+main {
+    flex: 1;
+}
+
+.pcontainer{
+    display:flex;
+    align-items:center;
+    padding-top: 10px;
+    height:100%;
+    flex-direction:column;
+}

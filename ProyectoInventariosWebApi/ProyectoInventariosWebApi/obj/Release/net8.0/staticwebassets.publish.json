@@ -1,0 +1,12 @@
+{
+  "Version": 1,
+  "Hash": "EqyRqS2PKinCdpeosRCcM6G3Fdj9KBX9Is5wj0TpPTE=",
+  "Source": "FerreteriaWebApi",
+  "BasePath": "_content/FerreteriaWebApi",
+  "Mode": "Default",
+  "ManifestType": "Publish",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": [],
+  "Endpoints": []
+}

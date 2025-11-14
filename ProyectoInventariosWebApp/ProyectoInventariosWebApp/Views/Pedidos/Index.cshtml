@@ -1,0 +1,132 @@
+﻿@model IEnumerable<ProyectoInventariosWebApp.Models.Pedidos>
+
+@{
+    var esProcesado = ViewData["Title"]?.ToString() == "Pedidos Procesados";
+    ViewData["Title"] = esProcesado ? "Pedidos Procesados" : "Pedidos Pendientes";
+}
+
+<div class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h2>@ViewData["Title"]</h2>
+        <div>
+            @if (esProcesado)
+            {
+                <a asp-action="Index" class="btn btn-outline-primary">Ver pedidos pendientes</a>
+            }
+            else
+            {
+                <a asp-action="Procesados" class="btn btn-outline-secondary me-2">Ver pedidos procesados</a>
+                <a asp-action="Create" class="btn btn-primary">Nuevo Pedido</a>
+            }
+        </div>
+    </div>
+
+    @* ——— Flash messages ——— *@
+    @if (TempData["AlertaEntrega"] != null)
+    {
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            @TempData["AlertaEntrega"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar"></button>
+        </div>
+    }
+    @if (TempData["AlertaFactura"] != null)
+    {
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            @TempData["AlertaFactura"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar"></button>
+        </div>
+    }
+    @if (TempData["AlertaProcesado"] != null)
+    {
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            @TempData["AlertaProcesado"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar"></button>
+        </div>
+    }
+
+    @if (!Model.Any())
+    {
+        <div class="alert alert-info">
+            No hay @ViewData["Title"].
+        </div>
+    }
+    else
+    {
+        <table class="table table-striped table-hover">
+            <thead class="table-dark">
+                <tr>
+                    <th>Fecha</th>
+                    <th>Cliente</th>
+                    <th>Empleado</th>
+                    <th>Total</th>
+                    <th class="text-center">Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var pedido in Model)
+                {
+                    var total = pedido.DetallesPedido.Sum(d => d.Subtotal);
+                    <tr>
+                        <td>@(pedido.Fecha?.ToString("yyyy-MM-dd"))</td>
+                        <td>@pedido.IdClienteNavigation.Nombre</td>
+                        <td>@pedido.IdUsuarioNavigation.Nombre</td>
+                        <td>@((total ?? 0).ToString("C"))</td>
+                        <td class="text-center">
+
+                            <a asp-action="Details" asp-route-id="@pedido.IdPedido" class="btn btn-outline-warning btn-sm me-1">
+                                Detalles
+                            </a>
+
+                            @if (!esProcesado)
+                            {
+                                @* Botón “Entrega” solo si no hay ninguna *@
+                                @if (!pedido.Entregas.Any())
+                                {
+                                    <form asp-action="GenerarEntrega" asp-route-id="@pedido.IdPedido" method="post" class="d-inline">
+                                        @Html.AntiForgeryToken()
+                                        <button type="submit" class="btn btn-outline-primary btn-sm me-1">
+                                            Entrega
+                                        </button>
+                                    </form>
+                                }
+                                else
+                                {
+                                    <span class="badge bg-success me-1">Entrega ok</span>
+                                }
+
+                                @* Botón “Factura” solo si no hay ninguna *@
+                                @if (!pedido.Facturas.Any())
+                                {
+                                    <form asp-action="GenerarFactura" asp-route-id="@pedido.IdPedido" method="post" class="d-inline">
+                                        @Html.AntiForgeryToken()
+                                        <button type="submit" class="btn btn-outline-success btn-sm me-1">
+                                            Factura
+                                        </button>
+                                    </form>
+                                }
+                                else
+                                {
+                                    var fac = pedido.Facturas.First();
+                                    <span class="badge bg-success me-1">Factura #@fac.IdFactura</span>
+                                }
+
+                                @* Botón “Procesado” siempre *@
+                                <form asp-action="MarcarProcesado" asp-route-id="@pedido.IdPedido" method="post" class="d-inline">
+                                    @Html.AntiForgeryToken()
+                                    <button type="submit" class="btn btn-outline-secondary btn-sm">
+                                        Procesado
+                                    </button>
+                                </form>
+                            }
+
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+
+    <div class="mt-4 d-flex justify-content-between">
+        <a asp-controller="Home" asp-action="Index" class="btn btn-secondary">Volver</a>
+    </div>
+</div>

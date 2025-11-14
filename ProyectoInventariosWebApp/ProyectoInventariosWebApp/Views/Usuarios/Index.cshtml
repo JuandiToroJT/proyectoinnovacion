@@ -1,0 +1,66 @@
+﻿@model IEnumerable<ProyectoInventariosWebApp.Models.Usuarios>
+
+@{
+    ViewData["Title"] = "Gestión de Usuarios";
+}
+
+<div class="container mt-4">
+    <h2 class="mb-4">Gestión de Usuarios</h2>
+
+    <div class="d-flex justify-content-end mb-3">
+        <a class="btn btn-primary shadow-sm" asp-action="Create">➕ Agregar Usuario</a>
+    </div>
+
+    <div class="card shadow-sm">
+        <div class="card-body p-0">
+            <table class="table table-hover table-striped mb-0 align-middle">
+                <thead class="table-dark">
+                    <tr>
+                        <th>@Html.DisplayNameFor(model => model.Nombre)</th>
+                        <th>@Html.DisplayNameFor(model => model.Correo)</th>
+                        <th>@Html.DisplayNameFor(model => model.Rol)</th>
+                        <th>@Html.DisplayNameFor(model => model.Estado)</th>
+                        <th class="text-center">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model.Any())
+                    {
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@Html.DisplayFor(modelItem => item.Nombre)</td>
+                                <td>@Html.DisplayFor(modelItem => item.Correo)</td>
+                                <td>@Html.DisplayFor(modelItem => item.Rol)</td>
+                                <td>
+                                    @if (item.Estado)
+                                    {
+                                        <span class="badge bg-success">Activo</span>
+                                    }
+                                    else
+                                    {
+                                        <span class="badge bg-secondary">Inactivo</span>
+                                    }
+                                </td>
+                                <td class="text-center">
+                                    <a class="btn btn-sm btn-outline-primary me-1" asp-action="Details" asp-route-id="@item.IdUsuario">Detalles</a>
+                                    <a class="btn btn-sm btn-outline-warning me-1" asp-action="Edit" asp-route-id="@item.IdUsuario">Editar</a>
+                                </td>
+                            </tr>
+                        }
+                    }
+                    else
+                    {
+                        <tr>
+                            <td colspan="5" class="text-center text-muted py-3">No hay usuarios registrados.</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="mt-4 d-flex justify-content-between">
+        <a asp-controller="Home" asp-action="Index" class="btn btn-secondary">Volver</a>
+    </div>
+</div>

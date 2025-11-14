@@ -1,0 +1,275 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "F:\\Descargas\\Proyecto Innovacion\\Proyecto Innovacion\\ProyectoInventariosWebApp\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{A2C13A48-7366-4AD6-B342-E2E918445DDB}|ProyectoInventariosWebApp\\ProyectoInventariosWebApp.csproj|f:\\descargas\\proyecto innovacion\\proyecto innovacion\\proyectoinventarioswebapp\\proyectoinventarioswebapp\\wwwroot\\css\\site.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{A2C13A48-7366-4AD6-B342-E2E918445DDB}|ProyectoInventariosWebApp\\ProyectoInventariosWebApp.csproj|solutionrelative:proyectoinventarioswebapp\\wwwroot\\css\\site.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2C13A48-7366-4AD6-B342-E2E918445DDB}|ProyectoInventariosWebApp\\ProyectoInventariosWebApp.csproj|f:\\descargas\\proyecto innovacion\\proyecto innovacion\\proyectoinventarioswebapp\\proyectoinventarioswebapp\\views\\usuarios\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{A2C13A48-7366-4AD6-B342-E2E918445DDB}|ProyectoInventariosWebApp\\ProyectoInventariosWebApp.csproj|solutionrelative:proyectoinventarioswebapp\\views\\usuarios\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2C13A48-7366-4AD6-B342-E2E918445DDB}|ProyectoInventariosWebApp\\ProyectoInventariosWebApp.csproj|f:\\descargas\\proyecto innovacion\\proyecto innovacion\\proyectoinventarioswebapp\\proyectoinventarioswebapp\\views\\usuarios\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{A2C13A48-7366-4AD6-B342-E2E918445DDB}|ProyectoInventariosWebApp\\ProyectoInventariosWebApp.csproj|solutionrelative:proyectoinventarioswebapp\\views\\usuarios\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2C13A48-7366-4AD6-B342-E2E918445DDB}|ProyectoInventariosWebApp\\ProyectoInventariosWebApp.csproj|f:\\descargas\\proyecto innovacion\\proyecto innovacion\\proyectoinventarioswebapp\\proyectoinventarioswebapp\\views\\usuarios\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{A2C13A48-7366-4AD6-B342-E2E918445DDB}|ProyectoInventariosWebApp\\ProyectoInventariosWebApp.csproj|solutionrelative:proyectoinventarioswebapp\\views\\usuarios\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2C13A48-7366-4AD6-B342-E2E918445DDB}|ProyectoInventariosWebApp\\ProyectoInventariosWebApp.csproj|f:\\descargas\\proyecto innovacion\\proyecto innovacion\\proyectoinventarioswebapp\\proyectoinventarioswebapp\\views\\empresas\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{A2C13A48-7366-4AD6-B342-E2E918445DDB}|ProyectoInventariosWebApp\\ProyectoInventariosWebApp.csproj|solutionrelative:proyectoinventarioswebapp\\views\\empresas\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2C13A48-7366-4AD6-B342-E2E918445DDB}|ProyectoInventariosWebApp\\ProyectoInventariosWebApp.csproj|f:\\descargas\\proyecto innovacion\\proyecto innovacion\\proyectoinventarioswebapp\\proyectoinventarioswebapp\\views\\empresas\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{A2C13A48-7366-4AD6-B342-E2E918445DDB}|ProyectoInventariosWebApp\\ProyectoInventariosWebApp.csproj|solutionrelative:proyectoinventarioswebapp\\views\\empresas\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2C13A48-7366-4AD6-B342-E2E918445DDB}|ProyectoInventariosWebApp\\ProyectoInventariosWebApp.csproj|f:\\descargas\\proyecto innovacion\\proyecto innovacion\\proyectoinventarioswebapp\\proyectoinventarioswebapp\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{A2C13A48-7366-4AD6-B342-E2E918445DDB}|ProyectoInventariosWebApp\\ProyectoInventariosWebApp.csproj|solutionrelative:proyectoinventarioswebapp\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2C13A48-7366-4AD6-B342-E2E918445DDB}|ProyectoInventariosWebApp\\ProyectoInventariosWebApp.csproj|f:\\descargas\\proyecto innovacion\\proyecto innovacion\\proyectoinventarioswebapp\\proyectoinventarioswebapp\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{A2C13A48-7366-4AD6-B342-E2E918445DDB}|ProyectoInventariosWebApp\\ProyectoInventariosWebApp.csproj|solutionrelative:proyectoinventarioswebapp\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2C13A48-7366-4AD6-B342-E2E918445DDB}|ProyectoInventariosWebApp\\ProyectoInventariosWebApp.csproj|f:\\descargas\\proyecto innovacion\\proyecto innovacion\\proyectoinventarioswebapp\\proyectoinventarioswebapp\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2C13A48-7366-4AD6-B342-E2E918445DDB}|ProyectoInventariosWebApp\\ProyectoInventariosWebApp.csproj|solutionrelative:proyectoinventarioswebapp\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2C13A48-7366-4AD6-B342-E2E918445DDB}|ProyectoInventariosWebApp\\ProyectoInventariosWebApp.csproj|f:\\descargas\\proyecto innovacion\\proyecto innovacion\\proyectoinventarioswebapp\\proyectoinventarioswebapp\\views\\productos\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{A2C13A48-7366-4AD6-B342-E2E918445DDB}|ProyectoInventariosWebApp\\ProyectoInventariosWebApp.csproj|solutionrelative:proyectoinventarioswebapp\\views\\productos\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2C13A48-7366-4AD6-B342-E2E918445DDB}|ProyectoInventariosWebApp\\ProyectoInventariosWebApp.csproj|f:\\descargas\\proyecto innovacion\\proyecto innovacion\\proyectoinventarioswebapp\\proyectoinventarioswebapp\\views\\productos\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{A2C13A48-7366-4AD6-B342-E2E918445DDB}|ProyectoInventariosWebApp\\ProyectoInventariosWebApp.csproj|solutionrelative:proyectoinventarioswebapp\\views\\productos\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2C13A48-7366-4AD6-B342-E2E918445DDB}|ProyectoInventariosWebApp\\ProyectoInventariosWebApp.csproj|f:\\descargas\\proyecto innovacion\\proyecto innovacion\\proyectoinventarioswebapp\\proyectoinventarioswebapp\\views\\productos\\delete.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{A2C13A48-7366-4AD6-B342-E2E918445DDB}|ProyectoInventariosWebApp\\ProyectoInventariosWebApp.csproj|solutionrelative:proyectoinventarioswebapp\\views\\productos\\delete.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2C13A48-7366-4AD6-B342-E2E918445DDB}|ProyectoInventariosWebApp\\ProyectoInventariosWebApp.csproj|f:\\descargas\\proyecto innovacion\\proyecto innovacion\\proyectoinventarioswebapp\\proyectoinventarioswebapp\\views\\productos\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{A2C13A48-7366-4AD6-B342-E2E918445DDB}|ProyectoInventariosWebApp\\ProyectoInventariosWebApp.csproj|solutionrelative:proyectoinventarioswebapp\\views\\productos\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2C13A48-7366-4AD6-B342-E2E918445DDB}|ProyectoInventariosWebApp\\ProyectoInventariosWebApp.csproj|f:\\descargas\\proyecto innovacion\\proyecto innovacion\\proyectoinventarioswebapp\\proyectoinventarioswebapp\\views\\productos\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{A2C13A48-7366-4AD6-B342-E2E918445DDB}|ProyectoInventariosWebApp\\ProyectoInventariosWebApp.csproj|solutionrelative:proyectoinventarioswebapp\\views\\productos\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2C13A48-7366-4AD6-B342-E2E918445DDB}|ProyectoInventariosWebApp\\ProyectoInventariosWebApp.csproj|f:\\descargas\\proyecto innovacion\\proyecto innovacion\\proyectoinventarioswebapp\\proyectoinventarioswebapp\\views\\home\\login.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{A2C13A48-7366-4AD6-B342-E2E918445DDB}|ProyectoInventariosWebApp\\ProyectoInventariosWebApp.csproj|solutionrelative:proyectoinventarioswebapp\\views\\home\\login.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 11,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Details.cshtml",
+              "DocumentMoniker": "F:\\Descargas\\Proyecto Innovacion\\Proyecto Innovacion\\ProyectoInventariosWebApp\\ProyectoInventariosWebApp\\Views\\Usuarios\\Details.cshtml",
+              "RelativeDocumentMoniker": "ProyectoInventariosWebApp\\Views\\Usuarios\\Details.cshtml",
+              "ToolTip": "F:\\Descargas\\Proyecto Innovacion\\Proyecto Innovacion\\ProyectoInventariosWebApp\\ProyectoInventariosWebApp\\Views\\Usuarios\\Details.cshtml",
+              "RelativeToolTip": "ProyectoInventariosWebApp\\Views\\Usuarios\\Details.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACYAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-11-10T21:16:33.204Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Create.cshtml",
+              "DocumentMoniker": "F:\\Descargas\\Proyecto Innovacion\\Proyecto Innovacion\\ProyectoInventariosWebApp\\ProyectoInventariosWebApp\\Views\\Usuarios\\Create.cshtml",
+              "RelativeDocumentMoniker": "ProyectoInventariosWebApp\\Views\\Usuarios\\Create.cshtml",
+              "ToolTip": "F:\\Descargas\\Proyecto Innovacion\\Proyecto Innovacion\\ProyectoInventariosWebApp\\ProyectoInventariosWebApp\\Views\\Usuarios\\Create.cshtml",
+              "RelativeToolTip": "ProyectoInventariosWebApp\\Views\\Usuarios\\Create.cshtml",
+              "ViewState": "AgIAACQAAAAAAAAAAAAgwEsAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-11-10T21:15:23.507Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "F:\\Descargas\\Proyecto Innovacion\\Proyecto Innovacion\\ProyectoInventariosWebApp\\ProyectoInventariosWebApp\\Views\\Usuarios\\Index.cshtml",
+              "RelativeDocumentMoniker": "ProyectoInventariosWebApp\\Views\\Usuarios\\Index.cshtml",
+              "ToolTip": "F:\\Descargas\\Proyecto Innovacion\\Proyecto Innovacion\\ProyectoInventariosWebApp\\ProyectoInventariosWebApp\\Views\\Usuarios\\Index.cshtml",
+              "RelativeToolTip": "ProyectoInventariosWebApp\\Views\\Usuarios\\Index.cshtml",
+              "ViewState": "AgIAACAAAAAAAAAAAAAAACMAAAA0AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-11-10T21:11:31.896Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Edit.cshtml",
+              "DocumentMoniker": "F:\\Descargas\\Proyecto Innovacion\\Proyecto Innovacion\\ProyectoInventariosWebApp\\ProyectoInventariosWebApp\\Views\\Empresas\\Edit.cshtml",
+              "RelativeDocumentMoniker": "ProyectoInventariosWebApp\\Views\\Empresas\\Edit.cshtml",
+              "ToolTip": "F:\\Descargas\\Proyecto Innovacion\\Proyecto Innovacion\\ProyectoInventariosWebApp\\ProyectoInventariosWebApp\\Views\\Empresas\\Edit.cshtml",
+              "RelativeToolTip": "ProyectoInventariosWebApp\\Views\\Empresas\\Edit.cshtml",
+              "ViewState": "AgIAABgAAAAAAAAAAAAAAC4AAABPAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-11-10T21:00:35.306Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Details.cshtml",
+              "DocumentMoniker": "F:\\Descargas\\Proyecto Innovacion\\Proyecto Innovacion\\ProyectoInventariosWebApp\\ProyectoInventariosWebApp\\Views\\Empresas\\Details.cshtml",
+              "RelativeDocumentMoniker": "ProyectoInventariosWebApp\\Views\\Empresas\\Details.cshtml",
+              "ToolTip": "F:\\Descargas\\Proyecto Innovacion\\Proyecto Innovacion\\ProyectoInventariosWebApp\\ProyectoInventariosWebApp\\Views\\Empresas\\Details.cshtml",
+              "RelativeToolTip": "ProyectoInventariosWebApp\\Views\\Empresas\\Details.cshtml",
+              "ViewState": "AgIAABAAAAAAAAAAAAAIwDgAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-11-10T20:59:46.516Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "_Layout.cshtml",
+              "DocumentMoniker": "F:\\Descargas\\Proyecto Innovacion\\Proyecto Innovacion\\ProyectoInventariosWebApp\\ProyectoInventariosWebApp\\Views\\Shared\\_Layout.cshtml",
+              "RelativeDocumentMoniker": "ProyectoInventariosWebApp\\Views\\Shared\\_Layout.cshtml",
+              "ToolTip": "F:\\Descargas\\Proyecto Innovacion\\Proyecto Innovacion\\ProyectoInventariosWebApp\\ProyectoInventariosWebApp\\Views\\Shared\\_Layout.cshtml",
+              "RelativeToolTip": "ProyectoInventariosWebApp\\Views\\Shared\\_Layout.cshtml",
+              "ViewState": "AgIAAIsAAAAAAAAAAAAAAJAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-11-10T20:57:35.062Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "Program.cs",
+              "DocumentMoniker": "F:\\Descargas\\Proyecto Innovacion\\Proyecto Innovacion\\ProyectoInventariosWebApp\\ProyectoInventariosWebApp\\Program.cs",
+              "RelativeDocumentMoniker": "ProyectoInventariosWebApp\\Program.cs",
+              "ToolTip": "F:\\Descargas\\Proyecto Innovacion\\Proyecto Innovacion\\ProyectoInventariosWebApp\\ProyectoInventariosWebApp\\Program.cs",
+              "RelativeToolTip": "ProyectoInventariosWebApp\\Program.cs",
+              "ViewState": "AgIAACQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-10T20:57:26.301Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "Edit.cshtml",
+              "DocumentMoniker": "F:\\Descargas\\Proyecto Innovacion\\Proyecto Innovacion\\ProyectoInventariosWebApp\\ProyectoInventariosWebApp\\Views\\Productos\\Edit.cshtml",
+              "RelativeDocumentMoniker": "ProyectoInventariosWebApp\\Views\\Productos\\Edit.cshtml",
+              "ToolTip": "F:\\Descargas\\Proyecto Innovacion\\Proyecto Innovacion\\ProyectoInventariosWebApp\\ProyectoInventariosWebApp\\Views\\Productos\\Edit.cshtml",
+              "RelativeToolTip": "ProyectoInventariosWebApp\\Views\\Productos\\Edit.cshtml",
+              "ViewState": "AgIAAB4AAAAAAAAAAAAAACkAAAASAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-11-10T20:50:16.103Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "Delete.cshtml",
+              "DocumentMoniker": "F:\\Descargas\\Proyecto Innovacion\\Proyecto Innovacion\\ProyectoInventariosWebApp\\ProyectoInventariosWebApp\\Views\\Productos\\Delete.cshtml",
+              "RelativeDocumentMoniker": "ProyectoInventariosWebApp\\Views\\Productos\\Delete.cshtml",
+              "ToolTip": "F:\\Descargas\\Proyecto Innovacion\\Proyecto Innovacion\\ProyectoInventariosWebApp\\ProyectoInventariosWebApp\\Views\\Productos\\Delete.cshtml",
+              "RelativeToolTip": "ProyectoInventariosWebApp\\Views\\Productos\\Delete.cshtml",
+              "ViewState": "AgIAABEAAAAAAAAAAAAAACwAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-11-10T20:48:51.113Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "Create.cshtml",
+              "DocumentMoniker": "F:\\Descargas\\Proyecto Innovacion\\Proyecto Innovacion\\ProyectoInventariosWebApp\\ProyectoInventariosWebApp\\Views\\Productos\\Create.cshtml",
+              "RelativeDocumentMoniker": "ProyectoInventariosWebApp\\Views\\Productos\\Create.cshtml",
+              "ToolTip": "F:\\Descargas\\Proyecto Innovacion\\Proyecto Innovacion\\ProyectoInventariosWebApp\\ProyectoInventariosWebApp\\Views\\Productos\\Create.cshtml",
+              "RelativeToolTip": "ProyectoInventariosWebApp\\Views\\Productos\\Create.cshtml",
+              "ViewState": "AgIAABsAAAAAAAAAAAAAACYAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-11-10T20:40:33.76Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "Details.cshtml",
+              "DocumentMoniker": "F:\\Descargas\\Proyecto Innovacion\\Proyecto Innovacion\\ProyectoInventariosWebApp\\ProyectoInventariosWebApp\\Views\\Productos\\Details.cshtml",
+              "RelativeDocumentMoniker": "ProyectoInventariosWebApp\\Views\\Productos\\Details.cshtml",
+              "ToolTip": "F:\\Descargas\\Proyecto Innovacion\\Proyecto Innovacion\\ProyectoInventariosWebApp\\ProyectoInventariosWebApp\\Views\\Productos\\Details.cshtml",
+              "RelativeToolTip": "ProyectoInventariosWebApp\\Views\\Productos\\Details.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAeAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-11-10T20:31:30.539Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "site.css",
+              "DocumentMoniker": "F:\\Descargas\\Proyecto Innovacion\\Proyecto Innovacion\\ProyectoInventariosWebApp\\ProyectoInventariosWebApp\\wwwroot\\css\\site.css",
+              "RelativeDocumentMoniker": "ProyectoInventariosWebApp\\wwwroot\\css\\site.css",
+              "ToolTip": "F:\\Descargas\\Proyecto Innovacion\\Proyecto Innovacion\\ProyectoInventariosWebApp\\ProyectoInventariosWebApp\\wwwroot\\css\\site.css",
+              "RelativeToolTip": "ProyectoInventariosWebApp\\wwwroot\\css\\site.css",
+              "ViewState": "AgIAAKwBAAAAAAAAAAAIwMgBAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2025-11-10T20:28:32.395Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "F:\\Descargas\\Proyecto Innovacion\\Proyecto Innovacion\\ProyectoInventariosWebApp\\ProyectoInventariosWebApp\\Views\\Productos\\Index.cshtml",
+              "RelativeDocumentMoniker": "ProyectoInventariosWebApp\\Views\\Productos\\Index.cshtml",
+              "ToolTip": "F:\\Descargas\\Proyecto Innovacion\\Proyecto Innovacion\\ProyectoInventariosWebApp\\ProyectoInventariosWebApp\\Views\\Productos\\Index.cshtml",
+              "RelativeToolTip": "ProyectoInventariosWebApp\\Views\\Productos\\Index.cshtml",
+              "ViewState": "AgIAAAoAAAAAAAAAAAAAABsAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-11-10T20:18:50.848Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "Login.cshtml",
+              "DocumentMoniker": "F:\\Descargas\\Proyecto Innovacion\\Proyecto Innovacion\\ProyectoInventariosWebApp\\ProyectoInventariosWebApp\\Views\\Home\\Login.cshtml",
+              "RelativeDocumentMoniker": "ProyectoInventariosWebApp\\Views\\Home\\Login.cshtml",
+              "ToolTip": "F:\\Descargas\\Proyecto Innovacion\\Proyecto Innovacion\\ProyectoInventariosWebApp\\ProyectoInventariosWebApp\\Views\\Home\\Login.cshtml",
+              "RelativeToolTip": "ProyectoInventariosWebApp\\Views\\Home\\Login.cshtml",
+              "ViewState": "AgIAAFkAAAAAAAAAAAAAAHIAAAATAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-11-10T20:10:33.322Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "F:\\Descargas\\Proyecto Innovacion\\Proyecto Innovacion\\ProyectoInventariosWebApp\\ProyectoInventariosWebApp\\Views\\Home\\Index.cshtml",
+              "RelativeDocumentMoniker": "ProyectoInventariosWebApp\\Views\\Home\\Index.cshtml",
+              "ToolTip": "F:\\Descargas\\Proyecto Innovacion\\Proyecto Innovacion\\ProyectoInventariosWebApp\\ProyectoInventariosWebApp\\Views\\Home\\Index.cshtml",
+              "RelativeToolTip": "ProyectoInventariosWebApp\\Views\\Home\\Index.cshtml",
+              "ViewState": "AgIAAC0AAAAAAAAAAAAAAEgAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-11-10T20:08:19.751Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

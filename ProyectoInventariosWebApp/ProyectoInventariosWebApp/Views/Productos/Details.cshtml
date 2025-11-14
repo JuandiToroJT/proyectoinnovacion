@@ -1,0 +1,51 @@
+﻿@model ProyectoInventariosWebApp.Models.Productos
+
+@{
+    ViewData["Title"] = "Detalles del Producto";
+}
+
+<div class="detalle-container">
+    <div class="detalle-header">
+        <div>
+            <h2>Detalle del Producto</h2>
+            <h4>@Html.DisplayFor(model => model.Nombre)</h4>
+            <p class="codigo">Código: @Html.DisplayFor(model => model.IdProducto)</p>
+        </div>
+        <div class="acciones">
+            <a asp-action="Edit" asp-route-id="@Model.IdProducto" class="btn azul">Editar</a>
+            <a class="btn verde">+ Registrar Entrada</a>
+            <a  class="btn rojo">- Registrar Salida</a>
+        </div>
+    </div>
+
+    <div class="info-grid">
+        <div class="info-card">
+            <h6>Nombre</h6>
+            <p>@Html.DisplayFor(model => model.Nombre)</p>
+        </div>
+        <div class="info-card">
+            <h6>Descripción</h6>
+            <p>@Html.DisplayFor(model => model.Descripcion)</p>
+        </div>
+        <div class="info-card">
+            <h6>Precio</h6>
+            <p>$@Model.Precio.ToString("N2")</p>
+        </div>
+        <div class="info-card">
+            <h6>Stock</h6>
+            <p>@Html.DisplayFor(model => model.Stock)</p>
+        </div>
+    </div>
+
+    @if (Model.Stock <= 5)
+    {
+        <div class="alerta-stock">
+            <i class="bi bi-exclamation-triangle-fill"></i>
+            ¡Stock Muy Bajo!
+        </div>
+    }
+
+    <div class="volver">
+        <a asp-action="Index" class="btn gris">Volver</a>
+    </div>
+</div>

@@ -1,0 +1,31 @@
+/* _content/FerreteriaWebApp/Views/Shared/_Layout.cshtml.rz.scp.css */
+body[b-nv3dqx8wiu] {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f8f9fa;
+    color: #212529;
+}
+
+.navbar[b-nv3dqx8wiu] {
+    background-color: #007bff !important;
+}
+
+    .navbar .navbar-brand[b-nv3dqx8wiu],
+    .navbar .nav-link[b-nv3dqx8wiu] {
+        color: white !important;
+        font-weight: 500;
+    }
+
+        .navbar .nav-link:hover[b-nv3dqx8wiu] {
+            text-decoration: underline;
+            color: #ffdd57 !important;
+        }
+
+.footer[b-nv3dqx8wiu] {
+    background-color: #e9ecef;
+    color: #6c757d;
+    font-size: 0.9rem;
+}
+
+main[b-nv3dqx8wiu] {
+    min-height: 70vh;
+}

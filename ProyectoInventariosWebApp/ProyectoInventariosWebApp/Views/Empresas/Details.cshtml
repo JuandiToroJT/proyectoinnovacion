@@ -1,0 +1,56 @@
+﻿@model ProyectoInventariosWebApp.Models.Empresas
+
+@{
+    ViewData["Title"] = "Detalles de la Empresa";
+}
+
+<div class="container mt-4">
+    <div class="card shadow-lg border-0 rounded-3">
+        <div class="card-header bg-primary text-white">
+            <h3 class="mb-0">Detalles de la Empresa</h3>
+        </div>
+
+        <div class="card-body p-4">
+            <dl class="row mb-0">
+                <dt class="col-sm-4 fw-bold">Nombre</dt>
+                <dd class="col-sm-8">@Html.DisplayFor(m => m.Nombre)</dd>
+
+                <dt class="col-sm-4 fw-bold">Dirección</dt>
+                <dd class="col-sm-8">@Html.DisplayFor(m => m.Direccion)</dd>
+
+                <dt class="col-sm-4 fw-bold">Teléfono</dt>
+                <dd class="col-sm-8">@Html.DisplayFor(m => m.Telefono)</dd>
+
+                <dt class="col-sm-4 fw-bold">NIT</dt>
+                <dd class="col-sm-8">@Html.DisplayFor(m => m.Nit)</dd>
+
+                <dt class="col-sm-4 fw-bold">Ciudad</dt>
+                <dd class="col-sm-8">@Html.DisplayFor(m => m.Ciudad)</dd>
+
+                <dt class="col-sm-4 fw-bold">Fecha de Creación</dt>
+                <dd class="col-sm-8">@Html.DisplayFor(m => m.FechaCreacion)</dd>
+
+                <dt class="col-sm-4 fw-bold">Representante Legal</dt>
+                <dd class="col-sm-8">@Html.DisplayFor(m => m.RepresentanteLegal)</dd>
+
+                <dt class="col-sm-4 fw-bold">Tipo de Empresa</dt>
+                <dd class="col-sm-8">@Html.DisplayFor(m => m.TipoEmpresa)</dd>
+
+                <dt class="col-sm-4 fw-bold">Página Web</dt>
+                <dd class="col-sm-8">
+                    <a href="@Model.PaginaWeb" target="_blank">@Model.PaginaWeb</a>
+                </dd>
+
+                <dt class="col-sm-4 fw-bold">Email de Contacto</dt>
+                <dd class="col-sm-8">
+                    <a href="mailto:@Model.EmailContacto">@Model.EmailContacto</a>
+                </dd>
+            </dl>
+        </div>
+
+        <div class="card-footer text-end">
+            <a asp-action="Index" asp-controller="Home" class="btn btn-secondary me-2">Volver</a>
+            <a asp-action="Edit" asp-route-id="@Model.IdEmpresa" class="btn btn-primary">Editar</a>
+        </div>
+    </div>
+</div>

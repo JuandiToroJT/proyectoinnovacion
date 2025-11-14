@@ -1,0 +1,99 @@
+﻿@model ProyectoInventariosWebApp.Models.Pedidos
+
+@{
+    ViewData["Title"] = "Detalles del Pedido";
+    var esProcesado = (bool)(ViewData["EsProcesado"] ?? false);
+    var tieneError = TempData["Error"] != null;
+    var factura = Model.Facturas.FirstOrDefault();
+}
+
+<div class="container mt-4">
+    @* Mensaje de error si hubo intento inválido *@
+    @if (tieneError)
+    {
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            @TempData["Error"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar"></button>
+        </div>
+    }
+
+    <div class="card shadow-sm p-4 mb-4">
+        <h2 class="mb-4">Pedido #@Model.IdPedido</h2>
+        <dl class="row mb-0">
+            <dt class="col-sm-3">Fecha</dt>
+            <dd class="col-sm-9">@(Model.Fecha?.ToString("yyyy-MM-dd"))</dd>
+            <dt class="col-sm-3">Estado</dt>
+            <dd class="col-sm-9">@Model.Estado</dd>
+            <dt class="col-sm-3">Cliente</dt>
+            <dd class="col-sm-9">@Model.IdClienteNavigation.Nombre</dd>
+            <dt class="col-sm-3">Empleado</dt>
+            <dd class="col-sm-9">@Model.IdUsuarioNavigation.Nombre</dd>
+        </dl>
+    </div>
+
+    <h4 class="mb-3">Productos en el pedido</h4>
+    @if (Model.DetallesPedido == null || !Model.DetallesPedido.Any())
+    {
+        <div class="alert alert-info">No hay productos agregados.</div>
+    }
+    else
+    {
+        <table class="table table-bordered">
+            <thead class="table-light">
+                <tr>
+                    <th>Producto</th>
+                    <th>Cantidad</th>
+                    <th>Subtotal</th>
+                    @if (!esProcesado)
+                    {
+                        <th class="text-center">Acciones</th>
+                    }
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var det in Model.DetallesPedido)
+                {
+                    <tr>
+                        <td>@det.IdProductoNavigation.Nombre</td>
+                        <td>@det.Cantidad</td>
+                        <td>@((det.Subtotal ?? 0).ToString("C"))</td>
+                        @if (!esProcesado)
+                        {
+                            <td class="text-center">
+                                <a asp-controller="DetallesPedidos" asp-action="Edit" asp-route-id="@det.IdDetalle" class="btn btn-sm btn-outline-primary me-1">Editar</a>
+                                <form asp-controller="DetallesPedidos" asp-action="Delete" asp-route-id="@det.IdDetalle" method="post" class="d-inline">
+                                    @Html.AntiForgeryToken()
+                                    <button type="submit" class="btn btn-sm btn-outline-danger">Eliminar</button>
+                                </form>
+                            </td>
+                        }
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+
+    <div class="d-flex justify-content-between mt-4">
+        @if (!esProcesado)
+        {
+            <a asp-controller="DetallesPedidos" asp-action="Create" asp-route-idPedido="@Model.IdPedido" class="btn btn-primary">Agregar Producto</a>
+        }
+        <a asp-action="Index" class="btn btn-secondary">Volver</a>
+    </div>
+
+    @* Tarjeta de Factura *@
+    @if (factura != null)
+    {
+        <div class="card shadow-sm p-4 mt-5">
+            <h4 class="mb-4">Datos de Factura</h4>
+            <dl class="row mb-0">
+                <dt class="col-sm-3">Número</dt>
+                <dd class="col-sm-9">#@factura.IdFactura</dd>
+                <dt class="col-sm-3">Fecha</dt>
+                <dd class="col-sm-9">@(factura.Fecha.HasValue ? factura.Fecha.Value.ToString("yyyy-MM-dd") : "")</dd>
+                <dt class="col-sm-3">Total</dt>
+                <dd class="col-sm-9">@((factura.Total ?? 0).ToString("C"))</dd>
+            </dl>
+        </div>
+    }
+</div>

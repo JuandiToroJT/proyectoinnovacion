@@ -1,0 +1,72 @@
+﻿@{
+    ViewData["Title"] = "Dashboard";
+}
+
+<div class="container mt-5">
+    <div class="text-center mb-5">
+        <h1 class="fw-bold text-primary">Panel de Control</h1>
+        <p class="text-muted">Selecciona una de las secciones para gestionar el sistema</p>
+    </div>
+
+    <div class="row g-4">
+        @if (UsuarioLogueado.Rol == "Administrador")
+        {
+            <div class="col-md-4">
+                <div class="card border-0 shadow-lg rounded-4 h-100">
+                    <div class="card-body text-center p-4">
+                        <div class="display-4 mb-3">🏢</div>
+                        <h5 class="fw-bold text-primary">Empresa</h5>
+                        <p class="text-muted mb-4">Administra la información de la empresa.</p>
+                        <a asp-controller="Empresas" asp-action="Details" asp-route-id="@EmpresaActual.Id" class="btn btn-primary px-4 rounded-3 shadow-sm">Ingresar</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card border-0 shadow-lg rounded-4 h-100">
+                    <div class="card-body text-center p-4">
+                        <div class="display-4 mb-3">👤</div>
+                        <h5 class="fw-bold text-info">Usuarios</h5>
+                        <p class="text-muted mb-4">Gestiona los usuarios registrados en el sistema.</p>
+                        <a asp-controller="Usuarios" asp-action="Index" class="btn btn-info text-white px-4 rounded-3 shadow-sm">Ingresar</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card border-0 shadow-lg rounded-4 h-100">
+                    <div class="card-body text-center p-4">
+                        <div class="display-4 mb-3">🛠️</div>
+                        <h5 class="fw-bold text-success">Inventario</h5>
+                        <p class="text-muted mb-4">Consulta y administra los productos disponibles.</p>
+                        <a asp-controller="Productos" asp-action="Index" class="btn btn-success px-4 rounded-3 shadow-sm">Ingresar</a>
+                    </div>
+                </div>
+            </div>
+        }
+        else
+        {
+            <div class="col-md-6">
+                <div class="card border-0 shadow-lg rounded-4 h-100">
+                    <div class="card-body text-center p-4">
+                        <div class="display-4 mb-3">👥</div>
+                        <h5 class="fw-bold text-primary">Clientes</h5>
+                        <p class="text-muted mb-4">Consulta y gestiona la información de los clientes.</p>
+                        <a asp-controller="Clientes" asp-action="Index" class="btn btn-primary px-4 rounded-3 shadow-sm">Ingresar</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="card border-0 shadow-lg rounded-4 h-100">
+                    <div class="card-body text-center p-4">
+                        <div class="display-4 mb-3">📦</div>
+                        <h5 class="fw-bold text-success">Pedidos</h5>
+                        <p class="text-muted mb-4">Gestiona los pedidos, entregas y facturas.</p>
+                        <a asp-controller="Pedidos" asp-action="Index" class="btn btn-success px-4 rounded-3 shadow-sm">Ingresar</a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

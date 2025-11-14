@@ -1,0 +1,65 @@
+﻿@model IEnumerable<ProyectoInventariosWebApp.Models.Productos>
+
+@{
+    ViewData["Title"] = "Gestión de Productos";
+}
+
+<div class="dashboard-container">
+    <h2 class="titulo-dashboard">Sistema de Inventario</h2>
+
+    <div class="cards-row">
+        <div class="card-info azul">
+            <h5>Total de productos</h5>
+            <span>@Model.Count()</span>
+        </div>
+        <div class="card-info amarillo">
+            <h5>Bajo stock</h5>
+            <span>@Model.Count(p => p.Stock < 5)</span>
+        </div>
+        <div class="card-info verde">
+            <h5>Entradas recientes</h5>
+            <span>15</span>
+        </div>
+        <div class="card-info rojo">
+            <h5>Salidas recientes</h5>
+            <span>12</span>
+        </div>
+    </div>
+
+    <div class="acciones-dashboard">
+        <a class="btn azul" asp-action="Create">Agregar producto</a>
+        <a class="btn verde">Registrar entradas</a>
+        <a class="btn rojo">Registrar salida</a>
+    </div>
+
+    <div class="tabla-contenedor">
+        <h4>Listado de productos</h4>
+        <table class="tabla-dashboard">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Descripción</th>
+                    <th>Precio</th>
+                    <th>Stock</th>
+                    <th class="text-center">Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.Nombre</td>
+                        <td>@item.Descripcion</td>
+                        <td>$@item.Precio.ToString("N2")</td>
+                        <td>@item.Stock</td>
+                        <td class="text-center">
+                            <a class="btn-mini amarillo" asp-action="Edit" asp-route-id="@item.IdProducto">Editar</a>
+                            <a class="btn-mini azul" asp-action="Details" asp-route-id="@item.IdProducto">Detalles</a>
+                            <a class="btn-mini rojo" asp-action="Delete" asp-route-id="@item.IdProducto">Eliminar</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

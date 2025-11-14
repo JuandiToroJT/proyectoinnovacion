@@ -1,0 +1,141 @@
+is_global = true
+build_property.TargetFramework = net8.0
+build_property.TargetFramework = net8.0
+build_property.TargetPlatformMinVersion = 
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.ProjectTypeGuids = 
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = 
+build_property.InvariantGlobalization = 
+build_property.PlatformNeutralAssembly = 
+build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property.RootNamespace = FerreteriaWebApp
+build_property.RootNamespace = FerreteriaWebApp
+build_property.ProjectDir = E:\Universidad\UCALDAS\Semestre 5\Programacion Web II\Proyecto Innovacion\ProyectoInventariosWebApp\FerreteriaWebApp\
+build_property.EnableComHosting = 
+build_property.EnableGeneratedComInterfaceComImportInterop = 
+build_property.RazorLangVersion = 8.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.MSBuildProjectDirectory = E:\Universidad\UCALDAS\Semestre 5\Programacion Web II\Proyecto Innovacion\ProyectoInventariosWebApp\FerreteriaWebApp
+build_property._RazorSourceGeneratorDebug = 
+build_property.EffectiveAnalysisLevelStyle = 8.0
+build_property.EnableCodeStyleSeverity = 
+
+[E:/Universidad/UCALDAS/Semestre 5/Programacion Web II/Proyecto Innovacion/ProyectoInventariosWebApp/FerreteriaWebApp/Views/Clientes/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xpZW50ZXNcQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/Universidad/UCALDAS/Semestre 5/Programacion Web II/Proyecto Innovacion/ProyectoInventariosWebApp/FerreteriaWebApp/Views/Clientes/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xpZW50ZXNcRGVsZXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/Universidad/UCALDAS/Semestre 5/Programacion Web II/Proyecto Innovacion/ProyectoInventariosWebApp/FerreteriaWebApp/Views/Clientes/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xpZW50ZXNcRGV0YWlscy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/Universidad/UCALDAS/Semestre 5/Programacion Web II/Proyecto Innovacion/ProyectoInventariosWebApp/FerreteriaWebApp/Views/Clientes/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xpZW50ZXNcRWRpdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/Universidad/UCALDAS/Semestre 5/Programacion Web II/Proyecto Innovacion/ProyectoInventariosWebApp/FerreteriaWebApp/Views/Clientes/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xpZW50ZXNcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/Universidad/UCALDAS/Semestre 5/Programacion Web II/Proyecto Innovacion/ProyectoInventariosWebApp/FerreteriaWebApp/Views/DetallesPedidos/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGV0YWxsZXNQZWRpZG9zXENyZWF0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/Universidad/UCALDAS/Semestre 5/Programacion Web II/Proyecto Innovacion/ProyectoInventariosWebApp/FerreteriaWebApp/Views/DetallesPedidos/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGV0YWxsZXNQZWRpZG9zXERldGFpbHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/Universidad/UCALDAS/Semestre 5/Programacion Web II/Proyecto Innovacion/ProyectoInventariosWebApp/FerreteriaWebApp/Views/DetallesPedidos/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGV0YWxsZXNQZWRpZG9zXEVkaXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/Universidad/UCALDAS/Semestre 5/Programacion Web II/Proyecto Innovacion/ProyectoInventariosWebApp/FerreteriaWebApp/Views/Empresas/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRW1wcmVzYXNcRGV0YWlscy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/Universidad/UCALDAS/Semestre 5/Programacion Web II/Proyecto Innovacion/ProyectoInventariosWebApp/FerreteriaWebApp/Views/Empresas/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRW1wcmVzYXNcRWRpdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/Universidad/UCALDAS/Semestre 5/Programacion Web II/Proyecto Innovacion/ProyectoInventariosWebApp/FerreteriaWebApp/Views/Home/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/Universidad/UCALDAS/Semestre 5/Programacion Web II/Proyecto Innovacion/ProyectoInventariosWebApp/FerreteriaWebApp/Views/Home/Login.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxMb2dpbi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/Universidad/UCALDAS/Semestre 5/Programacion Web II/Proyecto Innovacion/ProyectoInventariosWebApp/FerreteriaWebApp/Views/Pedidos/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGVkaWRvc1xDcmVhdGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/Universidad/UCALDAS/Semestre 5/Programacion Web II/Proyecto Innovacion/ProyectoInventariosWebApp/FerreteriaWebApp/Views/Pedidos/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGVkaWRvc1xEZXRhaWxzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/Universidad/UCALDAS/Semestre 5/Programacion Web II/Proyecto Innovacion/ProyectoInventariosWebApp/FerreteriaWebApp/Views/Pedidos/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGVkaWRvc1xJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/Universidad/UCALDAS/Semestre 5/Programacion Web II/Proyecto Innovacion/ProyectoInventariosWebApp/FerreteriaWebApp/Views/Productos/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZHVjdG9zXENyZWF0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/Universidad/UCALDAS/Semestre 5/Programacion Web II/Proyecto Innovacion/ProyectoInventariosWebApp/FerreteriaWebApp/Views/Productos/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZHVjdG9zXERlbGV0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/Universidad/UCALDAS/Semestre 5/Programacion Web II/Proyecto Innovacion/ProyectoInventariosWebApp/FerreteriaWebApp/Views/Productos/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZHVjdG9zXERldGFpbHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/Universidad/UCALDAS/Semestre 5/Programacion Web II/Proyecto Innovacion/ProyectoInventariosWebApp/FerreteriaWebApp/Views/Productos/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZHVjdG9zXEVkaXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/Universidad/UCALDAS/Semestre 5/Programacion Web II/Proyecto Innovacion/ProyectoInventariosWebApp/FerreteriaWebApp/Views/Productos/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZHVjdG9zXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/Universidad/UCALDAS/Semestre 5/Programacion Web II/Proyecto Innovacion/ProyectoInventariosWebApp/FerreteriaWebApp/Views/Shared/_Layout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/Universidad/UCALDAS/Semestre 5/Programacion Web II/Proyecto Innovacion/ProyectoInventariosWebApp/FerreteriaWebApp/Views/Shared/_ValidationScriptsPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/Universidad/UCALDAS/Semestre 5/Programacion Web II/Proyecto Innovacion/ProyectoInventariosWebApp/FerreteriaWebApp/Views/Usuarios/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXN1YXJpb3NcQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/Universidad/UCALDAS/Semestre 5/Programacion Web II/Proyecto Innovacion/ProyectoInventariosWebApp/FerreteriaWebApp/Views/Usuarios/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXN1YXJpb3NcRGV0YWlscy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/Universidad/UCALDAS/Semestre 5/Programacion Web II/Proyecto Innovacion/ProyectoInventariosWebApp/FerreteriaWebApp/Views/Usuarios/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXN1YXJpb3NcRWRpdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/Universidad/UCALDAS/Semestre 5/Programacion Web II/Proyecto Innovacion/ProyectoInventariosWebApp/FerreteriaWebApp/Views/Usuarios/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXN1YXJpb3NcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/Universidad/UCALDAS/Semestre 5/Programacion Web II/Proyecto Innovacion/ProyectoInventariosWebApp/FerreteriaWebApp/Views/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/Universidad/UCALDAS/Semestre 5/Programacion Web II/Proyecto Innovacion/ProyectoInventariosWebApp/FerreteriaWebApp/Views/_ViewStart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 

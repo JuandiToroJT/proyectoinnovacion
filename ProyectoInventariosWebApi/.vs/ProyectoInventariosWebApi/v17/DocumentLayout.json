@@ -1,0 +1,113 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "E:\\Universidad\\UCALDAS\\Semestre 5\\Programacion Web II\\Proyecto Innovacion\\ProyectoInventariosWebApi\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{F75AA859-077D-44F2-A39F-25E18DA37CE3}|ProyectoInventariosWebApi\\ProyectoInventariosWebApi.csproj|e:\\universidad\\ucaldas\\semestre 5\\programacion web ii\\proyecto innovacion\\proyectoinventarioswebapi\\proyectoinventarioswebapi\\models\\proyectoinventariosdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F75AA859-077D-44F2-A39F-25E18DA37CE3}|ProyectoInventariosWebApi\\ProyectoInventariosWebApi.csproj|solutionrelative:proyectoinventarioswebapi\\models\\proyectoinventariosdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F75AA859-077D-44F2-A39F-25E18DA37CE3}|ProyectoInventariosWebApi\\ProyectoInventariosWebApi.csproj|e:\\universidad\\ucaldas\\semestre 5\\programacion web ii\\proyecto innovacion\\proyectoinventarioswebapi\\proyectoinventarioswebapi\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F75AA859-077D-44F2-A39F-25E18DA37CE3}|ProyectoInventariosWebApi\\ProyectoInventariosWebApi.csproj|solutionrelative:proyectoinventarioswebapi\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F75AA859-077D-44F2-A39F-25E18DA37CE3}|ProyectoInventariosWebApi\\ProyectoInventariosWebApi.csproj|e:\\universidad\\ucaldas\\semestre 5\\programacion web ii\\proyecto innovacion\\proyectoinventarioswebapi\\proyectoinventarioswebapi\\controllers\\clientescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F75AA859-077D-44F2-A39F-25E18DA37CE3}|ProyectoInventariosWebApi\\ProyectoInventariosWebApi.csproj|solutionrelative:proyectoinventarioswebapi\\controllers\\clientescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 10,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:130:0:{13b12e3e-c1b4-4539-9371-4fe9a0d523fc}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:129:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{b1e99781-ab81-11d0-b683-00aa00a3ee26}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{cce594b6-0c39-4442-ba28-10c64ac7e89f}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Program.cs",
+              "DocumentMoniker": "E:\\Universidad\\UCALDAS\\Semestre 5\\Programacion Web II\\Proyecto Innovacion\\ProyectoInventariosWebApi\\ProyectoInventariosWebApi\\Program.cs",
+              "RelativeDocumentMoniker": "ProyectoInventariosWebApi\\Program.cs",
+              "ToolTip": "E:\\Universidad\\UCALDAS\\Semestre 5\\Programacion Web II\\Proyecto Innovacion\\ProyectoInventariosWebApi\\ProyectoInventariosWebApi\\Program.cs",
+              "RelativeToolTip": "ProyectoInventariosWebApi\\Program.cs",
+              "ViewState": "AgIAACYAAAAAAAAAAAApwDYAAAA6AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-07T19:55:25.518Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "ClientesController.cs",
+              "DocumentMoniker": "E:\\Universidad\\UCALDAS\\Semestre 5\\Programacion Web II\\Proyecto Innovacion\\ProyectoInventariosWebApi\\ProyectoInventariosWebApi\\Controllers\\ClientesController.cs",
+              "RelativeDocumentMoniker": "ProyectoInventariosWebApi\\Controllers\\ClientesController.cs",
+              "ToolTip": "E:\\Universidad\\UCALDAS\\Semestre 5\\Programacion Web II\\Proyecto Innovacion\\ProyectoInventariosWebApi\\ProyectoInventariosWebApi\\Controllers\\ClientesController.cs",
+              "RelativeToolTip": "ProyectoInventariosWebApi\\Controllers\\ClientesController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAfAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-07T19:54:59.245Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "ProyectoInventariosDbContext.cs",
+              "DocumentMoniker": "E:\\Universidad\\UCALDAS\\Semestre 5\\Programacion Web II\\Proyecto Innovacion\\ProyectoInventariosWebApi\\ProyectoInventariosWebApi\\Models\\ProyectoInventariosDbContext.cs",
+              "RelativeDocumentMoniker": "ProyectoInventariosWebApi\\Models\\ProyectoInventariosDbContext.cs",
+              "ToolTip": "E:\\Universidad\\UCALDAS\\Semestre 5\\Programacion Web II\\Proyecto Innovacion\\ProyectoInventariosWebApi\\ProyectoInventariosWebApi\\Models\\ProyectoInventariosDbContext.cs",
+              "RelativeToolTip": "ProyectoInventariosWebApi\\Models\\ProyectoInventariosDbContext.cs",
+              "ViewState": "AgIAAD4AAAAAAAAAAAAgwFoAAAAhAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-07T19:54:18.371Z",
+              "EditorCaption": ""
+            }
+          ]
+        },
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": -1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{6324226f-61b6-4f28-92ee-18d4b5fe1e48}"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
