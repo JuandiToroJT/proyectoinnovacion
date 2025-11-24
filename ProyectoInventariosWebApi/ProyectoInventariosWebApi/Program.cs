@@ -66,6 +66,51 @@ namespace ProyectoInventariosWebApi
 
                 if (!context.Usuarios.Any())
                 {
+                    var empresa = new Empresas
+                    {
+                        Nombre = "Universidad de Caldas",
+                        Nit = "890800640-1",
+                        Ciudad = "Manizales",
+                        Direccion = "Calle 65 No 26-10",
+                        Telefono = "6068781500",
+                        EmailContacto = "rectoría@ucaldas.edu.co",
+                        PaginaWeb = "https://ucaldas.edu.com",
+                        RepresentanteLegal = "Dr. Fabio Hernando Arias Orozco",
+                        TipoEmpresa = "Universidad Pública",
+                        FechaCreacion = DateTime.Now
+                    };
+                    context.Empresas.Add(empresa);
+                    context.SaveChanges();
+
+                    var sede = new Sedes
+                    {
+                        IdEmpresa = 1,
+                        Nombre = "Sede Principal",
+                        Codigo = "PRINCIPAL",
+                        Direccion = "Calle 65 No 26-10",
+                        Telefono = "6068781500",
+                        HorarioLaboral = "Lunes a Jueves: 7:45am-11:45am / 1:45pm-5:45pm | Viernes: 7:00am-3:30pm",
+                        EsSedePrincipal = true,
+                        Estado = true,
+                        FechaCreacion = DateTime.Now
+                    };
+                    context.Sedes.Add(sede);
+                    context.SaveChanges();
+
+                    var dependencia = new Dependencias
+                    {
+                        IdSede = 1,
+                        Nombre = "Papelería Sede Principal",
+                        TipoDependencia = "Papelería",
+                        Ubicacion = "Edificio Administrativo - Piso 1",
+                        Responsable = "María González",
+                        TelefonoContacto = "3001234567",
+                        Estado = true,
+                        FechaCreacion = DateTime.Now
+                    };
+                    context.Dependencias.Add(dependencia);
+                    context.SaveChanges();
+
                     var hasher = new PasswordHasher<Usuarios>();
 
                     var admin = new Usuarios
@@ -107,25 +152,6 @@ namespace ProyectoInventariosWebApi
                     encargado.Contrasena = hasher.HashPassword(encargado, "admin123");
                     context.Usuarios.Add(encargado);
 
-                    context.SaveChanges();
-                }
-
-                if (!context.Empresas.Any())
-                {
-                    Empresas empresa = new Empresas
-                    {
-                        Nombre = "Tienda de la UCALDAS",
-                        Nit = "900123456-7",
-                        Ciudad = "Manizales",
-                        Direccion = "Cra 23 #45-67",
-                        Telefono = "3001234567",
-                        EmailContacto = "contacto@ucaldas.com",
-                        PaginaWeb = "https://tiendaucaldas.com",
-                        RepresentanteLegal = "Juan Pérez",
-                        TipoEmpresa = "SAS",
-                        FechaCreacion = DateTime.Now
-                    };
-                    context.Empresas.Add(empresa);
                     context.SaveChanges();
                 }
             }

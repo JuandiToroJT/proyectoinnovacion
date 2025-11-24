@@ -8,44 +8,12 @@ USE ProyectoInventariosDB;
 GO
 
 -- =====================================================
--- 1. EMPRESAS
--- =====================================================
-SET IDENTITY_INSERT Empresas ON;
-
-IF NOT EXISTS (SELECT 1 FROM Empresas WHERE IdEmpresa = 1)
-BEGIN
-    INSERT INTO Empresas (IdEmpresa, Nombre, Nit, Ciudad, Direccion, Telefono, EmailContacto, PaginaWeb, RepresentanteLegal, TipoEmpresa, FechaCreacion)
-    VALUES (
-        1,
-        'Universidad de Caldas',
-        '890800640-1',
-        'Manizales',
-        'Calle 65 No 26-10',
-        '6068781500',
-        'rectoría@ucaldas.edu.co',
-        'https://www.ucaldas.edu.co',
-        'Dr. Fabio Hernando Arias Orozco',
-        'Universidad Pública',
-        GETDATE()
-    );
-    PRINT '✓ Empresa creada: Universidad de Caldas';
-END
-
-SET IDENTITY_INSERT Empresas OFF;
-GO
-
--- =====================================================
 -- 2. SEDES (5 sedes físicas)
 -- =====================================================
 SET IDENTITY_INSERT Sedes ON;
 
-IF NOT EXISTS (SELECT 1 FROM Sedes)
-BEGIN
-    INSERT INTO Sedes (IdSede, IdEmpresa, Nombre, Codigo, Direccion, Telefono, HorarioLaboral, EsSedePrincipal, Estado, FechaCreacion)
+INSERT INTO Sedes (IdSede, IdEmpresa, Nombre, Codigo, Direccion, Telefono, HorarioLaboral, EsSedePrincipal, Estado, FechaCreacion)
     VALUES
-    -- Sede Principal
-    (1, 1, 'Sede Principal', 'PRINCIPAL', 'Calle 65 No 26-10', '6068781500', 'Lunes a Jueves: 7:45am-11:45am / 1:45pm-5:45pm | Viernes: 7:00am-3:30pm', 1, 1, GETDATE()),
-    
     -- Sede Bellas Artes
     (2, 1, 'Sede Bellas Artes', 'BELLAS', 'Carrera 21 No 13-02', '6068781510', 'Lunes a Jueves: 7:45am-11:45am / 1:45pm-5:45pm | Viernes: 7:00am-3:30pm', 0, 1, GETDATE()),
     
@@ -58,8 +26,7 @@ BEGIN
     -- Sede Versalles
     (5, 1, 'Sede Versalles', 'VERSAL', 'Carrera 25 No 48-57', '6068781540', 'Lunes a Jueves: 7:45am-11:45am / 1:45pm-5:45pm | Viernes: 7:00am-3:30pm', 0, 1, GETDATE());
 
-    PRINT '✓ 5 Sedes creadas exitosamente';
-END
+    PRINT '✓ 4 Sedes creadas exitosamente';
 
 SET IDENTITY_INSERT Sedes OFF;
 GO
@@ -69,12 +36,9 @@ GO
 -- =====================================================
 SET IDENTITY_INSERT Dependencias ON;
 
-IF NOT EXISTS (SELECT 1 FROM Dependencias)
-BEGIN
-    INSERT INTO Dependencias (IdDependencia, IdSede, Nombre, TipoDependencia, Ubicacion, Responsable, TelefonoContacto, Estado, FechaCreacion)
+INSERT INTO Dependencias (IdDependencia, IdSede, Nombre, TipoDependencia, Ubicacion, Responsable, TelefonoContacto, Estado, FechaCreacion)
     VALUES
-    -- SEDE PRINCIPAL (5 dependencias)
-    (1, 1, 'Papelería Sede Principal', 'Papelería', 'Edificio Administrativo - Piso 1', 'María González', '3001234567', 1, GETDATE()),
+    -- SEDE PRINCIPAL (4 dependencias)
     (2, 1, 'Cafetería Central', 'Cafetería', 'Edificio Central - Piso 1', 'Carlos Ramírez', '3001234568', 1, GETDATE()),
     (3, 1, 'Almacén General', 'Almacén', 'Edificio de Servicios - Bodega', 'Jorge Pérez', '3001234569', 1, GETDATE()),
     (4, 1, 'Laboratorio de Química', 'Laboratorio', 'Edificio de Ciencias - Piso 3', 'Dra. Ana López', '3001234570', 1, GETDATE()),
@@ -98,8 +62,7 @@ BEGIN
     (14, 5, 'Papelería Versalles', 'Papelería', 'Recepción', 'Valentina Herrera', '3005234567', 1, GETDATE()),
     (15, 5, 'Cafetería Versalles', 'Cafetería', 'Terraza', 'Fernando Ospina', '3005234568', 1, GETDATE());
 
-    PRINT '✓ 15 Dependencias creadas exitosamente';
-END
+    PRINT '✓ 14 Dependencias creadas exitosamente';
 
 SET IDENTITY_INSERT Dependencias OFF;
 GO
@@ -275,11 +238,11 @@ IF NOT EXISTS (SELECT 1 FROM Pedidos)
 BEGIN
     INSERT INTO Pedidos (IdPedido, IdCliente, IdUsuario, IdSede, IdDependencia, Fecha, Estado, Total, TipoEntrega, MetodoPago, FechaEstimadaEntrega)
     VALUES
-    (1, 1, 4, 1, 1, DATEADD(DAY, -5, GETDATE()), 'Entregado', 45000, 'Retiro', 'Efectivo', DATEADD(DAY, -4, GETDATE())),
-    (2, 2, 4, 1, 1, DATEADD(DAY, -3, GETDATE()), 'Entregado', 72000, 'Retiro', 'Tarjeta', DATEADD(DAY, -2, GETDATE())),
-    (3, 4, 6, 2, 6, DATEADD(DAY, -2, GETDATE()), 'Procesado', 38500, 'Retiro', 'Efectivo', DATEADD(DAY, -1, GETDATE())),
-    (4, 6, 4, 1, 1, DATEADD(DAY, -1, GETDATE()), 'Pendiente', 91000, 'Domicilio', 'Transferencia', DATEADD(DAY, 1, GETDATE())),
-    (5, 9, 4, 1, 2, GETDATE(), 'Pendiente', 24000, 'Retiro', 'Efectivo', DATEADD(DAY, 1, GETDATE()));
+    (1, 1, 3, 1, 1, DATEADD(DAY, -5, GETDATE()), 'Entregado', 45000, 'Retiro', 'Efectivo', DATEADD(DAY, -4, GETDATE())),
+    (2, 2, 3, 1, 1, DATEADD(DAY, -3, GETDATE()), 'Entregado', 72000, 'Retiro', 'Tarjeta', DATEADD(DAY, -2, GETDATE())),
+    (3, 4, 3, 2, 6, DATEADD(DAY, -2, GETDATE()), 'Procesado', 38500, 'Retiro', 'Efectivo', DATEADD(DAY, -1, GETDATE())),
+    (4, 6, 3, 1, 1, DATEADD(DAY, -1, GETDATE()), 'Pendiente', 91000, 'Domicilio', 'Transferencia', DATEADD(DAY, 1, GETDATE())),
+    (5, 9, 3, 1, 2, GETDATE(), 'Pendiente', 24000, 'Retiro', 'Efectivo', DATEADD(DAY, 1, GETDATE()));
 
     PRINT '✓ 5 Pedidos de ejemplo creados';
 END
@@ -340,32 +303,32 @@ BEGIN
     -- Movimientos iniciales (entrada de inventario)
     INSERT INTO MovimientoInventario (IdMovimiento, IdInventario, TipoMovimiento, Cantidad, StockAnterior, StockNuevo, Fecha, IdUsuario, TipoReferencia, IdReferencia, Observaciones, CostoUnitario)
     VALUES
-    (1, 1, 'Entrada', 150, 0, 150, DATEADD(DAY, -30, GETDATE()), 4, 'Compra', NULL, 'Stock inicial - Compra a proveedor', 12000),
-    (2, 11, 'Entrada', 500, 0, 500, DATEADD(DAY, -30, GETDATE()), 5, 'Compra', NULL, 'Stock inicial - Almacén General', 12000),
-    (3, 29, 'Entrada', 100, 0, 100, DATEADD(DAY, -25, GETDATE()), 6, 'Compra', NULL, 'Stock inicial - Papelería Bellas Artes', 12000);
+    (1, 1, 'Entrada', 150, 0, 150, DATEADD(DAY, -30, GETDATE()), 1, 'Compra', NULL, 'Stock inicial - Compra a proveedor', 12000),
+    (2, 11, 'Entrada', 500, 0, 500, DATEADD(DAY, -30, GETDATE()), 1, 'Compra', NULL, 'Stock inicial - Almacén General', 12000),
+    (3, 29, 'Entrada', 100, 0, 100, DATEADD(DAY, -25, GETDATE()), 2, 'Compra', NULL, 'Stock inicial - Papelería Bellas Artes', 12000);
 
     -- Transferencia de ejemplo
     INSERT INTO MovimientoInventario (IdMovimiento, IdInventario, TipoMovimiento, Cantidad, StockAnterior, StockNuevo, Fecha, IdUsuario, TipoReferencia, IdReferencia, Observaciones, CostoUnitario)
     VALUES
-    (4, 11, 'Transferencia', -50, 550, 500, DATEADD(DAY, -20, GETDATE()), 5, 'Transferencia', 1, 'Transferencia a Papelería Principal', 12000),
-    (5, 1, 'Transferencia', 50, 100, 150, DATEADD(DAY, -20, GETDATE()), 4, 'Transferencia', 1, 'Recepción desde Almacén General', 12000);
+    (4, 11, 'Transferencia', -50, 550, 500, DATEADD(DAY, -20, GETDATE()), 1, 'Transferencia', 1, 'Transferencia a Papelería Principal', 12000),
+    (5, 1, 'Transferencia', 50, 100, 150, DATEADD(DAY, -20, GETDATE()), 2, 'Transferencia', 1, 'Recepción desde Almacén General', 12000);
 
     -- Salidas por ventas (pedidos entregados)
     INSERT INTO MovimientoInventario (IdMovimiento, IdInventario, TipoMovimiento, Cantidad, StockAnterior, StockNuevo, Fecha, IdUsuario, TipoReferencia, IdReferencia, Observaciones, CostoUnitario)
     VALUES
-    (6, 1, 'Salida', -3, 153, 150, DATEADD(DAY, -4, GETDATE()), 4, 'Pedido', 1, 'Venta - Pedido #1', 12000),
-    (7, 3, 'Salida', -2, 47, 45, DATEADD(DAY, -2, GETDATE()), 4, 'Pedido', 2, 'Venta - Pedido #2', 6400);
+    (6, 1, 'Salida', -3, 153, 150, DATEADD(DAY, -4, GETDATE()), 2, 'Pedido', 1, 'Venta - Pedido #1', 12000),
+    (7, 3, 'Salida', -2, 47, 45, DATEADD(DAY, -2, GETDATE()), 2, 'Pedido', 2, 'Venta - Pedido #2', 6400);
 
     -- Transferencia reciente (la que hicimos con stock bajo)
     INSERT INTO MovimientoInventario (IdMovimiento, IdInventario, TipoMovimiento, Cantidad, StockAnterior, StockNuevo, Fecha, IdUsuario, TipoReferencia, IdReferencia, Observaciones, CostoUnitario)
     VALUES
-    (8, 11, 'Transferencia', -95, 595, 500, DATEADD(DAY, -2, GETDATE()), 5, 'Transferencia', 2, 'Transferencia a Papelería Bellas Artes - Reabastecimiento', 12000),
-    (9, 29, 'Transferencia', 95, 5, 100, DATEADD(DAY, -2, GETDATE()), 6, 'Transferencia', 2, 'Recepción desde Almacén General - Reabastecimiento', 12000);
+    (8, 11, 'Transferencia', -95, 595, 500, DATEADD(DAY, -2, GETDATE()), 1, 'Transferencia', 2, 'Transferencia a Papelería Bellas Artes - Reabastecimiento', 12000),
+    (9, 29, 'Transferencia', 95, 5, 100, DATEADD(DAY, -2, GETDATE()), 1, 'Transferencia', 2, 'Recepción desde Almacén General - Reabastecimiento', 12000);
 
     -- Ajuste de inventario
     INSERT INTO MovimientoInventario (IdMovimiento, IdInventario, TipoMovimiento, Cantidad, StockAnterior, StockNuevo, Fecha, IdUsuario, TipoReferencia, IdReferencia, Observaciones, CostoUnitario)
     VALUES
-    (10, 41, 'Ajuste', -2, 10, 8, DATEADD(DAY, -1, GETDATE()), 4, 'Ajuste Manual', NULL, 'Ajuste por inventario físico - Producto dañado', 6400);
+    (10, 41, 'Ajuste', -2, 10, 8, DATEADD(DAY, -1, GETDATE()), 2, 'Ajuste Manual', NULL, 'Ajuste por inventario físico - Producto dañado', 6400);
 
     PRINT '✓ 10 Movimientos de inventario registrados';
 END
@@ -383,19 +346,19 @@ BEGIN
     INSERT INTO TransferenciaStock (IdTransferencia, IdProducto, IdDependenciaOrigen, IdDependenciaDestino, Cantidad, Motivo, FechaSolicitud, FechaAprobacion, FechaEjecucion, IdUsuarioSolicita, IdUsuarioAprueba, Estado, Observaciones, CostoTransporte)
     VALUES
     -- Transferencia ejecutada (reabastecimiento exitoso)
-    (1, 1, 3, 1, 50, 'Reabastecimiento', DATEADD(DAY, -20, GETDATE()), DATEADD(DAY, -20, GETDATE()), DATEADD(DAY, -20, GETDATE()), 4, 2, 'Ejecutada', 'Transferencia normal - Stock bajo en Papelería Principal', NULL),
+    (1, 1, 3, 1, 50, 'Reabastecimiento', DATEADD(DAY, -20, GETDATE()), DATEADD(DAY, -20, GETDATE()), DATEADD(DAY, -20, GETDATE()), 2, 1, 'Ejecutada', 'Transferencia normal - Stock bajo en Papelería Principal', NULL),
     
     -- Transferencia ejecutada reciente (la del stock bajo)
-    (2, 1, 3, 6, 95, 'Stock bajo', DATEADD(DAY, -2, GETDATE()), DATEADD(DAY, -2, GETDATE()), DATEADD(DAY, -2, GETDATE()), 6, 3, 'Ejecutada', 'Reabastecimiento urgente - Papelería Bellas Artes', NULL),
+    (2, 1, 3, 6, 95, 'Stock bajo', DATEADD(DAY, -2, GETDATE()), DATEADD(DAY, -2, GETDATE()), DATEADD(DAY, -2, GETDATE()), 2, 1, 'Ejecutada', 'Reabastecimiento urgente - Papelería Bellas Artes', NULL),
     
     -- Transferencia aprobada (lista para ejecutar)
-    (3, 3, 3, 9, 30, 'Reabastecimiento', DATEADD(DAY, -1, GETDATE()), DATEADD(DAY, -1, GETDATE()), NULL, 4, 2, 'Aprobada', 'Pendiente de ejecución', NULL),
+    (3, 3, 3, 9, 30, 'Reabastecimiento', DATEADD(DAY, -1, GETDATE()), DATEADD(DAY, -1, GETDATE()), NULL, 2, 1, 'Aprobada', 'Pendiente de ejecución', NULL),
     
     -- Transferencia pendiente (esperando aprobación)
-    (4, 11, 3, 2, 50, 'Reabastecimiento', GETDATE(), NULL, NULL, 4, NULL, 'Pendiente', 'Solicitud de café para cafetería central', NULL),
+    (4, 11, 3, 2, 50, 'Reabastecimiento', GETDATE(), NULL, NULL, 2, NULL, 'Pendiente', 'Solicitud de café para cafetería central', NULL),
     
     -- Transferencia rechazada
-    (5, 21, 4, 11, 1, 'Apertura nueva dependencia', DATEADD(DAY, -5, GETDATE()), NULL, NULL, 4, 2, 'Rechazada', 'Producto no compartible - No se puede transferir equipos especializados', NULL);
+    (5, 21, 4, 11, 1, 'Apertura nueva dependencia', DATEADD(DAY, -5, GETDATE()), NULL, NULL, 2, 1, 'Rechazada', 'Producto no compartible - No se puede transferir equipos especializados', NULL);
 
     PRINT '✓ 5 Transferencias de stock creadas (diferentes estados)';
 END
