@@ -155,13 +155,19 @@ dotnet restore
 
 ### 3. Configurar Base de Datos
 
-#### Opción A: Crear base de datos y aplicar migraciones
+#### Crear base de datos y aplicar migraciones
 ```bash
 cd ProyectoInventariosWebApi
 dotnet ef database update
 ```
 
-#### Opción B: Ejecutar script SQL completo
+#### Levantar el proyecto de la api
+```
+Este paso es muy importante para que puedan crearse los usuarios automáticamente antes de ejecutar el script,
+luego se debe detener el proyecto
+```
+
+#### Ejecutar script SQL completo
 ```bash
 # Usar SQL Server Management Studio (SSMS)
 # Abrir y ejecutar: Script proyecto inventarios.sql
