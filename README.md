@@ -180,6 +180,9 @@ luego se debe detener el proyecto
 {
   "ConnectionStrings": {
     "DefaultConnection": "Server=SUSERVIDORSQL;Database=ProyectoInventariosDB;Integrated Security=true;TrustServerCertificate=true;"
+  },
+  "Gemini": {
+    "ApiKey": "AQUI_VA_EL_APIKEY_PROPORCIONADA_POR_EL_DESARROLLADOR"
   }
 }
 ```
