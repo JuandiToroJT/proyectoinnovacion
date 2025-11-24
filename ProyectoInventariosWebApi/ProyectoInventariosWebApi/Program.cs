@@ -67,15 +67,46 @@ namespace ProyectoInventariosWebApi
                 if (!context.Usuarios.Any())
                 {
                     var hasher = new PasswordHasher<Usuarios>();
+
                     var admin = new Usuarios
                     {
-                        Nombre = "Admin",
-                        Correo = "admin@ucaldas.com",
+                        Nombre = "Administrador del Sistema",
+                        Correo = "admin@ucaldas.edu.co",
                         Rol = "SuperAdmin",
-                        Estado = true
+                        Estado = true,
+                        IdSede = null,
+                        IdDependencia = null,
+                        FechaCreacion = DateTime.Now
                     };
                     admin.Contrasena = hasher.HashPassword(admin, "admin123");
                     context.Usuarios.Add(admin);
+
+                    var adminSede = new Usuarios
+                    {
+                        Nombre = "Coordinador Sede Principal",
+                        Correo = "coord.principal@ucaldas.edu.co",
+                        Rol = "AdminSede",
+                        Estado = true,
+                        IdSede = 1,
+                        IdDependencia = null,
+                        FechaCreacion = DateTime.Now
+                    };
+                    adminSede.Contrasena = hasher.HashPassword(adminSede, "admin123");
+                    context.Usuarios.Add(adminSede);
+
+                    var encargado = new Usuarios
+                    {
+                        Nombre = "María González",
+                        Correo = "maria.gonzalez@ucaldas.edu.co",
+                        Rol = "EncargadoDependencia",
+                        Estado = true,
+                        IdSede = 1,
+                        IdDependencia = 1,
+                        FechaCreacion = DateTime.Now
+                    };
+                    encargado.Contrasena = hasher.HashPassword(encargado, "admin123");
+                    context.Usuarios.Add(encargado);
+
                     context.SaveChanges();
                 }
 

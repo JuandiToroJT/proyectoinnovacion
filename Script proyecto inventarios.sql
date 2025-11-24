@@ -105,39 +105,6 @@ SET IDENTITY_INSERT Dependencias OFF;
 GO
 
 -- =====================================================
--- 4. USUARIOS (10 usuarios con diferentes roles)
--- =====================================================
-SET IDENTITY_INSERT Usuarios ON;
-
-IF NOT EXISTS (SELECT 1 FROM Usuarios)
-BEGIN
-    INSERT INTO Usuarios (IdUsuario, Nombre, Correo, Contrasena, Rol, Estado, IdSede, IdDependencia, FechaCreacion)
-    VALUES
-    -- SuperAdmin (sin sede ni dependencia)
-    (1, 'Administrador del Sistema', 'admin@ucaldas.edu.co', 'AQAAAAIAAYagAAAAEA1nTofZZp1RWkwRrOyjw2iRIX0eF7kLzXD/EZYCLhn5PIc3L6CvWk8ItZlNqwynwA==', 'SuperAdmin', 1, NULL, NULL, GETDATE()),
-    
-    -- AdminSede Sede Principal
-    (2, 'Coordinador Sede Principal', 'coord.principal@ucaldas.edu.co', 'AQAAAAIAAYagAAAAEA1nTofZZp1RWkwRrOyjw2iRIX0eF7kLzXD/EZYCLhn5PIc3L6CvWk8ItZlNqwynwA==', 'AdminSede', 1, 1, NULL, GETDATE()),
-    
-    -- AdminSede Sede Bellas Artes
-    (3, 'Coordinador Bellas Artes', 'coord.bellas@ucaldas.edu.co', 'AQAAAAIAAYagAAAAEA1nTofZZp1RWkwRrOyjw2iRIX0eF7kLzXD/EZYCLhn5PIc3L6CvWk8ItZlNqwynwA==', 'AdminSede', 1, 2, NULL, GETDATE()),
-    
-    -- EncargadoDependencia - Papelería Principal
-    (4, 'María González', 'maria.gonzalez@ucaldas.edu.co', 'AQAAAAIAAYagAAAAEA1nTofZZp1RWkwRrOyjw2iRIX0eF7kLzXD/EZYCLhn5PIc3L6CvWk8ItZlNqwynwA==', 'EncargadoDependencia', 1, 1, 1, GETDATE()),
-    
-    -- EncargadoDependencia - Almacén General
-    (5, 'Jorge Pérez', 'jorge.perez@ucaldas.edu.co', 'AQAAAAIAAYagAAAAEA1nTofZZp1RWkwRrOyjw2iRIX0eF7kLzXD/EZYCLhn5PIc3L6CvWk8ItZlNqwynwA==', 'EncargadoDependencia', 1, 1, 3, GETDATE()),
-    
-    -- EncargadoDependencia - Papelería Bellas Artes
-    (6, 'Laura Martínez', 'laura.martinez@ucaldas.edu.co', 'AQAAAAIAAYagAAAAEA1nTofZZp1RWkwRrOyjw2iRIX0eF7kLzXD/EZYCLhn5PIc3L6CvWk8ItZlNqwynwA==', 'EncargadoDependencia', 1, 2, 6, GETDATE()),
-    
-    PRINT '  Nota: Todos los usuarios tienen contraseña: admin123';
-END
-
-SET IDENTITY_INSERT Usuarios OFF;
-GO
-
--- =====================================================
 -- 5. CLIENTES (10 clientes)
 -- =====================================================
 SET IDENTITY_INSERT Clientes ON;
