@@ -13,5 +13,19 @@ public partial class Clientes
 
     public string Direccion { get; set; } = null!;
 
+    public string? Email { get; set; }
+
+    public int? IdSedePredeterminada { get; set; }
+
+    public string? TipoCliente { get; set; }
+
+    public string? DocumentoIdentidad { get; set; }
+
+    public DateTime? FechaRegistro { get; set; }
+
+    public bool Estado { get; set; }
+
     public virtual ICollection<Pedidos>? Pedidos { get; set; } = new List<Pedidos>();
+
+    public virtual Sedes? IdSedePredeterminadaNavigation { get; set; }
 }

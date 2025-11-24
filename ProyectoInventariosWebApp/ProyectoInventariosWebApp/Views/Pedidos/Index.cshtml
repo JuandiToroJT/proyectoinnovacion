@@ -79,37 +79,6 @@
 
                             @if (!esProcesado)
                             {
-                                @* Botón “Entrega” solo si no hay ninguna *@
-                                @if (!pedido.Entregas.Any())
-                                {
-                                    <form asp-action="GenerarEntrega" asp-route-id="@pedido.IdPedido" method="post" class="d-inline">
-                                        @Html.AntiForgeryToken()
-                                        <button type="submit" class="btn btn-outline-primary btn-sm me-1">
-                                            Entrega
-                                        </button>
-                                    </form>
-                                }
-                                else
-                                {
-                                    <span class="badge bg-success me-1">Entrega ok</span>
-                                }
-
-                                @* Botón “Factura” solo si no hay ninguna *@
-                                @if (!pedido.Facturas.Any())
-                                {
-                                    <form asp-action="GenerarFactura" asp-route-id="@pedido.IdPedido" method="post" class="d-inline">
-                                        @Html.AntiForgeryToken()
-                                        <button type="submit" class="btn btn-outline-success btn-sm me-1">
-                                            Factura
-                                        </button>
-                                    </form>
-                                }
-                                else
-                                {
-                                    var fac = pedido.Facturas.First();
-                                    <span class="badge bg-success me-1">Factura #@fac.IdFactura</span>
-                                }
-
                                 @* Botón “Procesado” siempre *@
                                 <form asp-action="MarcarProcesado" asp-route-id="@pedido.IdPedido" method="post" class="d-inline">
                                     @Html.AntiForgeryToken()

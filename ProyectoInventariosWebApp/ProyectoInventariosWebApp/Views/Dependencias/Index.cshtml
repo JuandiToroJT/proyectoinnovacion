@@ -1,0 +1,146 @@
+@model IEnumerable<ProyectoInventariosWebApp.Controllers.Dependencia>
+
+    @{
+    ViewData["Title"] = "Dependencias";
+    var puedeCrear = ProyectoInventariosWebApp.Models.UsuarioLogueado.Rol == "SuperAdmin" ||
+                     ProyectoInventariosWebApp.Models.UsuarioLogueado.Rol == "AdminSede";
+    var idSede = ViewBag.IdSede as int?;
+    }
+
+    <div class="row mb-4">
+        <div class="col-md-6">
+            <h2><i class="bi bi-building"></i> Gestión de Dependencias</h2>
+            @if (idSede.HasValue)
+        {
+            <p class="text-muted">Dependencias de la sede seleccionada</p>
+        }
+        else
+        {
+            <p class="text-muted">Todas las dependencias del sistema</p>
+        }
+        </div>
+        <div class="col-md-6 text-end">
+            @if (idSede.HasValue)
+        {
+            <a asp-controller="Sedes" asp-action="Details" asp-route-id="@idSede" class="btn btn-secondary">
+                <i class="bi bi-arrow-left"></i> Volver a Sede
+            </a>
+        }
+        </div>
+    </div>
+
+    @if (TempData["Success"] != null)
+{
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <i class="bi bi-check-circle"></i> @TempData["Success"]
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    </div>
+}
+
+    @if (TempData["Error"] != null)
+{
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <i class="bi bi-exclamation-triangle"></i> @TempData["Error"]
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    </div>
+}
+
+    <div class="card">
+        <div class="card-body">
+            @if (Model != null && Model.Any())
+        {
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Nombre</th>
+                            @if (!idSede.HasValue)
+                            {
+                            <th>Sede</th>
+                            }
+                            <th>Tipo</th>
+                            <th>Responsable</th>
+                            <th>Teléfono</th>
+                            <th>Estado</th>
+                            <th class="text-center">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var dep in Model)
+                        {
+                        <tr>
+                            <td>
+                                <strong>@dep.Nombre</strong>
+                                @if (!string.IsNullOrEmpty(dep.Ubicacion))
+                                    {
+                                <br><small class="text-muted"><i class="bi bi-pin-map"></i> @dep.Ubicacion</small>
+                                    }
+                            </td>
+                            @if (!idSede.HasValue)
+                                {
+                            <td>
+                                @if (!string.IsNullOrEmpty(dep.NombreSede))
+                                        {
+                                <span class="badge bg-info">@dep.NombreSede</span>
+                                        }
+                                        else
+                                        {
+                                <span class="text-muted">-</span>
+                                        }
+                            </td>
+                                }
+                            <td>
+                                @if (!string.IsNullOrEmpty(dep.TipoDependencia))
+                                    {
+                                <span class="badge bg-secondary">@dep.TipoDependencia</span>
+                                    }
+                                    else
+                                    {
+                                <span class="text-muted">-</span>
+                                    }
+                            </td>
+                            <td>@(dep.Responsable ?? "-")</td>
+                            <td>@(dep.Telefono ?? "-")</td>
+                            <td>
+                                @if (dep.Activa)
+                                    {
+                                <span class="badge bg-success">Activa</span>
+                                    }
+                                    else
+                                    {
+                                <span class="badge bg-danger">Inactiva</span>
+                                    }
+                            </td>
+                            <td class="text-center">
+                                <div class="btn-group" role="group">
+                                    <a asp-action="Details" asp-route-id="@dep.IdDependencia"
+                                       class="btn btn-sm btn-outline-primary" title="Ver detalles">
+                                        <i class="bi bi-eye"></i>
+                                    </a>
+                                    <a asp-action="Inventario" asp-route-id="@dep.IdDependencia"
+                                       class="btn btn-sm btn-outline-success" style="background-color: green;" title="Ver inventario">
+                                        <i class="bi bi-box-seam"></i>
+                                    </a>
+                                </div>
+                            </td>
+                        </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        }
+        else
+        {
+            <div class="text-center py-5">
+                <i class="bi bi-inbox" style="font-size: 4rem; color: #ccc;"></i>
+                <p class="text-muted mt-3">No hay dependencias registradas</p>
+                @if (puedeCrear)
+                {
+                <a asp-action="Create" asp-route-idSede="@idSede" class="btn btn-primary">
+                    <i class="bi bi-plus-circle"></i> Crear Primera Dependencia
+                </a>
+                }
+            </div>
+        }
+        </div>
+    </div>

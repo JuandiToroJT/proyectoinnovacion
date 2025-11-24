@@ -1,0 +1,291 @@
+﻿@model ProyectoInventariosWebApp.Models.Usuario
+
+@{
+    Layout = null;
+    ViewData["Title"] = "Iniciar Sesión";
+}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Universidad de Caldas</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <style>
+        body {
+            background-color: #f3f6fb;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .login-wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 2rem 1rem;
+        }
+
+        .login-container {
+            display: flex;
+            max-width: 950px;
+            width: 100%;
+            background-color: #fff;
+            border-radius: 12px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+            overflow: hidden;
+        }
+
+        .login-form {
+            flex: 1;
+            padding: 3rem 2.5rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .login-header-text {
+            margin-bottom: 2rem;
+        }
+
+            .login-header-text h2 {
+                font-weight: 600;
+                color: #1e293b;
+                margin-bottom: 0.5rem;
+                font-size: 1.75rem;
+            }
+
+            .login-header-text p {
+                color: #64748b;
+                margin-bottom: 0;
+                font-size: 0.95rem;
+            }
+
+        .university-badge {
+            display: inline-flex;
+            align-items: center;
+            background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            margin-bottom: 1.5rem;
+        }
+
+            .university-badge::before {
+                content: "🏛️";
+                margin-right: 0.5rem;
+                font-size: 1.1rem;
+            }
+
+        .form-label {
+            font-weight: 500;
+            color: #334155;
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        .form-control {
+            border-radius: 8px;
+            padding: 0.85rem 1rem;
+            border: 2px solid #e2e8f0;
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+        }
+
+            .form-control:focus {
+                border-color: #3b82f6;
+                box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.1);
+                outline: none;
+            }
+
+            .form-control::placeholder {
+                color: #94a3b8;
+            }
+
+        .btn-login {
+            background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+            border: none;
+            width: 100%;
+            padding: 0.85rem;
+            border-radius: 8px;
+            color: white;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+        }
+
+            .btn-login:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 6px 20px rgba(59, 130, 246, 0.4);
+                background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+            }
+
+            .btn-login:active {
+                transform: translateY(0);
+            }
+
+        .alert {
+            border-radius: 8px;
+            border: none;
+            padding: 1rem;
+            font-size: 0.9rem;
+        }
+
+        .alert-danger {
+            background-color: #fef2f2;
+            color: #991b1b;
+            border-left: 4px solid #dc2626;
+        }
+
+        .help-text {
+            text-align: center;
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid #e2e8f0;
+        }
+
+            .help-text small {
+                color: #64748b;
+                font-size: 0.85rem;
+            }
+
+        .login-illustration {
+            flex: 1;
+            background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 3rem 2rem;
+            position: relative;
+        }
+
+            .login-illustration::before {
+                content: "";
+                position: absolute;
+                top: -50%;
+                right: -50%;
+                width: 200%;
+                height: 200%;
+                background: radial-gradient(circle, rgba(59, 130, 246, 0.1) 0%, transparent 70%);
+                animation: pulse 8s ease-in-out infinite;
+            }
+
+        @@keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+                opacity: 0.5;
+            }
+
+            50% {
+                transform: scale(1.1);
+                opacity: 0.8;
+            }
+        }
+
+        .login-illustration img {
+            width: 90%;
+            max-width: 400px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Responsive */
+        @@media (max-width: 768px) {
+            .login-container {
+                flex-direction: column;
+            }
+
+            .login-illustration {
+                display: none;
+            }
+
+            .login-form {
+                padding: 2rem 1.5rem;
+            }
+
+            .login-wrapper {
+                padding: 1rem;
+            }
+        }
+
+        /* Animación de entrada */
+        .login-container {
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        @@keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="login-wrapper">
+        <div class="login-container">
+            <div class="login-form">
+                <div class="university-badge">
+                    Universidad de Caldas
+                </div>
+
+                <div class="login-header-text">
+                    <h2>Sistema de Inventario Multi-Sede</h2>
+                    <p>Inicia sesión para acceder al sistema</p>
+                </div>
+
+                <form method="post" asp-controller="Account" asp-action="Login">
+                    @if (ViewBag.Error != null)
+                    {
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        <strong>⚠️ Error:</strong> @ViewBag.Error
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                    }
+
+                    <div class="mb-3">
+                        <label asp-for="Correo" class="form-label">Correo Electrónico</label>
+                        <input asp-for="Correo" class="form-control" type="email" placeholder="usuario@ucaldas.edu.co" required />
+                        <span asp-validation-for="Correo" class="text-danger small"></span>
+                    </div>
+
+                    <div class="mb-4">
+                        <label asp-for="Contrasena" class="form-label">Contraseña</label>
+                        <input asp-for="Contrasena" class="form-control" type="password" placeholder="••••••••" required />
+                        <span asp-validation-for="Contrasena" class="text-danger small"></span>
+                    </div>
+
+                    <button type="submit" class="btn btn-login">
+                        Iniciar Sesión
+                    </button>
+
+                    <div class="help-text">
+                        <small class="text-muted">
+                            ¿No tienes cuenta? Contacta al administrador del sistema
+                        </small>
+                    </div>
+                </form>
+            </div>
+
+            <div class="login-illustration">
+                <img src="https://static.vecteezy.com/system/resources/thumbnails/016/071/197/small/desktop-login-isometric-illustration-light-gradient-suitable-for-mobile-app-website-banner-diagrams-infographics-and-other-graphic-assets-vector.jpg"
+                     alt="Ilustración de inicio de sesión" />
+            </div>
+        </div>
+    </div>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

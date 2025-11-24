@@ -22,10 +22,9 @@ namespace ProyectoInventariosWebApp.Controllers
         public EmpresasController(HttpClient httpClient, IOptions<ApiUrlsOptions> apiOptions)
         {
             _httpClient = httpClient;
-            URL_API = apiOptions.Value.BaseUrl + "Empresas";
+            URL_API = apiOptions.Value.BaseUrl + "/Empresas";
         }
 
-        // GET: Empresas/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -42,7 +41,6 @@ namespace ProyectoInventariosWebApp.Controllers
             return View(empresas);
         }
 
-        // GET: Empresas/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)

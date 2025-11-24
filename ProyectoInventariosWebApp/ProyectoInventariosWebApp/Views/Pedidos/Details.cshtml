@@ -4,11 +4,10 @@
     ViewData["Title"] = "Detalles del Pedido";
     var esProcesado = (bool)(ViewData["EsProcesado"] ?? false);
     var tieneError = TempData["Error"] != null;
-    var factura = Model.Facturas.FirstOrDefault();
+    bool esProcesadoConProd = !esProcesado && Model.DetallesPedido != null && Model.DetallesPedido.Any();
 }
 
 <div class="container mt-4">
-    @* Mensaje de error si hubo intento inválido *@
     @if (tieneError)
     {
         <div class="alert alert-danger alert-dismissible fade show" role="alert">
@@ -63,7 +62,7 @@
                                 <a asp-controller="DetallesPedidos" asp-action="Edit" asp-route-id="@det.IdDetalle" class="btn btn-sm btn-outline-primary me-1">Editar</a>
                                 <form asp-controller="DetallesPedidos" asp-action="Delete" asp-route-id="@det.IdDetalle" method="post" class="d-inline">
                                     @Html.AntiForgeryToken()
-                                    <button type="submit" class="btn btn-sm btn-outline-danger">Eliminar</button>
+                                    <button type="submit" class="btn btn-sm btn-outline-danger" style="background-color: red;">Eliminar</button>
                                 </form>
                             </td>
                         }
@@ -81,19 +80,99 @@
         <a asp-action="Index" class="btn btn-secondary">Volver</a>
     </div>
 
-    @* Tarjeta de Factura *@
-    @if (factura != null)
+    @if (esProcesadoConProd)
     {
-        <div class="card shadow-sm p-4 mt-5">
-            <h4 class="mb-4">Datos de Factura</h4>
-            <dl class="row mb-0">
-                <dt class="col-sm-3">Número</dt>
-                <dd class="col-sm-9">#@factura.IdFactura</dd>
-                <dt class="col-sm-3">Fecha</dt>
-                <dd class="col-sm-9">@(factura.Fecha.HasValue ? factura.Fecha.Value.ToString("yyyy-MM-dd") : "")</dd>
-                <dt class="col-sm-3">Total</dt>
-                <dd class="col-sm-9">@((factura.Total ?? 0).ToString("C"))</dd>
-            </dl>
+        <div class="card shadow mt-5">
+            <div class="card-header bg-warning text-dark">
+                <h5 class="mb-0"><i class="bi bi-robot me-2"></i>Sugerencias de la Inteligencia Artificial</h5>
+            </div>
+            <div class="card-body">
+                <p class="card-text text-muted">Basado en el historial de pedidos con los productos seleccionados, la IA sugiere:</p>
+
+                <div id="iaSugerenciasList" class="list-group list-group-flush">
+                    <p class="text-center text-info" id="iaCargaMensaje">
+                        <i class="bi bi-arrow-clockwise spinner-border spinner-border-sm me-2"></i> Analizando el pedido...
+                    </p>
+                </div>
+
+            </div>
         </div>
     }
 </div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function() {
+            const apiUrl = '@ViewBag.ApiUrl';
+            const esProcesadoConProd = @Html.Raw(esProcesadoConProd.ToString().ToLower());
+            const idPedido = @Model.IdPedido;
+
+            function agregarSugerenciaAI(data) {
+                let html = '';
+                const productos = data.productosSugeridos || [];
+                const frase = data.fraseVenta || "Complementa tu pedido con estas opciones.";
+
+                if (productos.length === 0) {
+                    html = '<div class="alert alert-light text-center">La IA no encontró productos complementarios relevantes para este pedido.</div>';
+                } else {
+                    html += `<div class="alert alert-success mt-2 mb-3"><strong><i class="bi bi-megaphone me-2"></i> ${frase}</strong></div>`;
+
+                    html += '<ul class="list-group">';
+                    productos.forEach(function(producto) {
+                        html += `
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                <span class="me-auto">
+                                    <strong>${producto}</strong>
+                                </span>
+                            </li>
+                        `;
+                    });
+                    html += '</ul>';
+                }
+
+                $('#iaSugerenciasList').html(html);
+            }
+
+            function cargarSugerenciasAI(idPedido) {
+                const tipoCliente = 'Estudiante';
+
+                const productosEnPedido = @Html.Raw(Json.Serialize(Model.DetallesPedido.Select(dp => dp.IdProductoNavigation.Nombre).ToList()));
+
+                const requestBody = {
+                    TipoCliente: tipoCliente,
+                    Productos: productosEnPedido
+                };
+
+                const url = apiUrl + '/IA/recomendacion-caja';
+
+                $('#iaSugerenciasList').html('<p class="text-center text-info" id="iaCargaMensaje"><i class="bi bi-arrow-clockwise spinner-border spinner-border-sm me-2"></i> Analizando el pedido...</p>');
+
+                $.ajax({
+                    url: url,
+                    type: 'POST',
+                    contentType: 'application/json',
+                    data: JSON.stringify(requestBody),
+                    success: function(data) {
+                        if (data && data.productosSugeridos) {
+                            agregarSugerenciaAI(data);
+                        } else {
+                            $('#iaSugerenciasList').html('<div class="alert alert-light text-center">No hay sugerencias disponibles en este momento.</div>');
+                        }
+                    },
+                    error: function(xhr, status, error) {
+                        console.error("Error al llamar a la IA:", error);
+                        const errorMsg = xhr.status === 404 ?
+                            'Error 404: La URL de la API no se encontró. Revisa la ruta.' :
+                            'Error al conectar con el servicio de Sugerencias AI.';
+
+                        $('#iaSugerenciasList').html(`<div class="alert alert-danger text-center">${errorMsg}</div>`);
+                    }
+                });
+            }
+
+            if (esProcesadoConProd) {
+                cargarSugerenciasAI(idPedido);
+            }
+        });
+    </script>
+}

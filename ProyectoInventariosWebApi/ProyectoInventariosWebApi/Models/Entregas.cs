@@ -15,5 +15,11 @@ public partial class Entregas
 
     public string? Estado { get; set; }
 
+    public string? Transportista { get; set; }
+
+    public string? Observaciones { get; set; }
+
+    public decimal? CostoEnvio { get; set; }
+
     public virtual Pedidos? IdPedidoNavigation { get; set; } = null!;
 }

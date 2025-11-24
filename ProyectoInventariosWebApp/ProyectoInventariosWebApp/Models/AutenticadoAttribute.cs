@@ -8,9 +8,12 @@ namespace ProyectoInventariosWebApp.Filtro
     {
         public override void OnActionExecuting(ActionExecutingContext context)
         {
-            if (!UsuarioLogueado.Id.HasValue || UsuarioLogueado.Rol != "Administrador")
+            if (!UsuarioLogueado.Id.HasValue ||
+                (UsuarioLogueado.Rol != "Administrador" &&
+                 UsuarioLogueado.Rol != "SuperAdmin" &&
+                 UsuarioLogueado.Rol != "AdminSede"))
             {
-                context.Result = new RedirectToActionResult("Login", "Home", null);
+                context.Result = new RedirectToActionResult("Login", "Account", null);
             }
             base.OnActionExecuting(context);
         }
@@ -20,9 +23,39 @@ namespace ProyectoInventariosWebApp.Filtro
     {
         public override void OnActionExecuting(ActionExecutingContext context)
         {
-            if (!UsuarioLogueado.Id.HasValue || UsuarioLogueado.Rol != "Empleado")
+            if (!UsuarioLogueado.Id.HasValue ||
+                (UsuarioLogueado.Rol != "Empleado" &&
+                 UsuarioLogueado.Rol != "EncargadoDependencia" &&
+                 UsuarioLogueado.Rol != "AdminSede" &&
+                 UsuarioLogueado.Rol != "SuperAdmin" &&
+                 UsuarioLogueado.Rol != "Administrador"))
             {
-                context.Result = new RedirectToActionResult("Login", "Home", null);
+                context.Result = new RedirectToActionResult("Login", "Account", null);
+            }
+            base.OnActionExecuting(context);
+        }
+    }
+
+    public class AutenticadoSuperAdminAttribute : ActionFilterAttribute
+    {
+        public override void OnActionExecuting(ActionExecutingContext context)
+        {
+            if (!UsuarioLogueado.Id.HasValue || UsuarioLogueado.Rol != "SuperAdmin")
+            {
+                context.Result = new RedirectToActionResult("Login", "Account", null);
+            }
+            base.OnActionExecuting(context);
+        }
+    }
+
+    public class AutenticadoAdminSedeAttribute : ActionFilterAttribute
+    {
+        public override void OnActionExecuting(ActionExecutingContext context)
+        {
+            if (!UsuarioLogueado.Id.HasValue ||
+                (UsuarioLogueado.Rol != "AdminSede" && UsuarioLogueado.Rol != "SuperAdmin"))
+            {
+                context.Result = new RedirectToActionResult("Login", "Account", null);
             }
             base.OnActionExecuting(context);
         }

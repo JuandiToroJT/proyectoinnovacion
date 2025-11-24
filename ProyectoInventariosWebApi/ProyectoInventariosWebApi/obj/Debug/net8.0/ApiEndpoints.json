@@ -109,6 +109,178 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "ProyectoInventariosWebApi.Controllers.DependenciasController",
+    "Method": "GetDependencias",
+    "RelativePath": "api/Dependencias",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "tipo",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[ProyectoInventariosWebApi.Models.Dependencias, ProyectoInventariosWebApi, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "ProyectoInventariosWebApi.Controllers.DependenciasController",
+    "Method": "PostDependencia",
+    "RelativePath": "api/Dependencias",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dependencia",
+        "Type": "ProyectoInventariosWebApi.Models.Dependencias",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "ProyectoInventariosWebApi.Models.Dependencias",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "ProyectoInventariosWebApi.Controllers.DependenciasController",
+    "Method": "GetDependencia",
+    "RelativePath": "api/Dependencias/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "ProyectoInventariosWebApi.Models.Dependencias",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "ProyectoInventariosWebApi.Controllers.DependenciasController",
+    "Method": "PutDependencia",
+    "RelativePath": "api/Dependencias/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "dependencia",
+        "Type": "ProyectoInventariosWebApi.Models.Dependencias",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ProyectoInventariosWebApi.Controllers.DependenciasController",
+    "Method": "DeleteDependencia",
+    "RelativePath": "api/Dependencias/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ProyectoInventariosWebApi.Controllers.DependenciasController",
+    "Method": "GetInventarioDependencia",
+    "RelativePath": "api/Dependencias/{id}/Inventario",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "estado",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ProyectoInventariosWebApi.Controllers.DependenciasController",
+    "Method": "GetProductosStockBajo",
+    "RelativePath": "api/Dependencias/{id}/StockBajo",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ProyectoInventariosWebApi.Controllers.DependenciasController",
+    "Method": "GetTiposDependencias",
+    "RelativePath": "api/Dependencias/Tipos",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
     "ContainingType": "ProyectoInventariosWebApi.Controllers.DetallesPedidosController",
     "Method": "GetDetallesPedido",
     "RelativePath": "api/DetallesPedidos",
@@ -291,22 +463,85 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "ProyectoInventariosWebApi.Controllers.PedidosController",
-    "Method": "GetPedidosByEstado",
-    "RelativePath": "api/Pedidos",
+    "ContainingType": "ProyectoInventariosWebApi.Controllers.IAController",
+    "Method": "GetAnalisisVentas",
+    "RelativePath": "api/IA/analisis-ventas",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "estado",
+        "Name": "idSede",
+        "Type": "System.Nullable\u00601[[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ProyectoInventariosWebApi.Controllers.IAController",
+    "Method": "GetRecomendacion",
+    "RelativePath": "api/IA/recomendacion-caja",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "req",
+        "Type": "ProyectoInventariosWebApi.Controllers.RecomendacionRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ProyectoInventariosWebApi.Controllers.IAController",
+    "Method": "GetSugerenciaStock",
+    "RelativePath": "api/IA/sugerir-reorden",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "idSede",
+        "Type": "System.Nullable\u00601[[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ProyectoInventariosWebApi.Controllers.InventarioDependenciaController",
+    "Method": "GetInventario",
+    "RelativePath": "api/InventarioDependencia",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "idSede",
+        "Type": "System.Nullable\u00601[[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "idDependencia",
+        "Type": "System.Nullable\u00601[[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "idProducto",
+        "Type": "System.Nullable\u00601[[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "estadoInventario",
         "Type": "System.String",
         "IsRequired": false
       }
     ],
     "ReturnTypes": [
       {
-        "Type": "System.Collections.Generic.IEnumerable\u00601[[ProyectoInventariosWebApi.Models.Pedidos, ProyectoInventariosWebApi, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[System.Object, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -317,22 +552,230 @@
     ]
   },
   {
-    "ContainingType": "ProyectoInventariosWebApi.Controllers.PedidosController",
-    "Method": "PostPedidos",
-    "RelativePath": "api/Pedidos",
+    "ContainingType": "ProyectoInventariosWebApi.Controllers.InventarioDependenciaController",
+    "Method": "PostInventario",
+    "RelativePath": "api/InventarioDependencia",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "pedidos",
-        "Type": "ProyectoInventariosWebApi.Models.Pedidos",
+        "Name": "inventario",
+        "Type": "ProyectoInventariosWebApi.Models.InventarioDependencia",
         "IsRequired": true
       }
     ],
     "ReturnTypes": [
       {
-        "Type": "ProyectoInventariosWebApi.Models.Pedidos",
+        "Type": "ProyectoInventariosWebApi.Models.InventarioDependencia",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "ProyectoInventariosWebApi.Controllers.InventarioDependenciaController",
+    "Method": "GetInventarioById",
+    "RelativePath": "api/InventarioDependencia/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ProyectoInventariosWebApi.Controllers.InventarioDependenciaController",
+    "Method": "AjustarStock",
+    "RelativePath": "api/InventarioDependencia/{id}/AjustarStock",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "ajuste",
+        "Type": "ProyectoInventariosWebApi.Controllers.AjusteStockDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ProyectoInventariosWebApi.Controllers.InventarioDependenciaController",
+    "Method": "GetInventarioConsolidado",
+    "RelativePath": "api/InventarioDependencia/Consolidado",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ProyectoInventariosWebApi.Controllers.InventarioDependenciaController",
+    "Method": "GetUbicacionesProducto",
+    "RelativePath": "api/InventarioDependencia/Producto/{idProducto}/Ubicaciones",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "idProducto",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ProyectoInventariosWebApi.Controllers.MovimientoInventarioController",
+    "Method": "GetMovimientos",
+    "RelativePath": "api/MovimientoInventario",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "idInventario",
+        "Type": "System.Nullable\u00601[[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "idProducto",
+        "Type": "System.Nullable\u00601[[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "idDependencia",
+        "Type": "System.Nullable\u00601[[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "tipoMovimiento",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "fechaDesde",
+        "Type": "System.Nullable\u00601[[System.DateTime, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "fechaHasta",
+        "Type": "System.Nullable\u00601[[System.DateTime, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[System.Object, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "ProyectoInventariosWebApi.Controllers.MovimientoInventarioController",
+    "Method": "GetMovimiento",
+    "RelativePath": "api/MovimientoInventario/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ProyectoInventariosWebApi.Controllers.MovimientoInventarioController",
+    "Method": "GetHistorialProducto",
+    "RelativePath": "api/MovimientoInventario/Producto/{idProducto}/Historial",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "idProducto",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "idDependencia",
+        "Type": "System.Nullable\u00601[[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ProyectoInventariosWebApi.Controllers.MovimientoInventarioController",
+    "Method": "GetReporteDiario",
+    "RelativePath": "api/MovimientoInventario/Reporte/Diario",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "fecha",
+        "Type": "System.Nullable\u00601[[System.DateTime, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ProyectoInventariosWebApi.Controllers.MovimientoInventarioController",
+    "Method": "GetReporteRango",
+    "RelativePath": "api/MovimientoInventario/Reporte/Rango",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "fechaDesde",
+        "Type": "System.DateTime",
+        "IsRequired": false
+      },
+      {
+        "Name": "fechaHasta",
+        "Type": "System.DateTime",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ProyectoInventariosWebApi.Controllers.MovimientoInventarioController",
+    "Method": "GetTiposMovimiento",
+    "RelativePath": "api/MovimientoInventario/TiposMovimiento",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -345,6 +788,73 @@
   {
     "ContainingType": "ProyectoInventariosWebApi.Controllers.PedidosController",
     "Method": "GetPedidos",
+    "RelativePath": "api/Pedidos",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "estado",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "idSede",
+        "Type": "System.Nullable\u00601[[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "idDependencia",
+        "Type": "System.Nullable\u00601[[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "idCliente",
+        "Type": "System.Nullable\u00601[[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[System.Object, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "ProyectoInventariosWebApi.Controllers.PedidosController",
+    "Method": "PostPedido",
+    "RelativePath": "api/Pedidos",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "ProyectoInventariosWebApi.Controllers.CrearPedidoDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "ProyectoInventariosWebApi.Models.Pedidos",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "ProyectoInventariosWebApi.Controllers.PedidosController",
+    "Method": "GetPedido",
     "RelativePath": "api/Pedidos/{id}",
     "HttpMethod": "GET",
     "IsController": true,
@@ -356,21 +866,11 @@
         "IsRequired": true
       }
     ],
-    "ReturnTypes": [
-      {
-        "Type": "ProyectoInventariosWebApi.Models.Pedidos",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
+    "ReturnTypes": []
   },
   {
     "ContainingType": "ProyectoInventariosWebApi.Controllers.PedidosController",
-    "Method": "PutPedidos",
+    "Method": "PutPedido",
     "RelativePath": "api/Pedidos/{id}",
     "HttpMethod": "PUT",
     "IsController": true,
@@ -382,7 +882,7 @@
         "IsRequired": true
       },
       {
-        "Name": "pedidos",
+        "Name": "pedido",
         "Type": "ProyectoInventariosWebApi.Models.Pedidos",
         "IsRequired": true
       }
@@ -391,35 +891,9 @@
   },
   {
     "ContainingType": "ProyectoInventariosWebApi.Controllers.PedidosController",
-    "Method": "PostEntregas",
-    "RelativePath": "api/Pedidos/Entregas",
-    "HttpMethod": "POST",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "entregas",
-        "Type": "ProyectoInventariosWebApi.Models.Entregas",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": [
-      {
-        "Type": "ProyectoInventariosWebApi.Models.Pedidos",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
-  },
-  {
-    "ContainingType": "ProyectoInventariosWebApi.Controllers.PedidosController",
-    "Method": "GetPedidoEntrega",
-    "RelativePath": "api/Pedidos/Entregas/{id}",
-    "HttpMethod": "GET",
+    "Method": "ActualizarEstado",
+    "RelativePath": "api/Pedidos/{id}/Estado",
+    "HttpMethod": "PUT",
     "IsController": true,
     "Order": 0,
     "Parameters": [
@@ -427,71 +901,14 @@
         "Name": "id",
         "Type": "System.Int32",
         "IsRequired": true
-      }
-    ],
-    "ReturnTypes": [
+      },
       {
-        "Type": "ProyectoInventariosWebApi.Models.Pedidos",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
-  },
-  {
-    "ContainingType": "ProyectoInventariosWebApi.Controllers.PedidosController",
-    "Method": "PostFacturas",
-    "RelativePath": "api/Pedidos/Facturas",
-    "HttpMethod": "POST",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "facturas",
-        "Type": "ProyectoInventariosWebApi.Models.Facturas",
+        "Name": "dto",
+        "Type": "ProyectoInventariosWebApi.Controllers.ActualizarEstadoDto",
         "IsRequired": true
       }
     ],
-    "ReturnTypes": [
-      {
-        "Type": "ProyectoInventariosWebApi.Models.Facturas",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
-  },
-  {
-    "ContainingType": "ProyectoInventariosWebApi.Controllers.PedidosController",
-    "Method": "GetFacturasPorProducto",
-    "RelativePath": "api/Pedidos/Facturas/Producto/{id}",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "id",
-        "Type": "System.Int32",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": [
-      {
-        "Type": "System.Collections.Generic.IEnumerable\u00601[[ProyectoInventariosWebApi.Models.Facturas, ProyectoInventariosWebApi, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
+    "ReturnTypes": []
   },
   {
     "ContainingType": "ProyectoInventariosWebApi.Controllers.ProductosController",
@@ -500,10 +917,26 @@
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
-    "Parameters": [],
+    "Parameters": [
+      {
+        "Name": "categoria",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "esCompartible",
+        "Type": "System.Nullable\u00601[[System.Boolean, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "soloActivos",
+        "Type": "System.Nullable\u00601[[System.Boolean, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      }
+    ],
     "ReturnTypes": [
       {
-        "Type": "System.Collections.Generic.IEnumerable\u00601[[ProyectoInventariosWebApi.Models.Productos, ProyectoInventariosWebApi, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[System.Object, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -515,14 +948,14 @@
   },
   {
     "ContainingType": "ProyectoInventariosWebApi.Controllers.ProductosController",
-    "Method": "PostProductos",
+    "Method": "PostProducto",
     "RelativePath": "api/Productos",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "productos",
+        "Name": "producto",
         "Type": "ProyectoInventariosWebApi.Models.Productos",
         "IsRequired": true
       }
@@ -541,7 +974,7 @@
   },
   {
     "ContainingType": "ProyectoInventariosWebApi.Controllers.ProductosController",
-    "Method": "GetProductos",
+    "Method": "GetProducto",
     "RelativePath": "api/Productos/{id}",
     "HttpMethod": "GET",
     "IsController": true,
@@ -553,21 +986,11 @@
         "IsRequired": true
       }
     ],
-    "ReturnTypes": [
-      {
-        "Type": "ProyectoInventariosWebApi.Models.Productos",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
+    "ReturnTypes": []
   },
   {
     "ContainingType": "ProyectoInventariosWebApi.Controllers.ProductosController",
-    "Method": "PutProductos",
+    "Method": "PutProducto",
     "RelativePath": "api/Productos/{id}",
     "HttpMethod": "PUT",
     "IsController": true,
@@ -579,7 +1002,7 @@
         "IsRequired": true
       },
       {
-        "Name": "productos",
+        "Name": "producto",
         "Type": "ProyectoInventariosWebApi.Models.Productos",
         "IsRequired": true
       }
@@ -588,7 +1011,7 @@
   },
   {
     "ContainingType": "ProyectoInventariosWebApi.Controllers.ProductosController",
-    "Method": "DeleteProductos",
+    "Method": "DeleteProducto",
     "RelativePath": "api/Productos/{id}",
     "HttpMethod": "DELETE",
     "IsController": true,
@@ -603,16 +1026,68 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "ProyectoInventariosWebApi.Controllers.UsuariosController",
-    "Method": "GetUsuarios",
-    "RelativePath": "api/Usuarios",
+    "ContainingType": "ProyectoInventariosWebApi.Controllers.ProductosController",
+    "Method": "AgregarInventario",
+    "RelativePath": "api/Productos/{id}/AgregarInventario",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "dto",
+        "Type": "ProyectoInventariosWebApi.Controllers.AgregarInventarioDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ProyectoInventariosWebApi.Controllers.ProductosController",
+    "Method": "GetDisponibilidad",
+    "RelativePath": "api/Productos/{id}/Disponibilidad",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "idSede",
+        "Type": "System.Nullable\u00601[[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "idDependencia",
+        "Type": "System.Nullable\u00601[[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "cantidadRequerida",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ProyectoInventariosWebApi.Controllers.ProductosController",
+    "Method": "GetCategorias",
+    "RelativePath": "api/Productos/Categorias",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
     "Parameters": [],
     "ReturnTypes": [
       {
-        "Type": "System.Collections.Generic.IEnumerable\u00601[[ProyectoInventariosWebApi.Models.Usuarios, ProyectoInventariosWebApi, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -623,22 +1098,52 @@
     ]
   },
   {
-    "ContainingType": "ProyectoInventariosWebApi.Controllers.UsuariosController",
-    "Method": "PostUsuarios",
-    "RelativePath": "api/Usuarios",
+    "ContainingType": "ProyectoInventariosWebApi.Controllers.ProductosController",
+    "Method": "GetProductosStockBajo",
+    "RelativePath": "api/Productos/StockBajo",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ProyectoInventariosWebApi.Controllers.SedesController",
+    "Method": "GetSedes",
+    "RelativePath": "api/Sedes",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[ProyectoInventariosWebApi.Models.Sedes, ProyectoInventariosWebApi, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "ProyectoInventariosWebApi.Controllers.SedesController",
+    "Method": "PostSede",
+    "RelativePath": "api/Sedes",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "usuarios",
-        "Type": "ProyectoInventariosWebApi.Models.Usuarios",
+        "Name": "sede",
+        "Type": "ProyectoInventariosWebApi.Models.Sedes",
         "IsRequired": true
       }
     ],
     "ReturnTypes": [
       {
-        "Type": "ProyectoInventariosWebApi.Models.Usuarios",
+        "Type": "ProyectoInventariosWebApi.Models.Sedes",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -649,9 +1154,9 @@
     ]
   },
   {
-    "ContainingType": "ProyectoInventariosWebApi.Controllers.UsuariosController",
-    "Method": "GetUsuarios",
-    "RelativePath": "api/Usuarios/{id}",
+    "ContainingType": "ProyectoInventariosWebApi.Controllers.SedesController",
+    "Method": "GetSede",
+    "RelativePath": "api/Sedes/{id}",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -664,6 +1169,305 @@
     ],
     "ReturnTypes": [
       {
+        "Type": "ProyectoInventariosWebApi.Models.Sedes",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "ProyectoInventariosWebApi.Controllers.SedesController",
+    "Method": "PutSede",
+    "RelativePath": "api/Sedes/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "sede",
+        "Type": "ProyectoInventariosWebApi.Models.Sedes",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ProyectoInventariosWebApi.Controllers.SedesController",
+    "Method": "DeleteSede",
+    "RelativePath": "api/Sedes/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ProyectoInventariosWebApi.Controllers.SedesController",
+    "Method": "GetDependenciasDeSede",
+    "RelativePath": "api/Sedes/{id}/Dependencias",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[ProyectoInventariosWebApi.Models.Dependencias, ProyectoInventariosWebApi, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "ProyectoInventariosWebApi.Controllers.SedesController",
+    "Method": "GetInventarioDeSede",
+    "RelativePath": "api/Sedes/{id}/Inventario",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ProyectoInventariosWebApi.Controllers.SedesController",
+    "Method": "GetSedeByCodigo",
+    "RelativePath": "api/Sedes/Codigo/{codigo}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "codigo",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "ProyectoInventariosWebApi.Models.Sedes",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "ProyectoInventariosWebApi.Controllers.TransferenciaStockController",
+    "Method": "GetTransferencias",
+    "RelativePath": "api/TransferenciaStock",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "estado",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[System.Object, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "ProyectoInventariosWebApi.Controllers.TransferenciaStockController",
+    "Method": "GetTransferencia",
+    "RelativePath": "api/TransferenciaStock/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ProyectoInventariosWebApi.Controllers.TransferenciaStockController",
+    "Method": "AprobarTransferencia",
+    "RelativePath": "api/TransferenciaStock/{id}/Aprobar",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "aprobacion",
+        "Type": "ProyectoInventariosWebApi.Controllers.AprobacionDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ProyectoInventariosWebApi.Controllers.TransferenciaStockController",
+    "Method": "CancelarTransferencia",
+    "RelativePath": "api/TransferenciaStock/{id}/Cancelar",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ProyectoInventariosWebApi.Controllers.TransferenciaStockController",
+    "Method": "EjecutarTransferencia",
+    "RelativePath": "api/TransferenciaStock/{id}/Ejecutar",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ProyectoInventariosWebApi.Controllers.TransferenciaStockController",
+    "Method": "RechazarTransferencia",
+    "RelativePath": "api/TransferenciaStock/{id}/Rechazar",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "rechazo",
+        "Type": "ProyectoInventariosWebApi.Controllers.RechazoDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ProyectoInventariosWebApi.Controllers.TransferenciaStockController",
+    "Method": "SolicitarTransferencia",
+    "RelativePath": "api/TransferenciaStock/Solicitar",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "solicitud",
+        "Type": "ProyectoInventariosWebApi.Controllers.SolicitudTransferenciaDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ProyectoInventariosWebApi.Controllers.UsuariosController",
+    "Method": "GetUsuarios",
+    "RelativePath": "api/Usuarios",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "rol",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "idSede",
+        "Type": "System.Nullable\u00601[[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "soloActivos",
+        "Type": "System.Nullable\u00601[[System.Boolean, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[System.Object, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "ProyectoInventariosWebApi.Controllers.UsuariosController",
+    "Method": "PostUsuario",
+    "RelativePath": "api/Usuarios",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "ProyectoInventariosWebApi.Controllers.CrearUsuarioDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
         "Type": "ProyectoInventariosWebApi.Models.Usuarios",
         "MediaTypes": [
           "text/plain",
@@ -676,7 +1480,23 @@
   },
   {
     "ContainingType": "ProyectoInventariosWebApi.Controllers.UsuariosController",
-    "Method": "PutUsuarios",
+    "Method": "GetUsuario",
+    "RelativePath": "api/Usuarios/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ProyectoInventariosWebApi.Controllers.UsuariosController",
+    "Method": "PutUsuario",
     "RelativePath": "api/Usuarios/{id}",
     "HttpMethod": "PUT",
     "IsController": true,
@@ -688,11 +1508,105 @@
         "IsRequired": true
       },
       {
-        "Name": "usuarios",
-        "Type": "ProyectoInventariosWebApi.Models.Usuarios",
+        "Name": "dto",
+        "Type": "ProyectoInventariosWebApi.Controllers.ActualizarUsuarioDto",
         "IsRequired": true
       }
     ],
     "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ProyectoInventariosWebApi.Controllers.UsuariosController",
+    "Method": "DeleteUsuario",
+    "RelativePath": "api/Usuarios/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ProyectoInventariosWebApi.Controllers.UsuariosController",
+    "Method": "AsignarDependencia",
+    "RelativePath": "api/Usuarios/{id}/AsignarDependencia",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "dto",
+        "Type": "ProyectoInventariosWebApi.Controllers.AsignarDependenciaDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ProyectoInventariosWebApi.Controllers.UsuariosController",
+    "Method": "AsignarSede",
+    "RelativePath": "api/Usuarios/{id}/AsignarSede",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "dto",
+        "Type": "ProyectoInventariosWebApi.Controllers.AsignarSedeDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ProyectoInventariosWebApi.Controllers.UsuariosController",
+    "Method": "Login",
+    "RelativePath": "api/Usuarios/Login",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "ProyectoInventariosWebApi.Controllers.LoginDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ProyectoInventariosWebApi.Controllers.UsuariosController",
+    "Method": "GetRoles",
+    "RelativePath": "api/Usuarios/Roles",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
   }
 ]

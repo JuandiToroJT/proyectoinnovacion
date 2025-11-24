@@ -1,65 +1,129 @@
-﻿@model IEnumerable<ProyectoInventariosWebApp.Models.Productos>
+﻿@model IEnumerable<ProyectoInventariosWebApp.Models.ProductoConInventario>
 
-@{
-    ViewData["Title"] = "Gestión de Productos";
-}
+    @{
+    ViewData["Title"] = "Productos";
+    }
 
-<div class="dashboard-container">
-    <h2 class="titulo-dashboard">Sistema de Inventario</h2>
-
-    <div class="cards-row">
-        <div class="card-info azul">
-            <h5>Total de productos</h5>
-            <span>@Model.Count()</span>
+    <div class="row mb-3">
+        <div class="col-md-6">
+            <h2>Productos</h2>
         </div>
-        <div class="card-info amarillo">
-            <h5>Bajo stock</h5>
-            <span>@Model.Count(p => p.Stock < 5)</span>
-        </div>
-        <div class="card-info verde">
-            <h5>Entradas recientes</h5>
-            <span>15</span>
-        </div>
-        <div class="card-info rojo">
-            <h5>Salidas recientes</h5>
-            <span>12</span>
+        <div class="col-md-6 text-end">
+            <a asp-action="Create" class="btn btn-primary">
+                <i class="bi bi-plus-circle"></i> Nuevo Producto
+            </a>
         </div>
     </div>
 
-    <div class="acciones-dashboard">
-        <a class="btn azul" asp-action="Create">Agregar producto</a>
-        <a class="btn verde">Registrar entradas</a>
-        <a class="btn rojo">Registrar salida</a>
+    <div class="card">
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th>Código</th>
+                            <th>Nombre</th>
+                            <th>Categoría</th>
+                            <th>Precio</th>
+                            <th>Stock Total</th>
+                            <th>Ubicaciones</th>
+                            <th>Compartible</th>
+                            <th>Estado</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (Model != null && Model.Any())
+                    {
+                        @foreach (var item in Model)
+                        {
+                            var stockClass = item.StockTotal == 0 ? "text-danger" : "text-success";
+                            var estadoBadge = item.Estado ?
+                                "<span class='badge bg-success'>Activo</span>" :
+                                "<span class='badge bg-secondary'>Inactivo</span>";
+
+                        <tr>
+                            <td><code>@Html.DisplayFor(modelItem => item.Codigo)</code></td>
+                            <td>
+                                <strong>@Html.DisplayFor(modelItem => item.Nombre)</strong>
+                                @if (item.EsCompartible)
+                                    {
+                                <i class="bi bi-share text-primary" title="Compartible entre sedes"></i>
+                                    }
+                            </td>
+                            <td>
+                                @if (!string.IsNullOrEmpty(item.Categoria))
+                                    {
+                                <span class="badge bg-secondary">@item.Categoria</span>
+                                    }
+                                    else
+                                    {
+                                <span class="text-muted">Sin categoría</span>
+                                    }
+                            </td>
+                            <td>@item.Precio.ToString("C")</td>
+                            <td class="@stockClass">
+                                <strong>@item.StockTotal</strong>
+                                @if (item.StockTotal == 0)
+                                    {
+                                <i class="bi bi-exclamation-triangle text-warning" title="Sin stock"></i>
+                                    }
+                            </td>
+                            <td>
+                                @if (item.Inventario != null && item.Inventario.Any())
+                                    {
+                                <span class="badge bg-info">
+                                    @item.Inventario.Count ubicación@(item.Inventario.Count != 1 ? "es" : "")
+                                </span>
+                                    }
+                                    else
+                                    {
+                                <span class="badge bg-warning">Sin inventario</span>
+                                    }
+                            </td>
+                            <td>
+                                @if (item.EsCompartible)
+                                    {
+                                <span class="badge bg-success">Sí</span>
+                                    }
+                                    else
+                                    {
+                                <span class="badge bg-secondary">No</span>
+                                    }
+                            </td>
+                            <td>@Html.Raw(estadoBadge)</td>
+                            <td>
+                                <div class="btn-group btn-group-sm" role="group">
+                                    <a asp-action="Details" asp-route-id="@item.IdProducto" class="btn btn-outline-info" style="background-color:lightblue;" title="Ver detalles">
+                                        <i class="bi bi-eye"></i>
+                                    </a>
+                                    <a asp-action="Edit" asp-route-id="@item.IdProducto" class="btn btn-outline-primary" title="Editar">
+                                        <i class="bi bi-pencil"></i>
+                                    </a>
+                                        <a asp-action="Delete" asp-route-id="@item.IdProducto" class="btn btn-outline-danger" style="background-color:red;" title="Eliminar">
+                                        <i class="bi bi-trash"></i>
+                                    </a>
+                                </div>
+                            </td>
+                        </tr>
+                        }
+                    }
+                    else
+                    {
+                        <tr>
+                            <td colspan="9" class="text-center text-muted py-4">
+                                <i class="bi bi-inbox" style="font-size: 3rem;"></i>
+                                <p class="mt-2">No hay productos registrados</p>
+                                <a asp-action="Create" class="btn btn-primary">Crear primer producto</a>
+                            </td>
+                        </tr>
+                    }
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
 
-    <div class="tabla-contenedor">
-        <h4>Listado de productos</h4>
-        <table class="tabla-dashboard">
-            <thead>
-                <tr>
-                    <th>Nombre</th>
-                    <th>Descripción</th>
-                    <th>Precio</th>
-                    <th>Stock</th>
-                    <th class="text-center">Acciones</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var item in Model)
-                {
-                    <tr>
-                        <td>@item.Nombre</td>
-                        <td>@item.Descripcion</td>
-                        <td>$@item.Precio.ToString("N2")</td>
-                        <td>@item.Stock</td>
-                        <td class="text-center">
-                            <a class="btn-mini amarillo" asp-action="Edit" asp-route-id="@item.IdProducto">Editar</a>
-                            <a class="btn-mini azul" asp-action="Details" asp-route-id="@item.IdProducto">Detalles</a>
-                            <a class="btn-mini rojo" asp-action="Delete" asp-route-id="@item.IdProducto">Eliminar</a>
-                        </td>
-                    </tr>
-                }
-            </tbody>
-        </table>
-    </div>
-</div>
+    @section Scripts {
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+    }

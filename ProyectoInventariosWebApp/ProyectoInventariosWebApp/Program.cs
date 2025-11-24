@@ -7,11 +7,16 @@ using Newtonsoft.Json;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
 builder.Services.AddControllersWithViews();
 builder.Services.AddHttpContextAccessor();
-
 builder.Services.AddHttpClient();
+
+builder.Services.AddSession(options =>
+{
+    options.IdleTimeout = TimeSpan.FromHours(2);
+    options.Cookie.HttpOnly = true;
+    options.Cookie.IsEssential = true;
+});
 
 builder.Services.Configure<ApiUrlsOptions>(
     builder.Configuration.GetSection("ApiUrls"));
@@ -21,10 +26,10 @@ var app = builder.Build();
 using (var scope = app.Services.CreateScope())
 {
     var httpClient = scope.ServiceProvider.GetRequiredService<HttpClient>();
-
     Empresas empresaAct = null;
     var config = scope.ServiceProvider.GetRequiredService<IOptions<ApiUrlsOptions>>();
     var respuesta = await httpClient.GetAsync(config.Value.BaseUrl + "Empresas");
+
     if (respuesta.IsSuccessStatusCode)
     {
         var content = await respuesta.Content.ReadAsStringAsync();
@@ -45,23 +50,23 @@ using (var scope = app.Services.CreateScope())
     }
 }
 
-// Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Home/Error");
-    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
 
-app.UseHttpsRedirection();
+
 app.UseStaticFiles();
 
 app.UseRouting();
+
+app.UseSession();
 
 app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Login}/{id?}");
+    pattern: "{controller=Account}/{action=Login}/{id?}");
 
 app.Run();

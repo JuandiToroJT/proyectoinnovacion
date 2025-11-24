@@ -4,13 +4,10 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore;
 using ProyectoInventariosWebApp.Models;
 using ProyectoInventariosWebApp.Filtro;
 using Microsoft.AspNetCore.Identity;
 using Newtonsoft.Json;
-using System.Net;
-using System.Text.Json;
 using ProyectoInventariosWebApp.Helpers;
 using Microsoft.Extensions.Options;
 
@@ -20,21 +17,23 @@ namespace ProyectoInventariosWebApp.Controllers
     public class UsuariosController : Controller
     {
         private readonly HttpClient _httpClient;
-        private readonly string URL_API;
+        private readonly string _apiUrl;
+        private readonly string _baseUrl;
 
         public UsuariosController(HttpClient httpClient, IOptions<ApiUrlsOptions> apiOptions)
         {
             _httpClient = httpClient;
-            URL_API = apiOptions.Value.BaseUrl + "Usuarios";
+
+            _baseUrl = apiOptions.Value.BaseUrl;
+            _apiUrl = _baseUrl + "/Usuarios";
         }
 
-        // GET: Usuarios
         public async Task<IActionResult> Index()
         {
+            ViewBag.ApiUrl = _baseUrl;
             return View(await ObtenerListadoUsuarios());
         }
 
-        // GET: Usuarios/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -51,45 +50,65 @@ namespace ProyectoInventariosWebApp.Controllers
             return View(usuarios);
         }
 
-        // GET: Usuarios/Create
-        public IActionResult Create()
+        public async Task<IActionResult> Create()
         {
+            await CargarListasSedes();
+            await CargarListasDependencias();
+
+            ViewBag.Roles = ObtenerRoles();
+
             return View();
         }
 
-        // POST: Usuarios/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("IdUsuario,Nombre,Correo,Contrasena,Rol,Estado")] Usuarios usuarios, string ConfirmarContrasena)
+        public async Task<IActionResult> Create([Bind("Nombre,Correo,Contrasena,Rol,IdSede,IdDependencia")] Usuarios usuarios, string ConfirmarContrasena)
         {
             if (ModelState.IsValid)
             {
                 if (usuarios.Contrasena != ConfirmarContrasena)
                 {
                     ModelState.AddModelError("Contrasena", "Las contraseñas no coinciden.");
+                    await CargarListasSedes();
+                    await CargarListasDependencias();
+                    ViewBag.Roles = ObtenerRoles();
                     return View(usuarios);
                 }
 
                 usuarios.Estado = true;
+                usuarios.FechaCreacion = DateTime.Now;
 
                 var hasher = new PasswordHasher<Usuarios>();
                 usuarios.Contrasena = hasher.HashPassword(usuarios, usuarios.Contrasena);
 
-                var respuesta = await _httpClient.PostAsJsonAsync(URL_API, usuarios);
+                var usuarioDto = new
+                {
+                    nombre = usuarios.Nombre,
+                    correo = usuarios.Correo,
+                    contrasena = usuarios.Contrasena,
+                    rol = usuarios.Rol,
+                    idSede = usuarios.IdSede,
+                    idDependencia = usuarios.IdDependencia,
+                    estado = usuarios.Estado,
+                    fechaCreacion = usuarios.FechaCreacion
+                };
+
+                var respuesta = await _httpClient.PostAsJsonAsync(_apiUrl, usuarioDto);
                 if (respuesta.IsSuccessStatusCode)
                 {
+                    TempData["Success"] = "Usuario creado exitosamente";
                     return RedirectToAction(nameof(Index));
                 }
 
                 await ModelState.AddErrorsFromApiResponseAsync(respuesta);
             }
 
+            await CargarListasSedes();
+            await CargarListasDependencias();
+            ViewBag.Roles = ObtenerRoles();
             return View(usuarios);
         }
 
-        // GET: Usuarios/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -103,15 +122,16 @@ namespace ProyectoInventariosWebApp.Controllers
                 return NotFound();
             }
 
+            await CargarListasSedes();
+            await CargarListasDependencias();
+            ViewBag.Roles = ObtenerRoles();
+
             return View(usuarios);
         }
 
-        // POST: Usuarios/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("IdUsuario,Nombre,Correo,Contrasena,Rol,Estado")] Usuarios usuarios, string ConfirmarContrasena = "")
+        public async Task<IActionResult> Edit(int id, [Bind("IdUsuario,Nombre,Correo,Contrasena,Rol,Estado,IdSede,IdDependencia")] Usuarios usuarios, string ConfirmarContrasena = "")
         {
             if (id != usuarios.IdUsuario)
             {
@@ -131,6 +151,9 @@ namespace ProyectoInventariosWebApp.Controllers
                     if (usuarios.Contrasena != ConfirmarContrasena)
                     {
                         ModelState.AddModelError("Contrasena", "Las contraseñas no coinciden.");
+                        await CargarListasSedes();
+                        await CargarListasDependencias();
+                        ViewBag.Roles = ObtenerRoles();
                         return View(usuarios);
                     }
 
@@ -147,11 +170,29 @@ namespace ProyectoInventariosWebApp.Controllers
                     if (usuarios.Estado == false)
                     {
                         ModelState.AddModelError("", "No se puede bloquear el usuario logueado.");
+                        await CargarListasSedes();
+                        await CargarListasDependencias();
+                        ViewBag.Roles = ObtenerRoles();
                         return View(usuarios);
                     }
                 }
 
-                var respuesta = await _httpClient.PutAsJsonAsync(URL_API + "/" + id, usuarios);
+                usuarios.FechaCreacion = original.FechaCreacion;
+
+                var usuarioDto = new
+                {
+                    idUsuario = usuarios.IdUsuario,
+                    nombre = usuarios.Nombre,
+                    correo = usuarios.Correo,
+                    contrasena = usuarios.Contrasena,
+                    rol = usuarios.Rol,
+                    idSede = usuarios.IdSede,
+                    idDependencia = usuarios.IdDependencia,
+                    estado = usuarios.Estado,
+                    fechaCreacion = usuarios.FechaCreacion
+                };
+
+                var respuesta = await _httpClient.PutAsJsonAsync(_apiUrl + "/" + id, usuarioDto);
                 if (respuesta.IsSuccessStatusCode)
                 {
                     if (UsuarioLogueado.Id == usuarios.IdUsuario)
@@ -159,19 +200,25 @@ namespace ProyectoInventariosWebApp.Controllers
                         UsuarioLogueado.Nombre = usuarios.Nombre;
                         UsuarioLogueado.Correo = usuarios.Correo;
                         UsuarioLogueado.Rol = usuarios.Rol;
+                        UsuarioLogueado.IdSede = usuarios.IdSede;
+                        UsuarioLogueado.IdDependencia = usuarios.IdDependencia;
 
-                        if (original.Correo != usuarios.Correo || original.Contrasena != usuarios.Contrasena || original.Rol != original.Rol)
+                        if (original.Correo != usuarios.Correo || original.Contrasena != usuarios.Contrasena)
                         {
                             return RedirectToAction("Login", "Home");
                         }
                     }
 
+                    TempData["Success"] = "Usuario actualizado exitosamente";
                     return RedirectToAction(nameof(Index));
                 }
 
                 await ModelState.AddErrorsFromApiResponseAsync(respuesta);
             }
 
+            await CargarListasSedes();
+            await CargarListasDependencias();
+            ViewBag.Roles = ObtenerRoles();
             return View(usuarios);
         }
 
@@ -179,28 +226,117 @@ namespace ProyectoInventariosWebApp.Controllers
         {
             List<Usuarios> usuarios = new List<Usuarios>();
 
-            var respuesta = await _httpClient.GetAsync(URL_API);
-            if (respuesta.IsSuccessStatusCode)
+            try
             {
-                var content = await respuesta.Content.ReadAsStringAsync();
-                usuarios = JsonConvert.DeserializeObject<List<Usuarios>>(content);
+                var respuesta = await _httpClient.GetAsync(_apiUrl);
+                if (respuesta.IsSuccessStatusCode)
+                {
+                    var content = await respuesta.Content.ReadAsStringAsync();
+                    usuarios = JsonConvert.DeserializeObject<List<Usuarios>>(content);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"[ERROR] Al obtener usuarios: {ex.Message}");
             }
 
-            return usuarios;
+            return usuarios ?? new List<Usuarios>();
         }
 
         private async Task<Usuarios> ObtenerUsuarioXId(int id)
         {
             Usuarios usuarios = null;
 
-            var respuesta = await _httpClient.GetAsync(URL_API + "/" + id);
-            if (respuesta.IsSuccessStatusCode)
+            try
             {
-                var content = await respuesta.Content.ReadAsStringAsync();
-                usuarios = JsonConvert.DeserializeObject<Usuarios>(content);
+                var respuesta = await _httpClient.GetAsync(_apiUrl + "/" + id);
+                if (respuesta.IsSuccessStatusCode)
+                {
+                    var content = await respuesta.Content.ReadAsStringAsync();
+                    usuarios = JsonConvert.DeserializeObject<Usuarios>(content);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"[ERROR] Al obtener usuario {id}: {ex.Message}");
             }
 
             return usuarios;
+        }
+
+        private async Task CargarListasSedes()
+        {
+            try
+            {
+                var respuesta = await _httpClient.GetAsync($"{_baseUrl}/Sedes");
+                if (respuesta.IsSuccessStatusCode)
+                {
+                    var content = await respuesta.Content.ReadAsStringAsync();
+                    var sedes = JsonConvert.DeserializeObject<List<dynamic>>(content);
+
+                    ViewBag.Sedes = new SelectList(
+                        sedes.Select(s => new {
+                            IdSede = (int)s.idSede,
+                            Nombre = (string)s.nombre
+                        }),
+                        "IdSede",
+                        "Nombre"
+                    );
+                }
+                else
+                {
+                    ViewBag.Sedes = new SelectList(new List<object>(), "IdSede", "Nombre");
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"[ERROR] Al cargar sedes: {ex.Message}");
+                ViewBag.Sedes = new SelectList(new List<object>(), "IdSede", "Nombre");
+            }
+        }
+
+        private async Task CargarListasDependencias()
+        {
+            try
+            {
+                var respuesta = await _httpClient.GetAsync($"{_baseUrl}/Dependencias");
+                if (respuesta.IsSuccessStatusCode)
+                {
+                    var content = await respuesta.Content.ReadAsStringAsync();
+                    var dependencias = JsonConvert.DeserializeObject<List<dynamic>>(content);
+
+                    ViewBag.Dependencias = new SelectList(
+                        dependencias.Select(d => new {
+                            IdDependencia = (int)d.idDependencia,
+                            Nombre = (string)d.nombre
+                        }),
+                        "IdDependencia",
+                        "Nombre"
+                    );
+                }
+                else
+                {
+                    ViewBag.Dependencias = new SelectList(new List<object>(), "IdDependencia", "Nombre");
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"[ERROR] Al cargar dependencias: {ex.Message}");
+                ViewBag.Dependencias = new SelectList(new List<object>(), "IdDependencia", "Nombre");
+            }
+        }
+
+        private List<SelectListItem> ObtenerRoles()
+        {
+            return new List<SelectListItem>
+            {
+                new SelectListItem { Value = "SuperAdmin", Text = "Super Administrador" },
+                new SelectListItem { Value = "AdminSede", Text = "Administrador de Sede" },
+                new SelectListItem { Value = "EncargadoDependencia", Text = "Encargado de Dependencia" },
+                new SelectListItem { Value = "Cliente", Text = "Cliente" },
+                new SelectListItem { Value = "Administrador", Text = "Administrador (Legacy)" },
+                new SelectListItem { Value = "Empleado", Text = "Empleado (Legacy)" }
+            };
         }
     }
 }

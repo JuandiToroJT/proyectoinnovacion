@@ -1,18 +1,58 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "E:\\Universidad\\UCALDAS\\Semestre 5\\Programacion Web II\\Proyecto Innovacion\\ProyectoInventariosWebApi\\",
+  "WorkspaceRootPath": "F:\\Universidad\\UCALDAS\\Semestre 6\\Innovaci\u00F3n Empresarial\\Proyecto Innovacion\\ProyectoInventariosWebApi\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{F75AA859-077D-44F2-A39F-25E18DA37CE3}|ProyectoInventariosWebApi\\ProyectoInventariosWebApi.csproj|e:\\universidad\\ucaldas\\semestre 5\\programacion web ii\\proyecto innovacion\\proyectoinventarioswebapi\\proyectoinventarioswebapi\\models\\proyectoinventariosdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F75AA859-077D-44F2-A39F-25E18DA37CE3}|ProyectoInventariosWebApi\\ProyectoInventariosWebApi.csproj|solutionrelative:proyectoinventarioswebapi\\models\\proyectoinventariosdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{F75AA859-077D-44F2-A39F-25E18DA37CE3}|ProyectoInventariosWebApi\\ProyectoInventariosWebApi.csproj|f:\\universidad\\ucaldas\\semestre 6\\innovaci\u00F3n empresarial\\proyecto innovacion\\proyectoinventarioswebapi\\proyectoinventarioswebapi\\controllers\\pedidoscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F75AA859-077D-44F2-A39F-25E18DA37CE3}|ProyectoInventariosWebApi\\ProyectoInventariosWebApi.csproj|solutionrelative:proyectoinventarioswebapi\\controllers\\pedidoscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F75AA859-077D-44F2-A39F-25E18DA37CE3}|ProyectoInventariosWebApi\\ProyectoInventariosWebApi.csproj|e:\\universidad\\ucaldas\\semestre 5\\programacion web ii\\proyecto innovacion\\proyectoinventarioswebapi\\proyectoinventarioswebapi\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{F75AA859-077D-44F2-A39F-25E18DA37CE3}|ProyectoInventariosWebApi\\ProyectoInventariosWebApi.csproj|f:\\universidad\\ucaldas\\semestre 6\\innovaci\u00F3n empresarial\\proyecto innovacion\\proyectoinventarioswebapi\\proyectoinventarioswebapi\\controllers\\iacontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F75AA859-077D-44F2-A39F-25E18DA37CE3}|ProyectoInventariosWebApi\\ProyectoInventariosWebApi.csproj|solutionrelative:proyectoinventarioswebapi\\controllers\\iacontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F75AA859-077D-44F2-A39F-25E18DA37CE3}|ProyectoInventariosWebApi\\ProyectoInventariosWebApi.csproj|f:\\universidad\\ucaldas\\semestre 6\\innovaci\u00F3n empresarial\\proyecto innovacion\\proyectoinventarioswebapi\\proyectoinventarioswebapi\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F75AA859-077D-44F2-A39F-25E18DA37CE3}|ProyectoInventariosWebApi\\ProyectoInventariosWebApi.csproj|solutionrelative:proyectoinventarioswebapi\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F75AA859-077D-44F2-A39F-25E18DA37CE3}|ProyectoInventariosWebApi\\ProyectoInventariosWebApi.csproj|e:\\universidad\\ucaldas\\semestre 5\\programacion web ii\\proyecto innovacion\\proyectoinventarioswebapi\\proyectoinventarioswebapi\\controllers\\clientescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{F75AA859-077D-44F2-A39F-25E18DA37CE3}|ProyectoInventariosWebApi\\ProyectoInventariosWebApi.csproj|f:\\universidad\\ucaldas\\semestre 6\\innovaci\u00F3n empresarial\\proyecto innovacion\\proyectoinventarioswebapi\\proyectoinventarioswebapi\\controllers\\usuarioscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F75AA859-077D-44F2-A39F-25E18DA37CE3}|ProyectoInventariosWebApi\\ProyectoInventariosWebApi.csproj|solutionrelative:proyectoinventarioswebapi\\controllers\\usuarioscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F75AA859-077D-44F2-A39F-25E18DA37CE3}|ProyectoInventariosWebApi\\ProyectoInventariosWebApi.csproj|f:\\universidad\\ucaldas\\semestre 6\\innovaci\u00F3n empresarial\\proyecto innovacion\\proyectoinventarioswebapi\\proyectoinventarioswebapi\\controllers\\clientescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F75AA859-077D-44F2-A39F-25E18DA37CE3}|ProyectoInventariosWebApi\\ProyectoInventariosWebApi.csproj|solutionrelative:proyectoinventarioswebapi\\controllers\\clientescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F75AA859-077D-44F2-A39F-25E18DA37CE3}|ProyectoInventariosWebApi\\ProyectoInventariosWebApi.csproj|f:\\universidad\\ucaldas\\semestre 6\\innovaci\u00F3n empresarial\\proyecto innovacion\\proyectoinventarioswebapi\\proyectoinventarioswebapi\\controllers\\inventariodependenciacontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F75AA859-077D-44F2-A39F-25E18DA37CE3}|ProyectoInventariosWebApi\\ProyectoInventariosWebApi.csproj|solutionrelative:proyectoinventarioswebapi\\controllers\\inventariodependenciacontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F75AA859-077D-44F2-A39F-25E18DA37CE3}|ProyectoInventariosWebApi\\ProyectoInventariosWebApi.csproj|f:\\universidad\\ucaldas\\semestre 6\\innovaci\u00F3n empresarial\\proyecto innovacion\\proyectoinventarioswebapi\\proyectoinventarioswebapi\\controllers\\dependenciascontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F75AA859-077D-44F2-A39F-25E18DA37CE3}|ProyectoInventariosWebApi\\ProyectoInventariosWebApi.csproj|solutionrelative:proyectoinventarioswebapi\\controllers\\dependenciascontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F75AA859-077D-44F2-A39F-25E18DA37CE3}|ProyectoInventariosWebApi\\ProyectoInventariosWebApi.csproj|f:\\universidad\\ucaldas\\semestre 6\\innovaci\u00F3n empresarial\\proyecto innovacion\\proyectoinventarioswebapi\\proyectoinventarioswebapi\\services\\aigeminiservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F75AA859-077D-44F2-A39F-25E18DA37CE3}|ProyectoInventariosWebApi\\ProyectoInventariosWebApi.csproj|solutionrelative:proyectoinventarioswebapi\\services\\aigeminiservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F75AA859-077D-44F2-A39F-25E18DA37CE3}|ProyectoInventariosWebApi\\ProyectoInventariosWebApi.csproj|f:\\universidad\\ucaldas\\semestre 6\\innovaci\u00F3n empresarial\\proyecto innovacion\\proyectoinventarioswebapi\\proyectoinventarioswebapi\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{F75AA859-077D-44F2-A39F-25E18DA37CE3}|ProyectoInventariosWebApi\\ProyectoInventariosWebApi.csproj|solutionrelative:proyectoinventarioswebapi\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F75AA859-077D-44F2-A39F-25E18DA37CE3}|ProyectoInventariosWebApi\\ProyectoInventariosWebApi.csproj|f:\\universidad\\ucaldas\\semestre 6\\innovaci\u00F3n empresarial\\proyecto innovacion\\proyectoinventarioswebapi\\proyectoinventarioswebapi\\services\\appsettings.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F75AA859-077D-44F2-A39F-25E18DA37CE3}|ProyectoInventariosWebApi\\ProyectoInventariosWebApi.csproj|solutionrelative:proyectoinventarioswebapi\\services\\appsettings.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F75AA859-077D-44F2-A39F-25E18DA37CE3}|ProyectoInventariosWebApi\\ProyectoInventariosWebApi.csproj|f:\\universidad\\ucaldas\\semestre 6\\innovaci\u00F3n empresarial\\proyecto innovacion\\proyectoinventarioswebapi\\proyectoinventarioswebapi\\services\\dtosia.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F75AA859-077D-44F2-A39F-25E18DA37CE3}|ProyectoInventariosWebApi\\ProyectoInventariosWebApi.csproj|solutionrelative:proyectoinventarioswebapi\\services\\dtosia.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F75AA859-077D-44F2-A39F-25E18DA37CE3}|ProyectoInventariosWebApi\\ProyectoInventariosWebApi.csproj|f:\\universidad\\ucaldas\\semestre 6\\innovaci\u00F3n empresarial\\proyecto innovacion\\proyectoinventarioswebapi\\proyectoinventarioswebapi\\controllers\\empresascontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F75AA859-077D-44F2-A39F-25E18DA37CE3}|ProyectoInventariosWebApi\\ProyectoInventariosWebApi.csproj|solutionrelative:proyectoinventarioswebapi\\controllers\\empresascontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F75AA859-077D-44F2-A39F-25E18DA37CE3}|ProyectoInventariosWebApi\\ProyectoInventariosWebApi.csproj|f:\\universidad\\ucaldas\\semestre 6\\innovaci\u00F3n empresarial\\proyecto innovacion\\proyectoinventarioswebapi\\proyectoinventarioswebapi\\models\\proyectoinventariosdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F75AA859-077D-44F2-A39F-25E18DA37CE3}|ProyectoInventariosWebApi\\ProyectoInventariosWebApi.csproj|solutionrelative:proyectoinventarioswebapi\\models\\proyectoinventariosdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -22,34 +62,8 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 10,
+          "SelectedChildIndex": 8,
           "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "Program.cs",
-              "DocumentMoniker": "E:\\Universidad\\UCALDAS\\Semestre 5\\Programacion Web II\\Proyecto Innovacion\\ProyectoInventariosWebApi\\ProyectoInventariosWebApi\\Program.cs",
-              "RelativeDocumentMoniker": "ProyectoInventariosWebApi\\Program.cs",
-              "ToolTip": "E:\\Universidad\\UCALDAS\\Semestre 5\\Programacion Web II\\Proyecto Innovacion\\ProyectoInventariosWebApi\\ProyectoInventariosWebApi\\Program.cs",
-              "RelativeToolTip": "ProyectoInventariosWebApi\\Program.cs",
-              "ViewState": "AgIAACYAAAAAAAAAAAApwDYAAAA6AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-07T19:55:25.518Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "ClientesController.cs",
-              "DocumentMoniker": "E:\\Universidad\\UCALDAS\\Semestre 5\\Programacion Web II\\Proyecto Innovacion\\ProyectoInventariosWebApi\\ProyectoInventariosWebApi\\Controllers\\ClientesController.cs",
-              "RelativeDocumentMoniker": "ProyectoInventariosWebApi\\Controllers\\ClientesController.cs",
-              "ToolTip": "E:\\Universidad\\UCALDAS\\Semestre 5\\Programacion Web II\\Proyecto Innovacion\\ProyectoInventariosWebApi\\ProyectoInventariosWebApi\\Controllers\\ClientesController.cs",
-              "RelativeToolTip": "ProyectoInventariosWebApi\\Controllers\\ClientesController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAfAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-07T19:54:59.245Z",
-              "EditorCaption": ""
-            },
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
@@ -85,25 +99,171 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "PedidosController.cs",
+              "DocumentMoniker": "F:\\Universidad\\UCALDAS\\Semestre 6\\Innovaci\u00F3n Empresarial\\Proyecto Innovacion\\ProyectoInventariosWebApi\\ProyectoInventariosWebApi\\Controllers\\PedidosController.cs",
+              "RelativeDocumentMoniker": "ProyectoInventariosWebApi\\Controllers\\PedidosController.cs",
+              "ToolTip": "F:\\Universidad\\UCALDAS\\Semestre 6\\Innovaci\u00F3n Empresarial\\Proyecto Innovacion\\ProyectoInventariosWebApi\\ProyectoInventariosWebApi\\Controllers\\PedidosController.cs",
+              "RelativeToolTip": "ProyectoInventariosWebApi\\Controllers\\PedidosController.cs",
+              "ViewState": "AgIAAJsAAAAAAAAAAAAwwK4AAAA1AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-24T21:15:39.925Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "UsuariosController.cs",
+              "DocumentMoniker": "F:\\Universidad\\UCALDAS\\Semestre 6\\Innovaci\u00F3n Empresarial\\Proyecto Innovacion\\ProyectoInventariosWebApi\\ProyectoInventariosWebApi\\Controllers\\UsuariosController.cs",
+              "RelativeDocumentMoniker": "ProyectoInventariosWebApi\\Controllers\\UsuariosController.cs",
+              "ToolTip": "F:\\Universidad\\UCALDAS\\Semestre 6\\Innovaci\u00F3n Empresarial\\Proyecto Innovacion\\ProyectoInventariosWebApi\\ProyectoInventariosWebApi\\Controllers\\UsuariosController.cs",
+              "RelativeToolTip": "ProyectoInventariosWebApi\\Controllers\\UsuariosController.cs",
+              "ViewState": "AgIAAMIAAAAAAAAAAAAAAI0BAAAnAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-24T20:50:54.211Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Inventariodependenciacontroller.cs",
+              "DocumentMoniker": "F:\\Universidad\\UCALDAS\\Semestre 6\\Innovaci\u00F3n Empresarial\\Proyecto Innovacion\\ProyectoInventariosWebApi\\ProyectoInventariosWebApi\\Controllers\\Inventariodependenciacontroller.cs",
+              "RelativeDocumentMoniker": "ProyectoInventariosWebApi\\Controllers\\Inventariodependenciacontroller.cs",
+              "ToolTip": "F:\\Universidad\\UCALDAS\\Semestre 6\\Innovaci\u00F3n Empresarial\\Proyecto Innovacion\\ProyectoInventariosWebApi\\ProyectoInventariosWebApi\\Controllers\\Inventariodependenciacontroller.cs",
+              "RelativeToolTip": "ProyectoInventariosWebApi\\Controllers\\Inventariodependenciacontroller.cs",
+              "ViewState": "AgIAABwBAAAAAAAAAAAgwDYBAAAdAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-24T20:29:22.57Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Dependenciascontroller.cs",
+              "DocumentMoniker": "F:\\Universidad\\UCALDAS\\Semestre 6\\Innovaci\u00F3n Empresarial\\Proyecto Innovacion\\ProyectoInventariosWebApi\\ProyectoInventariosWebApi\\Controllers\\Dependenciascontroller.cs",
+              "RelativeDocumentMoniker": "ProyectoInventariosWebApi\\Controllers\\Dependenciascontroller.cs",
+              "ToolTip": "F:\\Universidad\\UCALDAS\\Semestre 6\\Innovaci\u00F3n Empresarial\\Proyecto Innovacion\\ProyectoInventariosWebApi\\ProyectoInventariosWebApi\\Controllers\\Dependenciascontroller.cs",
+              "RelativeToolTip": "ProyectoInventariosWebApi\\Controllers\\Dependenciascontroller.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-24T20:29:11.286Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "EmpresasController.cs",
+              "DocumentMoniker": "F:\\Universidad\\UCALDAS\\Semestre 6\\Innovaci\u00F3n Empresarial\\Proyecto Innovacion\\ProyectoInventariosWebApi\\ProyectoInventariosWebApi\\Controllers\\EmpresasController.cs",
+              "RelativeDocumentMoniker": "ProyectoInventariosWebApi\\Controllers\\EmpresasController.cs",
+              "ToolTip": "F:\\Universidad\\UCALDAS\\Semestre 6\\Innovaci\u00F3n Empresarial\\Proyecto Innovacion\\ProyectoInventariosWebApi\\ProyectoInventariosWebApi\\Controllers\\EmpresasController.cs",
+              "RelativeToolTip": "ProyectoInventariosWebApi\\Controllers\\EmpresasController.cs",
+              "ViewState": "AgIAACAAAAAAAAAAAAAcwFEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-24T19:46:59.208Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "AIGeminiService.cs",
+              "DocumentMoniker": "F:\\Universidad\\UCALDAS\\Semestre 6\\Innovaci\u00F3n Empresarial\\Proyecto Innovacion\\ProyectoInventariosWebApi\\ProyectoInventariosWebApi\\Services\\AIGeminiService.cs",
+              "RelativeDocumentMoniker": "ProyectoInventariosWebApi\\Services\\AIGeminiService.cs",
+              "ToolTip": "F:\\Universidad\\UCALDAS\\Semestre 6\\Innovaci\u00F3n Empresarial\\Proyecto Innovacion\\ProyectoInventariosWebApi\\ProyectoInventariosWebApi\\Services\\AIGeminiService.cs",
+              "RelativeToolTip": "ProyectoInventariosWebApi\\Services\\AIGeminiService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAADsAAABMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-24T19:42:50.834Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "IAController.cs",
+              "DocumentMoniker": "F:\\Universidad\\UCALDAS\\Semestre 6\\Innovaci\u00F3n Empresarial\\Proyecto Innovacion\\ProyectoInventariosWebApi\\ProyectoInventariosWebApi\\Controllers\\IAController.cs",
+              "RelativeDocumentMoniker": "ProyectoInventariosWebApi\\Controllers\\IAController.cs",
+              "ToolTip": "F:\\Universidad\\UCALDAS\\Semestre 6\\Innovaci\u00F3n Empresarial\\Proyecto Innovacion\\ProyectoInventariosWebApi\\ProyectoInventariosWebApi\\Controllers\\IAController.cs",
+              "RelativeToolTip": "ProyectoInventariosWebApi\\Controllers\\IAController.cs",
+              "ViewState": "AgIAAA0AAAAAAAAAAAAswB4AAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-24T19:40:38.957Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "DTOsIA.cs",
+              "DocumentMoniker": "F:\\Universidad\\UCALDAS\\Semestre 6\\Innovaci\u00F3n Empresarial\\Proyecto Innovacion\\ProyectoInventariosWebApi\\ProyectoInventariosWebApi\\Services\\DTOsIA.cs",
+              "RelativeDocumentMoniker": "ProyectoInventariosWebApi\\Services\\DTOsIA.cs",
+              "ToolTip": "F:\\Universidad\\UCALDAS\\Semestre 6\\Innovaci\u00F3n Empresarial\\Proyecto Innovacion\\ProyectoInventariosWebApi\\ProyectoInventariosWebApi\\Services\\DTOsIA.cs",
+              "RelativeToolTip": "ProyectoInventariosWebApi\\Services\\DTOsIA.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-24T19:38:54.661Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "F:\\Universidad\\UCALDAS\\Semestre 6\\Innovaci\u00F3n Empresarial\\Proyecto Innovacion\\ProyectoInventariosWebApi\\ProyectoInventariosWebApi\\appsettings.json",
+              "RelativeDocumentMoniker": "ProyectoInventariosWebApi\\appsettings.json",
+              "ToolTip": "F:\\Universidad\\UCALDAS\\Semestre 6\\Innovaci\u00F3n Empresarial\\Proyecto Innovacion\\ProyectoInventariosWebApi\\ProyectoInventariosWebApi\\appsettings.json",
+              "RelativeToolTip": "ProyectoInventariosWebApi\\appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAANAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-11-24T19:37:45.425Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Program.cs",
+              "DocumentMoniker": "F:\\Universidad\\UCALDAS\\Semestre 6\\Innovaci\u00F3n Empresarial\\Proyecto Innovacion\\ProyectoInventariosWebApi\\ProyectoInventariosWebApi\\Program.cs",
+              "RelativeDocumentMoniker": "ProyectoInventariosWebApi\\Program.cs",
+              "ToolTip": "F:\\Universidad\\UCALDAS\\Semestre 6\\Innovaci\u00F3n Empresarial\\Proyecto Innovacion\\ProyectoInventariosWebApi\\ProyectoInventariosWebApi\\Program.cs",
+              "RelativeToolTip": "ProyectoInventariosWebApi\\Program.cs",
+              "ViewState": "AgIAAAgAAAAAAAAAAAAxwCUAAAAMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-07T19:55:25.518Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "ClientesController.cs",
+              "DocumentMoniker": "F:\\Universidad\\UCALDAS\\Semestre 6\\Innovaci\u00F3n Empresarial\\Proyecto Innovacion\\ProyectoInventariosWebApi\\ProyectoInventariosWebApi\\Controllers\\ClientesController.cs",
+              "RelativeDocumentMoniker": "ProyectoInventariosWebApi\\Controllers\\ClientesController.cs",
+              "ToolTip": "F:\\Universidad\\UCALDAS\\Semestre 6\\Innovaci\u00F3n Empresarial\\Proyecto Innovacion\\ProyectoInventariosWebApi\\ProyectoInventariosWebApi\\Controllers\\ClientesController.cs",
+              "RelativeToolTip": "ProyectoInventariosWebApi\\Controllers\\ClientesController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-07T19:54:59.245Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "AppSettings.cs",
+              "DocumentMoniker": "F:\\Universidad\\UCALDAS\\Semestre 6\\Innovaci\u00F3n Empresarial\\Proyecto Innovacion\\ProyectoInventariosWebApi\\ProyectoInventariosWebApi\\Services\\AppSettings.cs",
+              "RelativeDocumentMoniker": "ProyectoInventariosWebApi\\Services\\AppSettings.cs",
+              "ToolTip": "F:\\Universidad\\UCALDAS\\Semestre 6\\Innovaci\u00F3n Empresarial\\Proyecto Innovacion\\ProyectoInventariosWebApi\\ProyectoInventariosWebApi\\Services\\AppSettings.cs",
+              "RelativeToolTip": "ProyectoInventariosWebApi\\Services\\AppSettings.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-24T19:52:14.87Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
               "Title": "ProyectoInventariosDbContext.cs",
-              "DocumentMoniker": "E:\\Universidad\\UCALDAS\\Semestre 5\\Programacion Web II\\Proyecto Innovacion\\ProyectoInventariosWebApi\\ProyectoInventariosWebApi\\Models\\ProyectoInventariosDbContext.cs",
+              "DocumentMoniker": "F:\\Universidad\\UCALDAS\\Semestre 6\\Innovaci\u00F3n Empresarial\\Proyecto Innovacion\\ProyectoInventariosWebApi\\ProyectoInventariosWebApi\\Models\\ProyectoInventariosDbContext.cs",
               "RelativeDocumentMoniker": "ProyectoInventariosWebApi\\Models\\ProyectoInventariosDbContext.cs",
-              "ToolTip": "E:\\Universidad\\UCALDAS\\Semestre 5\\Programacion Web II\\Proyecto Innovacion\\ProyectoInventariosWebApi\\ProyectoInventariosWebApi\\Models\\ProyectoInventariosDbContext.cs",
+              "ToolTip": "F:\\Universidad\\UCALDAS\\Semestre 6\\Innovaci\u00F3n Empresarial\\Proyecto Innovacion\\ProyectoInventariosWebApi\\ProyectoInventariosWebApi\\Models\\ProyectoInventariosDbContext.cs",
               "RelativeToolTip": "ProyectoInventariosWebApi\\Models\\ProyectoInventariosDbContext.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAACYAAABGAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAFoAAAAhAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-11-07T19:54:18.371Z",
               "EditorCaption": ""
-            }
-          ]
-        },
-        {
-          "DockedWidth": 200,
-          "SelectedChildIndex": -1,
-          "Children": [
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{6324226f-61b6-4f28-92ee-18d4b5fe1e48}"
             }
           ]
         }

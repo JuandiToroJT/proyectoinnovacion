@@ -26,4 +26,6 @@ public partial class Empresas
     public string? PaginaWeb { get; set; }
 
     public string? EmailContacto { get; set; }
+
+    public virtual ICollection<Sedes> Sedes { get; set; } = new List<Sedes>();
 }

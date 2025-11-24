@@ -1,0 +1,431 @@
+@{
+    ViewData["Title"] = "Inventario de Dependencia";
+    var idDependencia = ViewBag.IdDependencia;
+    var nombreDependencia = ViewBag.NombreDependencia ?? "Dependencia";
+}
+
+<div class="row mb-4">
+    <div class="col-md-8">
+        <h2><i class="bi bi-box-seam"></i> Inventario - @nombreDependencia</h2>
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a asp-action="Index">Dependencias</a></li>
+                <li class="breadcrumb-item"><a asp-action="Details" asp-route-id="@idDependencia">@nombreDependencia</a></li>
+                <li class="breadcrumb-item active">Inventario</li>
+            </ol>
+        </nav>
+    </div>
+    <div class="col-md-4 text-end">
+        <button class="btn btn-success" onclick="modalAgregarProducto()">
+            <i class="bi bi-plus-circle"></i> Agregar Producto
+        </button>
+        <a asp-action="Details" asp-route-id="@idDependencia" class="btn btn-secondary">
+            <i class="bi bi-arrow-left"></i> Volver
+        </a>
+    </div>
+</div>
+
+<!-- Estadísticas -->
+<div class="row mb-4">
+    <div class="col-md-3">
+        <div class="card text-white" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+            <div class="card-body">
+                <h6 class="text-white-50 mb-2">Total Productos</h6>
+                <h3 class="mb-0" id="totalProductos">-</h3>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card text-white" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);">
+            <div class="card-body">
+                <h6 class="text-white-50 mb-2">Stock Total</h6>
+                <h3 class="mb-0" id="stockTotal">-</h3>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card text-white" style="background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);">
+            <div class="card-body">
+                <h6 class="text-white-50 mb-2">Valor Total</h6>
+                <h3 class="mb-0" id="valorTotal">-</h3>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card text-white" style="background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);">
+            <div class="card-body">
+                <h6 class="text-white-50 mb-2">Stock Bajo</h6>
+                <h3 class="mb-0" id="stockBajo">-</h3>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Filtros -->
+<div class="card mb-3">
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-4">
+                <input type="text" id="buscarProducto" class="form-control" placeholder="🔍 Buscar producto...">
+            </div>
+            <div class="col-md-3">
+                <select id="filtroCategoria" class="form-select">
+                    <option value="">Todas las categorías</option>
+                </select>
+            </div>
+            <div class="col-md-3">
+                <select id="filtroStock" class="form-select">
+                    <option value="">Todos los stocks</option>
+                    <option value="bajo">Stock Bajo</option>
+                    <option value="medio">Stock Medio</option>
+                    <option value="alto">Stock Alto</option>
+                </select>
+            </div>
+            <div class="col-md-2">
+                <button class="btn btn-secondary w-100" onclick="limpiarFiltros()">
+                    <i class="bi bi-x-circle"></i> Limpiar
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Tabla de Inventario -->
+<div class="card">
+    <div class="card-body">
+        <div id="inventarioTable">
+            <div class="text-center py-5">
+                <div class="spinner-border text-primary" role="status">
+                    <span class="visually-hidden">Cargando...</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Agregar Producto -->
+<div class="modal fade" id="modalAgregarProducto" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title"><i class="bi bi-plus-circle"></i> Agregar Producto al Inventario</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <form id="formAgregarProducto">
+                    <div class="mb-3">
+                        <label class="form-label">Producto *</label>
+                        <select id="selectProducto" class="form-select" required>
+                            <option value="">Seleccione un producto...</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Cantidad Inicial *</label>
+                        <input type="number" id="cantidadInicial" class="form-control" min="0" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Stock Mínimo</label>
+                        <input type="number" id="stockMinimo" class="form-control" min="0" value="10">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Stock Máximo</label>
+                        <input type="number" id="stockMaximo" class="form-control" min="0" value="100">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-primary" onclick="agregarProducto()">
+                    <i class="bi bi-save"></i> Guardar
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Ajustar Stock -->
+<div class="modal fade" id="modalAjustarStock" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title"><i class="bi bi-plus-minus"></i> Ajustar Stock</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <form id="formAjustarStock">
+                    <input type="hidden" id="ajustarIdInventario">
+                    <div class="mb-3">
+                        <label class="form-label">Producto</label>
+                        <input type="text" id="ajustarNombreProducto" class="form-control" readonly>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Stock Actual</label>
+                        <input type="number" id="ajustarStockActual" class="form-control" readonly>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Tipo de Ajuste *</label>
+                        <select id="ajustarTipoMovimiento" class="form-select" required>
+                            <option value="Ingreso">Ingreso</option>
+                            <option value="Salida">Salida</option>
+                            <option value="Ajuste">Ajuste</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Cantidad *</label>
+                        <input type="number" id="ajustarCantidad" class="form-control" min="1" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Motivo *</label>
+                        <textarea id="ajustarMotivo" class="form-control" rows="3" required></textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-primary" onclick="ejecutarAjusteStock()">
+                    <i class="bi bi-check-circle"></i> Ajustar
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        const apiUrl = '@ViewBag.ApiUrl';
+        const idDependencia = @idDependencia;
+        let inventarioData = [];
+        let modalAgregar, modalAjustar;
+
+        $(document).ready(function() {
+            modalAgregar = new bootstrap.Modal(document.getElementById('modalAgregarProducto'));
+            modalAjustar = new bootstrap.Modal(document.getElementById('modalAjustarStock'));
+
+            cargarInventario();
+            cargarProductosDisponibles();
+            cargarCategorias();
+
+            $('#buscarProducto, #filtroCategoria, #filtroStock').on('change keyup', function() {
+                aplicarFiltros();
+            });
+        });
+
+        function cargarInventario() {
+            $.get(apiUrl + '/Dependencias/' + idDependencia + '/Inventario')
+                .done(function(data) {
+                    inventarioData = data.inventario;
+                    actualizarEstadisticas(inventarioData);
+                    mostrarInventario(inventarioData);
+                })
+                .fail(function() {
+                    $('#inventarioTable').html('<p class="text-center text-danger">Error al cargar inventario</p>');
+                });
+        }
+
+        function actualizarEstadisticas(data) {
+            $('#totalProductos').text(data.length);
+
+            let stockTotal = 0;
+            let valorTotal = 0;
+            let stockBajo = 0;
+
+            data.forEach(function(item) {
+                stockTotal += item.stockActual || 0;
+                valorTotal += (item.stockActual || 0) * (item.producto?.precio || 0);
+                if (item.stockActual <= item.stockMinimo) {
+                    stockBajo++;
+                }
+            });
+
+            $('#stockTotal').text(stockTotal);
+            $('#valorTotal').text('$' + valorTotal.toLocaleString('es-CO'));
+            $('#stockBajo').text(stockBajo);
+        }
+
+        function mostrarInventario(data) {
+            let html = '';
+
+            if (data && data.length > 0) {
+                html = '<div class="table-responsive"><table class="table table-hover"><thead><tr>';
+                html += '<th>Producto</th><th>Categoría</th><th>Stock</th><th>Stock Mín/Máx</th><th>Estado</th><th>Acciones</th>';
+                html += '</tr></thead><tbody>';
+
+                data.forEach(function(item) {
+                    const producto = item.producto || {};
+                    const stockActual = item.stockActual || 0;
+                    const stockMin = item.stockMinimo || 0;
+                    const stockMax = item.stockMaximo || 100;
+
+                    let estadoBadge = 'bg-success';
+                    let estadoTexto = 'Normal';
+
+                    if (stockActual <= stockMin) {
+                        estadoBadge = 'bg-danger';
+                        estadoTexto = 'Bajo';
+                    } else if (stockActual <= stockMin * 1.5) {
+                        estadoBadge = 'bg-warning';
+                        estadoTexto = 'Medio';
+                    }
+
+                    html += `
+                        <tr>
+                            <td>
+                                <strong>${producto.nombre || 'N/A'}</strong><br>
+                                <small class="text-muted">${producto.descripcion || ''}</small>
+                            </td>
+                            <td><span class="badge bg-secondary">${producto.categoria || '-'}</span></td>
+                            <td><h5 class="mb-0">${stockActual}</h5></td>
+                            <td><small>Mín: ${stockMin} | Máx: ${stockMax}</small></td>
+                            <td><span class="badge ${estadoBadge}">${estadoTexto}</span></td>
+                            <td>
+                                <button class="btn btn-sm btn-primary" onclick='abrirModalAjustar(${JSON.stringify(item)})'>
+                                    <i class="bi bi-plus-minus"></i> Ajustar
+                                </button>
+                            </td>
+                        </tr>
+                    `;
+                });
+
+                html += '</tbody></table></div>';
+            } else {
+                html = '<p class="text-center text-muted py-5">No hay productos en el inventario</p>';
+            }
+
+            $('#inventarioTable').html(html);
+        }
+
+        function cargarProductosDisponibles() {
+            $.get(apiUrl + '/Productos')
+                .done(function(data) {
+                    let html = '<option value="">Seleccione un producto...</option>';
+                    data.forEach(function(p) {
+                        html += `<option value="${p.idProducto}">${p.nombre}</option>`;
+                    });
+                    $('#selectProducto').html(html);
+                });
+        }
+
+        function cargarCategorias() {
+            $.get(apiUrl + '/Productos/Categorias')
+                .done(function(data) {
+                    let html = '<option value="">Todas las categorías</option>';
+                    data.forEach(function(cat) {
+                        html += `<option value="${cat}">${cat}</option>`;
+                    });
+                    $('#filtroCategoria').html(html);
+                });
+        }
+
+        function modalAgregarProducto() {
+            $('#formAgregarProducto')[0].reset();
+            modalAgregar.show();
+        }
+
+        function agregarProducto() {
+            const data = {
+                idDependencia: idDependencia,
+                idProducto: parseInt($('#selectProducto').val()),
+                stockActual: parseInt($('#cantidadInicial').val()),
+                stockMinimo: parseInt($('#stockMinimo').val()),
+                stockMaximo: parseInt($('#stockMaximo').val()),
+                estadoInventario: 'Disponible'
+            };
+
+            if (!data.idProducto) {
+                alert('Seleccione un producto');
+                return;
+            }
+
+            $.ajax({
+                url: apiUrl + '/InventarioDependencia',
+                method: 'POST',
+                contentType: 'application/json',
+                data: JSON.stringify(data)
+            })
+            .done(function() {
+                modalAgregar.hide();
+                alert('Producto agregado exitosamente');
+                cargarInventario();
+            })
+            .fail(function(xhr) {
+                alert('Error: ' + (xhr.responseJSON?.message || 'No se pudo agregar el producto'));
+            });
+        }
+
+        function abrirModalAjustar(item) {
+            $('#ajustarIdInventario').val(item.idInventario);
+            $('#ajustarNombreProducto').val(item.producto?.nombre || '');
+            $('#ajustarStockActual').val(item.stockActual || 0);
+            $('#ajustarCantidad').val('');
+            $('#ajustarMotivo').val('');
+            modalAjustar.show();
+        }
+
+        function ejecutarAjusteStock() {
+            let nuevoStock = 0;
+            if ($("#ajustarTipoMovimiento").val() == "Ingreso"){
+                nuevoStock = parseInt($('#ajustarStockActual').val()) + parseInt($('#ajustarCantidad').val());
+            }
+            else if ($("#ajustarTipoMovimiento").val() == "Salida"){
+                nuevoStock = parseInt($('#ajustarStockActual').val()) - parseInt($('#ajustarCantidad').val());
+            }
+            else{
+                nuevoStock = parseInt($('#ajustarCantidad').val());
+            }
+
+            const data = {
+                nuevoStock: nuevoStock,
+                observaciones: $('#ajustarMotivo').val()
+            };
+
+            const idInventario = $('#ajustarIdInventario').val();
+
+            $.ajax({
+                url: apiUrl + '/InventarioDependencia/' + idInventario + '/AjustarStock',
+                method: 'PUT',
+                contentType: 'application/json',
+                data: JSON.stringify(data)
+            })
+            .done(function() {
+                modalAjustar.hide();
+                alert('Stock ajustado exitosamente');
+                cargarInventario();
+            })
+            .fail(function(xhr) {
+                alert('Error: ' + (xhr.responseJSON?.message || 'No se pudo ajustar el stock'));
+            });
+        }
+
+        function aplicarFiltros() {
+            const busqueda = $('#buscarProducto').val().toLowerCase();
+            const categoria = $('#filtroCategoria').val();
+            const stock = $('#filtroStock').val();
+
+            let datosFiltrados = inventarioData.filter(function(item) {
+                const nombreProducto = (item.producto?.nombre || '').toLowerCase();
+                const categoriaProducto = item.producto?.categoria || '';
+                const stockActual = item.stockActual || 0;
+                const stockMin = item.stockMinimo || 0;
+
+                let cumpleBusqueda = nombreProducto.includes(busqueda);
+                let cumpleCategoria = !categoria || categoriaProducto === categoria;
+                let cumpleStock = true;
+
+                if (stock === 'bajo') cumpleStock = stockActual <= stockMin;
+                else if (stock === 'medio') cumpleStock = stockActual > stockMin && stockActual <= stockMin * 1.5;
+                else if (stock === 'alto') cumpleStock = stockActual > stockMin * 1.5;
+
+                return cumpleBusqueda && cumpleCategoria && cumpleStock;
+            });
+
+            mostrarInventario(datosFiltrados);
+        }
+
+        function limpiarFiltros() {
+            $('#buscarProducto').val('');
+            $('#filtroCategoria').val('');
+            $('#filtroStock').val('');
+            mostrarInventario(inventarioData);
+        }
+    </script>
+}

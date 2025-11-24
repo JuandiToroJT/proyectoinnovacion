@@ -1,4 +1,4 @@
-﻿@model ProyectoInventariosWebApp.Models.Productos
+﻿@model ProyectoInventariosWebApp.Models.ProductoConInventario
 
 @{
     ViewData["Title"] = "Eliminar Producto";
@@ -22,9 +22,6 @@
 
                     <dt class="col-sm-4 text-end fw-semibold text-secondary">Precio:</dt>
                     <dd class="col-sm-8">$@Html.DisplayFor(model => model.Precio)</dd>
-
-                    <dt class="col-sm-4 text-end fw-semibold text-secondary">Stock:</dt>
-                    <dd class="col-sm-8">@Html.DisplayFor(model => model.Stock)</dd>
                 </dl>
             </div>
         </div>

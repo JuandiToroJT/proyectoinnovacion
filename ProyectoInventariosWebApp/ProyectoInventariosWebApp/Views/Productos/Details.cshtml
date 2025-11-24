@@ -1,51 +1,160 @@
-﻿@model ProyectoInventariosWebApp.Models.Productos
+﻿@model ProyectoInventariosWebApp.Models.ProductoConInventario
 
 @{
-    ViewData["Title"] = "Detalles del Producto";
+    ViewData["Title"] = "Detalle del Producto";
 }
 
-<div class="detalle-container">
-    <div class="detalle-header">
-        <div>
-            <h2>Detalle del Producto</h2>
-            <h4>@Html.DisplayFor(model => model.Nombre)</h4>
-            <p class="codigo">Código: @Html.DisplayFor(model => model.IdProducto)</p>
-        </div>
-        <div class="acciones">
-            <a asp-action="Edit" asp-route-id="@Model.IdProducto" class="btn azul">Editar</a>
-            <a class="btn verde">+ Registrar Entrada</a>
-            <a  class="btn rojo">- Registrar Salida</a>
-        </div>
+<div class="row mb-3">
+    <div class="col-md-6">
+        <h2>Detalle del Producto</h2>
     </div>
-
-    <div class="info-grid">
-        <div class="info-card">
-            <h6>Nombre</h6>
-            <p>@Html.DisplayFor(model => model.Nombre)</p>
-        </div>
-        <div class="info-card">
-            <h6>Descripción</h6>
-            <p>@Html.DisplayFor(model => model.Descripcion)</p>
-        </div>
-        <div class="info-card">
-            <h6>Precio</h6>
-            <p>$@Model.Precio.ToString("N2")</p>
-        </div>
-        <div class="info-card">
-            <h6>Stock</h6>
-            <p>@Html.DisplayFor(model => model.Stock)</p>
-        </div>
-    </div>
-
-    @if (Model.Stock <= 5)
-    {
-        <div class="alerta-stock">
-            <i class="bi bi-exclamation-triangle-fill"></i>
-            ¡Stock Muy Bajo!
-        </div>
-    }
-
-    <div class="volver">
-        <a asp-action="Index" class="btn gris">Volver</a>
+    <div class="col-md-6 text-end">
+        <a asp-action="Edit" asp-route-id="@Model.IdProducto" class="btn btn-primary">
+            <i class="bi bi-pencil"></i> Editar
+        </a>
+        <a asp-action="Index" class="btn btn-secondary">
+            <i class="bi bi-arrow-left"></i> Volver
+        </a>
     </div>
 </div>
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="card mb-4">
+            <div class="card-header bg-primary text-white">
+                <h5 class="mb-0">Información General</h5>
+            </div>
+            <div class="card-body">
+                <dl class="row">
+                    <dt class="col-sm-4">Código:</dt>
+                    <dd class="col-sm-8"><code>@Model.Codigo</code></dd>
+
+                    <dt class="col-sm-4">Nombre:</dt>
+                    <dd class="col-sm-8"><strong>@Model.Nombre</strong></dd>
+
+                    <dt class="col-sm-4">Descripción:</dt>
+                    <dd class="col-sm-8">@(Model.Descripcion ?? "Sin descripción")</dd>
+
+                    <dt class="col-sm-4">Categoría:</dt>
+                    <dd class="col-sm-8">
+                        @if (!string.IsNullOrEmpty(Model.Categoria))
+                        {
+                        <span class="badge bg-secondary">@Model.Categoria</span>
+                        }
+                        else
+                        {
+                        <span class="text-muted">Sin categoría</span>
+                        }
+                    </dd>
+
+                    <dt class="col-sm-4">Precio:</dt>
+                    <dd class="col-sm-8"><strong>@Model.Precio.ToString("C")</strong></dd>
+
+                    <dt class="col-sm-4">Unidad de Medida:</dt>
+                    <dd class="col-sm-8">@(Model.UnidadMedida ?? "N/A")</dd>
+
+                    <dt class="col-sm-4">Compartible:</dt>
+                    <dd class="col-sm-8">
+                        @if (Model.EsCompartible)
+                        {
+                        <span class="badge bg-success">Sí - Puede transferirse entre sedes</span>
+                        }
+                        else
+                        {
+                        <span class="badge bg-secondary">No - Exclusivo de ubicación</span>
+                        }
+                    </dd>
+
+                    <dt class="col-sm-4">Stock Total:</dt>
+                    <dd class="col-sm-8">
+                        <h4 class="@(Model.StockTotal == 0 ? "text-danger" : "text-success")">
+                            @Model.StockTotal unidades
+                        </h4>
+                    </dd>
+
+                    <dt class="col-sm-4">Estado:</dt>
+                    <dd class="col-sm-8">
+                        @if (Model.Estado)
+                        {
+                        <span class="badge bg-success">Activo</span>
+                        }
+                        else
+                        {
+                        <span class="badge bg-danger">Inactivo</span>
+                        }
+                    </dd>
+                </dl>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <div class="card mb-4">
+            <div class="card-header bg-info text-white">
+                <h5 class="mb-0">Inventario por Ubicación</h5>
+            </div>
+            <div class="card-body">
+                @if (Model.Inventario != null && Model.Inventario.Any())
+                {
+                <div class="list-group">
+                    @foreach (var inv in Model.Inventario.OrderBy(i => i.Sede).ThenBy(i => i.Dependencia))
+                        {
+                            var badgeClass = inv.StockBajo ? "bg-danger" : inv.StockActual > inv.StockMinimo * 2 ? "bg-success" : "bg-warning";
+
+                    <div class="list-group-item">
+                        <div class="d-flex justify-content-between align-items-start">
+                            <div>
+                                <h6 class="mb-1">@inv.Sede</h6>
+                                <p class="mb-1 text-muted">
+                                    <i class="bi bi-building"></i> @inv.Dependencia
+                                    <span class="badge bg-secondary ms-2">@inv.TipoDependencia</span>
+                                </p>
+                                @if (!string.IsNullOrEmpty(inv.Ubicacion))
+                                        {
+                                <small class="text-muted">
+                                    <i class="bi bi-geo-alt"></i> @inv.Ubicacion
+                                </small>
+                                        }
+                                <div class="mt-2">
+                                    <small>
+                                        Stock Mínimo: <strong>@inv.StockMinimo</strong> |
+                                        Estado: <span class="badge bg-secondary">@inv.EstadoInventario</span>
+                                    </small>
+                                </div>
+                            </div>
+                            <div class="text-end">
+                                <span class="badge @badgeClass" style="font-size: 1.2rem; padding: 0.5rem 1rem;">
+                                    @inv.StockActual
+                                </span>
+                                @if (inv.StockBajo)
+                                        {
+                                <div class="mt-2">
+                                    <i class="bi bi-exclamation-triangle text-danger"></i>
+                                    <small class="text-danger d-block">Stock Bajo</small>
+                                </div>
+                                        }
+                            </div>
+                        </div>
+                    </div>
+                        }
+                </div>
+
+                <div class="mt-3 alert alert-info">
+                    <strong>Total de ubicaciones:</strong> @Model.Inventario.Count
+                </div>
+                }
+                else
+                {
+                <div class="alert alert-warning text-center">
+                    <i class="bi bi-inbox" style="font-size: 3rem;"></i>
+                    <p class="mt-2">Este producto no tiene inventario registrado en ninguna ubicación</p>
+                </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+}

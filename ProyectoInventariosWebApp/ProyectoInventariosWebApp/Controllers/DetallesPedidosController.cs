@@ -20,12 +20,11 @@ namespace ProyectoInventariosWebApp.Controllers
         public DetallesPedidosController(HttpClient httpClient, IOptions<ApiUrlsOptions> apiOptions)
         {
             _httpClient = httpClient;
-            URL_API = apiOptions.Value.BaseUrl + "DetallesPedidos";
-            URL_API_PEDIDOS = apiOptions.Value.BaseUrl + "Pedidos";
-            URL_API_PRODUCTOS = apiOptions.Value.BaseUrl + "Productos";
+            URL_API = apiOptions.Value.BaseUrl + "/DetallesPedidos";
+            URL_API_PEDIDOS = apiOptions.Value.BaseUrl + "/Pedidos";
+            URL_API_PRODUCTOS = apiOptions.Value.BaseUrl + "/Productos";
         }
 
-        // GET: DetallesPedidos/Create
         public async Task<IActionResult> Create(int idPedido)
         {
             if (await PedidoCerrado(idPedido))
@@ -39,7 +38,6 @@ namespace ProyectoInventariosWebApp.Controllers
             return View(new DetallesPedido { IdPedido = idPedido });
         }
 
-        // POST: DetallesPedidos/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("IdPedido,IdProducto,Cantidad")] DetallesPedido detalle)
@@ -56,8 +54,6 @@ namespace ProyectoInventariosWebApp.Controllers
             var producto = await ObtenerProductoXId(detalle.IdProducto);
             if (producto == null)
                 ModelState.AddModelError("", "Producto inválido.");
-            else if (detalle.Cantidad > producto.Stock)
-                ModelState.AddModelError("Cantidad", "No hay suficiente stock disponible.");
 
             if (!ModelState.IsValid)
             {
@@ -67,7 +63,6 @@ namespace ProyectoInventariosWebApp.Controllers
             }
 
             detalle.Subtotal = producto.Precio * detalle.Cantidad;
-            producto.Stock -= detalle.Cantidad;
 
             await _httpClient.PutAsJsonAsync(URL_API_PRODUCTOS + "/" + detalle.IdProducto, producto);
             await _httpClient.PostAsJsonAsync(URL_API, detalle);
@@ -75,7 +70,6 @@ namespace ProyectoInventariosWebApp.Controllers
             return RedirectToAction("Details", "Pedidos", new { id = detalle.IdPedido });
         }
 
-        // GET: DetallesPedidos/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null) return NotFound();
@@ -92,7 +86,6 @@ namespace ProyectoInventariosWebApp.Controllers
             return View(detalle);
         }
 
-        // POST: DetallesPedidos/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("IdDetalle,IdPedido,IdProducto,Cantidad")] DetallesPedido detalle)
@@ -112,12 +105,6 @@ namespace ProyectoInventariosWebApp.Controllers
 
             if (producto == null)
                 ModelState.AddModelError("", "Producto inválido.");
-            else
-            {
-                producto.Stock += original.Cantidad;
-                if (detalle.Cantidad > producto.Stock)
-                    ModelState.AddModelError("Cantidad", "No hay suficiente stock disponible para la nueva cantidad.");
-            }
 
             if (!ModelState.IsValid)
             {
@@ -126,7 +113,6 @@ namespace ProyectoInventariosWebApp.Controllers
             }
 
             detalle.Subtotal = producto.Precio * detalle.Cantidad;
-            producto.Stock -= detalle.Cantidad;
 
             await _httpClient.PutAsJsonAsync(URL_API_PRODUCTOS + "/" + detalle.IdProducto, producto);
             await _httpClient.PutAsJsonAsync(URL_API + "/" + id, detalle);
@@ -134,7 +120,6 @@ namespace ProyectoInventariosWebApp.Controllers
             return RedirectToAction("Details", "Pedidos", new { id = detalle.IdPedido });
         }
 
-        // POST: DetallesPedidos/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)

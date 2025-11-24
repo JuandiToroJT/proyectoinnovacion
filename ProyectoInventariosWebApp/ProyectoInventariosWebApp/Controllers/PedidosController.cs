@@ -16,6 +16,7 @@ namespace ProyectoInventariosWebApp.Controllers
     public class PedidosController : Controller
     {
         private readonly HttpClient _httpClient;
+        private readonly string _apiUrl;
         private readonly string URL_API;
         private readonly string URL_API_CLIENTES;
         private readonly string URL_API_DETALLES;
@@ -23,26 +24,24 @@ namespace ProyectoInventariosWebApp.Controllers
         public PedidosController(HttpClient httpClient, IOptions<ApiUrlsOptions> apiOptions)
         {
             _httpClient = httpClient;
-            URL_API = apiOptions.Value.BaseUrl + "Pedidos";
-            URL_API_CLIENTES = apiOptions.Value.BaseUrl + "Clientes";
-            URL_API_DETALLES = apiOptions.Value.BaseUrl + "DetallesPedidos";
+            _apiUrl = apiOptions.Value.BaseUrl;
+            URL_API = apiOptions.Value.BaseUrl + "/Pedidos";
+            URL_API_CLIENTES = apiOptions.Value.BaseUrl + "/Clientes";
+            URL_API_DETALLES = apiOptions.Value.BaseUrl + "/DetallesPedidos";
         }
 
-        // GET: Pedidos
         public async Task<IActionResult> Index()
         {
             ViewData["Title"] = "Pedidos Pendientes";
             return View(await ObtenerListadoPedidos("Pendiente"));
         }
 
-        // GET: Pedidos/Procesados
         public async Task<IActionResult> Procesados()
         {
             ViewData["Title"] = "Pedidos Procesados";
             return View("Index", await ObtenerListadoPedidos("Procesado"));
         }
 
-        // GET: Pedidos/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null) return NotFound();
@@ -54,14 +53,12 @@ namespace ProyectoInventariosWebApp.Controllers
             return View(pedido);
         }
 
-        // GET: Pedidos/Create
         public async Task<IActionResult> Create()
         {
             ViewData["IdCliente"] = new SelectList(await ObtenerListadoClientes(), "IdCliente", "Nombre");
             return View();
         }
 
-        // POST: Pedidos/Create
         [HttpPost, ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("IdCliente")] Pedidos pedido)
         {
@@ -86,7 +83,6 @@ namespace ProyectoInventariosWebApp.Controllers
             return View(pedido);
         }
 
-        // POST: Pedidos/GenerarEntrega/5
         [HttpPost, ValidateAntiForgeryToken]
         public async Task<IActionResult> GenerarEntrega(int id)
         {
@@ -120,7 +116,6 @@ namespace ProyectoInventariosWebApp.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        // POST: Pedidos/GenerarFactura/5
         [HttpPost, ValidateAntiForgeryToken]
         public async Task<IActionResult> GenerarFactura(int id)
         {
@@ -153,7 +148,6 @@ namespace ProyectoInventariosWebApp.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        // POST: Pedidos/MarcarProcesado/5
         [HttpPost, ValidateAntiForgeryToken]
         public async Task<IActionResult> MarcarProcesado(int id)
         {
@@ -192,6 +186,9 @@ namespace ProyectoInventariosWebApp.Controllers
                 var content = await respuesta.Content.ReadAsStringAsync();
                 pedidos = JsonConvert.DeserializeObject<Pedidos>(content);
             }
+
+            ViewBag.ApiUrl = _apiUrl;
+
             return pedidos;
         }
 

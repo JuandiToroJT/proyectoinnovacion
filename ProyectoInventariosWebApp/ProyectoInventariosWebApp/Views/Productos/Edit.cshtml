@@ -1,4 +1,4 @@
-﻿@model ProyectoInventariosWebApp.Models.Productos
+﻿@model ProyectoInventariosWebApp.Models.ProductoConInventario
 
 @{
     ViewData["Title"] = "Editar Producto";
@@ -14,6 +14,11 @@
         <form asp-action="Edit" method="post" class="needs-validation" novalidate>
             <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
             <input type="hidden" asp-for="IdProducto" />
+            <input type="hidden" asp-for="Codigo" />
+            <input type="hidden" asp-for="Categoria" />
+            <input type="hidden" asp-for="UnidadMedida" />
+            <input type="hidden" asp-for="EsCompartible" />
+            <input type="hidden" asp-for="Estado" />
 
             <div class="row g-3">
                 <div class="col-md-6">
@@ -32,12 +37,6 @@
                     <label asp-for="Precio" class="form-label fw-semibold"></label>
                     <input asp-for="Precio" class="form-control rounded-3 shadow-sm" type="number" step="0.01" min="0" placeholder="Precio del producto" />
                     <span asp-validation-for="Precio" class="text-danger"></span>
-                </div>
-
-                <div class="col-md-6">
-                    <label asp-for="Stock" class="form-label fw-semibold"></label>
-                    <input asp-for="Stock" class="form-control rounded-3 shadow-sm" type="number" min="0" placeholder="Cantidad disponible" />
-                    <span asp-validation-for="Stock" class="text-danger"></span>
                 </div>
             </div>
 

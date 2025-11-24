@@ -22,16 +22,14 @@ namespace ProyectoInventariosWebApp.Controllers
         public ClientesController(HttpClient httpClient, IOptions<ApiUrlsOptions> apiOptions)
         {
             _httpClient = httpClient;
-            URL_API = apiOptions.Value.BaseUrl + "Clientes";
+            URL_API = apiOptions.Value.BaseUrl + "/Clientes";
         }
 
-        // GET: Clientes
         public async Task<IActionResult> Index()
         {
             return View(await ObtenerListadoClientes());
         }
 
-        // GET: Clientes/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -48,7 +46,6 @@ namespace ProyectoInventariosWebApp.Controllers
             return View(clientes);
         }
 
-        // GET: Clientes/Create
         public IActionResult Create()
         {
             return View();
@@ -75,7 +72,6 @@ namespace ProyectoInventariosWebApp.Controllers
             return View(clientes);
         }
 
-        // GET: Clientes/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -118,7 +114,6 @@ namespace ProyectoInventariosWebApp.Controllers
             return View(clientes);
         }
 
-        // GET: Clientes/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -135,7 +130,6 @@ namespace ProyectoInventariosWebApp.Controllers
             return View(clientes);
         }
 
-        // POST: Clientes/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)

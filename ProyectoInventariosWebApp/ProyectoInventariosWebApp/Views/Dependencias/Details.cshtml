@@ -1,0 +1,393 @@
+@model dynamic
+
+@{
+    ViewData["Title"] = "Detalle de Dependencia";
+}
+
+<div class="row mb-3">
+    <div class="col-md-6">
+        <h2>Detalle de Dependencia</h2>
+    </div>
+    <div class="col-md-6 text-end">
+        <a asp-action="Index" class="btn btn-secondary">
+            <i class="bi bi-arrow-left"></i> Volver
+        </a>
+    </div>
+</div>
+
+<div class="row">
+    <!-- Información de la Dependencia -->
+    <div class="col-md-4">
+        <div class="card mb-4">
+            <div class="card-header bg-primary text-white">
+                <h5 class="mb-0">Información General</h5>
+            </div>
+            <div class="card-body" id="dependenciaInfo">
+                <div class="text-center py-4">
+                    <div class="spinner-border text-primary" role="status"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Estadísticas -->
+        <div class="card">
+            <div class="card-header bg-info text-white">
+                <h5 class="mb-0">Estadísticas</h5>
+            </div>
+            <div class="card-body" id="estadisticas">
+                <div class="text-center py-4">
+                    <div class="spinner-border text-info" role="status"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Inventario de la Dependencia -->
+    <div class="col-md-8">
+        <div class="card mb-4">
+            <div class="card-header bg-warning text-dark d-flex justify-content-between align-items-center">
+                <h5 class="mb-0">Inventario de la Dependencia</h5>
+                <div>
+                    <button class="btn btn-sm btn-light" style="background-color: gray;" onclick="mostrarTodos()">
+                        <i class="bi bi-list"></i> Todos
+                    </button>
+                    <button class="btn btn-sm btn-danger" onclick="mostrarStockBajo()">
+                        <i class="bi bi-exclamation-triangle"></i> Stock Bajo
+                    </button>
+                </div>
+            </div>
+            <div class="card-body" id="inventarioList">
+                <div class="text-center py-4">
+                    <div class="spinner-border text-warning" role="status"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Productos con Stock Bajo -->
+        <div class="card" id="stockBajoCard" style="display: none;">
+            <div class="card-header bg-danger text-white">
+                <h5 class="mb-0">
+                    <i class="bi bi-exclamation-triangle"></i> Productos con Stock Bajo
+                </h5>
+            </div>
+            <div class="card-body" id="stockBajoList">
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        const baseUrl = '@ViewBag.ApiUrl';
+        const idDependencia = @ViewBag.IdDependencia;
+        let inventarioCompleto = [];
+        let inventarioStockBajo = [];
+
+        console.log('[DEBUG] Base URL:', baseUrl);
+        console.log('[DEBUG] API URL:', baseUrl);
+        console.log('[DEBUG] ID Dependencia:', idDependencia);
+
+        $(document).ready(function() {
+            cargarDependenciaInfo();
+            cargarInventario();
+            cargarStockBajo();
+        });
+
+        async function cargarDependenciaInfo() {
+            try {
+                const url = `${baseUrl}/Dependencias/${idDependencia}`;
+                console.log('[INFO] Cargando dependencia desde:', url);
+
+                const response = await fetch(url);
+
+                if (!response.ok) {
+                    throw new Error(`HTTP ${response.status}`);
+                }
+
+                const dep = await response.json();
+
+                console.log('[INFO] Dependencia recibida:', dep);
+
+                let html = `
+                    <dl class="row mb-0">
+                        <dt class="col-sm-5">Nombre:</dt>
+                        <dd class="col-sm-7"><strong>${dep.nombre}</strong></dd>
+
+                        <dt class="col-sm-5">Tipo:</dt>
+                        <dd class="col-sm-7">
+                            <span class="badge bg-secondary">${dep.tipoDependencia || 'N/A'}</span>
+                        </dd>
+
+                        <dt class="col-sm-5">Sede:</dt>
+                        <dd class="col-sm-7">${dep.idSedeNavigation?.nombre || 'N/A'}</dd>
+
+                        <dt class="col-sm-5">Ubicación:</dt>
+                        <dd class="col-sm-7">${dep.ubicacion || 'No especificada'}</dd>
+
+                        <dt class="col-sm-5">Responsable:</dt>
+                        <dd class="col-sm-7">${dep.responsable || 'No asignado'}</dd>
+
+                        <dt class="col-sm-5">Teléfono:</dt>
+                        <dd class="col-sm-7">${dep.telefonoContacto || 'N/A'}</dd>
+
+                        <dt class="col-sm-5">Estado:</dt>
+                        <dd class="col-sm-7">
+                            <span class="badge ${dep.estado ? 'bg-success' : 'bg-danger'}">
+                                ${dep.estado ? 'Activa' : 'Inactiva'}
+                            </span>
+                        </dd>
+                    </dl>
+                `;
+
+                $('#dependenciaInfo').html(html);
+            } catch (error) {
+                console.error('[ERROR] Al cargar dependencia:', error);
+                $('#dependenciaInfo').html(`
+                    <div class="alert alert-danger">
+                        <strong>Error:</strong> ${error.message}
+                        <br><small>URL: ${baseUrl}/Dependencias/${idDependencia}</small>
+                    </div>
+                `);
+            }
+        }
+
+        async function cargarInventario() {
+            try {
+                const url = `${baseUrl}/Dependencias/${idDependencia}/Inventario`;
+                console.log('[INFO] Cargando inventario desde:', url);
+
+                const response = await fetch(url);
+
+                if (!response.ok) {
+                    throw new Error(`HTTP ${response.status}`);
+                }
+
+                const data = await response.json();
+
+                console.log('[INFO] Respuesta completa:', data);
+
+
+                if (data.inventario) {
+                    inventarioCompleto = data.inventario;
+                    console.log('[INFO] Inventario extraído:', inventarioCompleto.length, 'items');
+                } else if (Array.isArray(data)) {
+                    inventarioCompleto = data;
+                    console.log('[INFO] Inventario directo (array):', inventarioCompleto.length, 'items');
+                } else {
+                    inventarioCompleto = [];
+                }
+
+                if (inventarioCompleto.length === 0) {
+                    $('#inventarioList').html('<p class="text-muted text-center">No hay inventario registrado en esta dependencia</p>');
+                    $('#estadisticas').html(`
+                        <div class="text-center">
+                            <h3 class="text-muted">0</h3>
+                            <p class="mb-0">Productos</p>
+                        </div>
+                    `);
+                    return;
+                }
+
+                mostrarInventario(inventarioCompleto);
+                actualizarEstadisticas();
+            } catch (error) {
+                console.error('[ERROR] Al cargar inventario:', error);
+                $('#inventarioList').html(`
+                    <div class="alert alert-danger">
+                        <strong>Error:</strong> ${error.message}
+                        <br><small>URL: ${baseUrl}/Dependencias/${idDependencia}/Inventario</small>
+                    </div>
+                `);
+            }
+        }
+
+        async function cargarStockBajo() {
+            try {
+                const url = `${baseUrl}/Dependencias/${idDependencia}/StockBajo`;
+                console.log('[INFO] Cargando stock bajo desde:', url);
+
+                const response = await fetch(url);
+
+                if (!response.ok) {
+                    console.log('[WARN] No se pudo cargar stock bajo, status:', response.status);
+                    return;
+                }
+
+                const data = await response.json();
+
+                console.log('[INFO] Respuesta stock bajo:', data);
+
+                if (data.inventario) {
+                    inventarioStockBajo = data.inventario;
+                } else if (Array.isArray(data)) {
+                    inventarioStockBajo = data;
+                } else {
+                    inventarioStockBajo = [];
+                }
+
+                console.log('[INFO] Items con stock bajo:', inventarioStockBajo.length);
+
+                if (inventarioStockBajo.length > 0) {
+                    $('#stockBajoCard').show();
+                    mostrarStockBajoDetalle();
+                }
+            } catch (error) {
+                console.error('[ERROR] Al cargar stock bajo:', error);
+            }
+        }
+
+        function mostrarInventario(items) {
+            if (!items || items.length === 0) {
+                $('#inventarioList').html('<p class="text-muted text-center">No hay productos para mostrar</p>');
+                return;
+            }
+
+            let html = `
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>Código</th>
+                                <th>Producto</th>
+                                <th>Categoría</th>
+                                <th>Ubicación</th>
+                                <th class="text-center">Stock Actual</th>
+                                <th class="text-center">Stock Mínimo</th>
+                                <th class="text-center">Estado</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+            `;
+
+            items.forEach(item => {
+                const stockClass = item.stockActual < item.stockMinimo ? 'table-danger' : '';
+                const stockBajo = item.stockActual < item.stockMinimo;
+
+                const producto = item.idProductoNavigation || item.producto;
+
+                html += `
+                    <tr class="${stockClass}">
+                        <td><code>${producto?.codigo || 'N/A'}</code></td>
+                        <td>
+                            <strong>${producto?.nombre || 'N/A'}</strong>
+                            ${stockBajo ? '<i class="bi bi-exclamation-triangle text-danger"></i>' : ''}
+                        </td>
+                        <td><span class="badge bg-secondary">${producto?.categoria || 'N/A'}</span></td>
+                        <td><small>${item.ubicacion || 'No especificada'}</small></td>
+                        <td class="text-center">
+                            <span class="badge ${stockBajo ? 'bg-danger' : 'bg-success'}" style="font-size: 1rem;">
+                                ${item.stockActual}
+                            </span>
+                        </td>
+                        <td class="text-center">${item.stockMinimo}</td>
+                        <td class="text-center">
+                            <span class="badge ${item.estadoInventario === 'Disponible' ? 'bg-success' : 'bg-secondary'}">
+                                ${item.estadoInventario}
+                            </span>
+                        </td>
+                    </tr>
+                `;
+            });
+
+            html += '</tbody></table></div>';
+            $('#inventarioList').html(html);
+        }
+
+        function mostrarStockBajoDetalle() {
+            if (!inventarioStockBajo || inventarioStockBajo.length === 0) {
+                $('#stockBajoList').html('<p class="text-muted text-center">No hay productos con stock bajo</p>');
+                return;
+            }
+
+            let html = '<div class="list-group">';
+            inventarioStockBajo.forEach(item => {
+                const producto = item.idProductoNavigation || item.producto;
+                const deficit = item.stockMinimo - item.stockActual;
+
+                html += `
+                    <div class="list-group-item">
+                        <div class="d-flex justify-content-between align-items-start">
+                            <div>
+                                <h6 class="mb-1">
+                                    <code>${producto?.codigo || 'N/A'}</code> - ${producto?.nombre || 'N/A'}
+                                </h6>
+                                <p class="mb-1 text-muted small">
+                                    Stock actual: <strong class="text-danger">${item.stockActual}</strong> |
+                                    Stock mínimo: <strong>${item.stockMinimo}</strong> |
+                                    Faltante: <strong class="text-danger">${deficit}</strong>
+                                </p>
+                                <small class="text-muted">
+                                    <i class="bi bi-geo-alt"></i> ${item.ubicacion || 'Sin ubicación'}
+                                </small>
+                            </div>
+                            <div class="text-end">
+                                <span class="badge bg-danger">¡URGENTE!</span>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+            html += '</div>';
+            $('#stockBajoList').html(html);
+        }
+
+        function actualizarEstadisticas() {
+            if (!inventarioCompleto || inventarioCompleto.length === 0) {
+                $('#estadisticas').html(`
+                    <div class="text-center">
+                        <h3 class="text-muted">0</h3>
+                        <p class="mb-0 small">Productos</p>
+                    </div>
+                `);
+                return;
+            }
+
+            const totalProductos = inventarioCompleto.length;
+            const stockTotal = inventarioCompleto.reduce((sum, item) => sum + item.stockActual, 0);
+
+            const conStockBajo = inventarioCompleto.filter(item => {
+                return item.stockBajo !== undefined ? item.stockBajo : (item.stockActual < item.stockMinimo);
+            }).length;
+
+            $('#estadisticas').html(`
+                <div class="row text-center">
+                    <div class="col-12 mb-3">
+                        <h3 class="text-primary">${totalProductos}</h3>
+                        <p class="mb-0 small">Productos</p>
+                    </div>
+                    <div class="col-6 mb-3">
+                        <h4 class="text-success">${stockTotal.toLocaleString()}</h4>
+                        <p class="mb-0 small">Stock Total</p>
+                    </div>
+                    <div class="col-6 mb-3">
+                        <h4 class="${conStockBajo > 0 ? 'text-danger' : 'text-success'}">${conStockBajo}</h4>
+                        <p class="mb-0 small">Stock Bajo</p>
+                    </div>
+                </div>
+            `);
+        }
+
+        function mostrarTodos() {
+            mostrarInventario(inventarioCompleto);
+        }
+
+        function mostrarStockBajo() {
+            if (!inventarioCompleto || inventarioCompleto.length === 0) {
+                $('#inventarioList').html('<p class="text-muted text-center py-4">No hay inventario disponible</p>');
+                return;
+            }
+
+
+            const itemsStockBajo = inventarioCompleto.filter(item => {
+                return item.stockBajo !== undefined ? item.stockBajo : (item.stockActual < item.stockMinimo);
+            });
+
+            if (itemsStockBajo.length === 0) {
+                $('#inventarioList').html('<p class="text-success text-center py-4"><i class="bi bi-check-circle"></i> No hay productos con stock bajo</p>');
+            } else {
+                mostrarInventario(itemsStockBajo);
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+}

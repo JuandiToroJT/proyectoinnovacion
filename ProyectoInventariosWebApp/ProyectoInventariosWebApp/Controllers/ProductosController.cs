@@ -4,7 +4,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore;
 using ProyectoInventariosWebApp.Models;
 using ProyectoInventariosWebApp.Filtro;
 using Newtonsoft.Json;
@@ -17,21 +16,21 @@ namespace ProyectoInventariosWebApp.Controllers
     public class ProductosController : Controller
     {
         private readonly HttpClient _httpClient;
-        private readonly string URL_API;
+        private readonly string _apiUrl;
+        private readonly string _baseUrl;
 
         public ProductosController(HttpClient httpClient, IOptions<ApiUrlsOptions> apiOptions)
         {
             _httpClient = httpClient;
-            URL_API = apiOptions.Value.BaseUrl + "Productos";
+            _apiUrl = apiOptions.Value.BaseUrl + "/Productos";
         }
 
-        // GET: Productos
         public async Task<IActionResult> Index()
         {
+            ViewBag.ApiUrl = _baseUrl;
             return View(await ObtenerListadoProductos());
         }
 
-        // GET: Productos/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -39,31 +38,39 @@ namespace ProyectoInventariosWebApp.Controllers
                 return NotFound();
             }
 
-            Productos productos = await ObtenerProductoXId(id.Value);
-            if (productos == null)
+            var producto = await ObtenerProductoConInventarioXId(id.Value);
+            if (producto == null)
             {
                 return NotFound();
             }
 
-            return View(productos);
+            ViewBag.ApiUrl = _baseUrl;
+            return View(producto);
         }
 
-        // GET: Productos/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Productos/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("IdProducto,Nombre,Descripcion,Precio,Stock")] Productos productos)
+        public async Task<IActionResult> Create([Bind("Nombre,Descripcion,Precio,Categoria,UnidadMedida,EsCompartible")] ProductoConInventario producto)
         {
             if (ModelState.IsValid)
             {
-                var respuesta = await _httpClient.PostAsJsonAsync(URL_API, productos);
+                var productoDto = new
+                {
+                    nombre = producto.Nombre,
+                    descripcion = producto.Descripcion,
+                    precio = producto.Precio,
+                    categoria = producto.Categoria,
+                    unidadMedida = producto.UnidadMedida,
+                    esCompartible = producto.EsCompartible,
+                    stockMinimoGlobal = 10
+                };
+
+                var respuesta = await _httpClient.PostAsJsonAsync(_apiUrl, productoDto);
                 if (respuesta.IsSuccessStatusCode)
                 {
                     return RedirectToAction(nameof(Index));
@@ -72,10 +79,9 @@ namespace ProyectoInventariosWebApp.Controllers
                 await ModelState.AddErrorsFromApiResponseAsync(respuesta);
             }
 
-            return View(productos);
+            return View(producto);
         }
 
-        // GET: Productos/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -83,30 +89,42 @@ namespace ProyectoInventariosWebApp.Controllers
                 return NotFound();
             }
 
-            Productos productos = await ObtenerProductoXId(id.Value);
-            if (productos == null)
+            var producto = await ObtenerProductoConInventarioXId(id.Value);
+            if (producto == null)
             {
                 return NotFound();
             }
 
-            return View(productos);
+            return View(producto);
         }
 
-        // POST: Productos/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("IdProducto,Nombre,Descripcion,Precio,Stock")] Productos productos)
+        public async Task<IActionResult> Edit(int id, [Bind("IdProducto,Codigo,Nombre,Descripcion,Precio,Categoria,UnidadMedida,EsCompartible,Estado")] ProductoConInventario producto)
         {
-            if (id != productos.IdProducto)
+            if (id != producto.IdProducto)
             {
                 return NotFound();
             }
 
             if (ModelState.IsValid)
             {
-                var respuesta = await _httpClient.PutAsJsonAsync(URL_API + "/" + id, productos);
+                var productoDto = new
+                {
+                    idProducto = producto.IdProducto,
+                    codigo = producto.Codigo,
+                    nombre = producto.Nombre,
+                    descripcion = producto.Descripcion,
+                    precio = producto.Precio,
+                    categoria = producto.Categoria,
+                    unidadMedida = producto.UnidadMedida,
+                    esCompartible = producto.EsCompartible,
+                    stockMinimoGlobal = 10,
+                    estado = producto.Estado,
+                    stockTotal = producto.StockTotal
+                };
+
+                var respuesta = await _httpClient.PutAsJsonAsync($"{_apiUrl}/{id}", productoDto);
                 if (respuesta.IsSuccessStatusCode)
                 {
                     return RedirectToAction(nameof(Index));
@@ -115,10 +133,9 @@ namespace ProyectoInventariosWebApp.Controllers
                 await ModelState.AddErrorsFromApiResponseAsync(respuesta);
             }
 
-            return View(productos);
+            return View(producto);
         }
 
-        // GET: Productos/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -126,48 +143,63 @@ namespace ProyectoInventariosWebApp.Controllers
                 return NotFound();
             }
 
-            Productos productos = await ObtenerProductoXId(id.Value);
-            if (productos == null)
+            var producto = await ObtenerProductoConInventarioXId(id.Value);
+            if (producto == null)
             {
                 return NotFound();
             }
 
-            return View(productos);
+            return View(producto);
         }
 
-        // POST: Productos/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var respuesta = await _httpClient.DeleteAsync(URL_API + "/" + id);
+            var respuesta = await _httpClient.DeleteAsync($"{_apiUrl}/{id}");
             return RedirectToAction(nameof(Index));
         }
 
-        private async Task<List<Productos>> ObtenerListadoProductos()
+        private async Task<List<ProductoConInventario>> ObtenerListadoProductos()
         {
-            List<Productos> productos = new List<Productos>();
+            List<ProductoConInventario> productos = new List<ProductoConInventario>();
 
-            var respuesta = await _httpClient.GetAsync(URL_API);
-            if (respuesta.IsSuccessStatusCode)
+            try
             {
-                var content = await respuesta.Content.ReadAsStringAsync();
-                productos = JsonConvert.DeserializeObject<List<Productos>>(content);
+                var respuesta = await _httpClient.GetAsync(_apiUrl);
+                if (respuesta.IsSuccessStatusCode)
+                {
+                    var content = await respuesta.Content.ReadAsStringAsync();
+                    productos = JsonConvert.DeserializeObject<List<ProductoConInventario>>(content);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error al obtener productos: {ex.Message}");
             }
 
-            return productos;
+            return productos ?? new List<ProductoConInventario>();
         }
 
-        private async Task<Productos> ObtenerProductoXId(int id)
+        private async Task<ProductoConInventario> ObtenerProductoConInventarioXId(int id)
         {
-            Productos productos = null;
-            var respuesta = await _httpClient.GetAsync(URL_API + "/" + id);
-            if (respuesta.IsSuccessStatusCode)
+            ProductoConInventario producto = null;
+
+            try
             {
-                var content = await respuesta.Content.ReadAsStringAsync();
-                productos = JsonConvert.DeserializeObject<Productos>(content);
+                var respuesta = await _httpClient.GetAsync($"{_apiUrl}/{id}");
+                if (respuesta.IsSuccessStatusCode)
+                {
+                    var content = await respuesta.Content.ReadAsStringAsync();
+                    producto = JsonConvert.DeserializeObject<ProductoConInventario>(content);
+                }
             }
-            return productos;
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error al obtener producto {id}: {ex.Message}");
+            }
+
+            return producto;
         }
     }
 }

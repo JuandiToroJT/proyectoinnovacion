@@ -1,0 +1,511 @@
+@{
+    ViewData["Title"] = "Transferencias de Stock";
+}
+
+<div class="row mb-4">
+    <div class="col-md-6">
+        <h2><i class="bi bi-arrow-left-right"></i> Transferencias de Stock</h2>
+    </div>
+    <div class="col-md-6 text-end">
+        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#nuevaTransferenciaModal">
+            <i class="bi bi-plus-circle"></i> Nueva Transferencia
+        </button>
+    </div>
+</div>
+
+<!-- Filtros -->
+<div class="card card-custom mb-4">
+    <div class="card-body">
+        <div class="row g-3">
+            <div class="col-md-3">
+                <label class="form-label">Estado</label>
+                <select id="estadoFilter" class="form-select">
+                    <option value="">Todos</option>
+                    <option value="Pendiente" selected>Pendiente</option>
+                    <option value="Aprobada">Aprobada</option>
+                    <option value="Ejecutada">Ejecutada</option>
+                    <option value="Rechazada">Rechazada</option>
+                    <option value="Cancelada">Cancelada</option>
+                </select>
+            </div>
+            <div class="col-md-3">
+                <label class="form-label">&nbsp;</label>
+                <button class="btn btn-secondary w-100" onclick="cargarTransferencias()">
+                    <i class="bi bi-arrow-clockwise"></i> Actualizar
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Lista de Transferencias -->
+<div class="card card-custom">
+    <div class="card-body">
+        <div id="transferenciasContainer">
+            <div class="text-center py-5">
+                <div class="spinner-border text-primary" role="status">
+                    <span class="visually-hidden">Cargando...</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal: Nueva Transferencia -->
+<div class="modal fade" id="nuevaTransferenciaModal" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Solicitar Transferencia</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <form id="formNuevaTransferencia">
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Producto *</label>
+                            <select id="productoSelect" class="form-select" required>
+                                <option value="">Seleccionar...</option>
+                            </select>
+                            <div id="productoInfo" class="mt-2"></div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Cantidad *</label>
+                            <input type="number" id="cantidadInput" class="form-control" min="1" required>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Dependencia Origen *</label>
+                            <select id="origenSelect" class="form-select" required>
+                                <option value="">Seleccionar producto primero...</option>
+                            </select>
+                            <div id="stockOrigenInfo" class="mt-2"></div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Dependencia Destino *</label>
+                            <select id="destinoSelect" class="form-select" required>
+                                <option value="">Seleccionar...</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Motivo *</label>
+                        <select id="motivoSelect" class="form-select" required>
+                            <option value="">Seleccionar...</option>
+                            <option value="Reabastecimiento">Reabastecimiento</option>
+                            <option value="Stock bajo">Stock bajo</option>
+                            <option value="Apertura nueva dependencia">Apertura nueva dependencia</option>
+                            <option value="Redistribución">Redistribución</option>
+                            <option value="Otro">Otro</option>
+                        </select>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Observaciones</label>
+                        <textarea id="observacionesInput" class="form-control" rows="3"></textarea>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Costo de Transporte (opcional)</label>
+                        <input type="number" id="costoTransporteInput" class="form-control" step="0.01" min="0">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-primary" onclick="solicitarTransferencia()">
+                    <i class="bi bi-send"></i> Solicitar
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal: Detalle de Transferencia -->
+<div class="modal fade" id="detalleTransferenciaModal" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Detalle de Transferencia</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body" id="detalleTransferenciaContent">
+                <!-- Contenido dinámico -->
+            </div>
+            <div class="modal-footer" id="detalleTransferenciaFooter">
+                <!-- Botones dinámicos -->
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        const apiUrl = '@ViewBag.ApiUrl';
+        const idUsuario = @(Context.Session.GetString("IdUsuario") ?? "1");
+
+        $(document).ready(function() {
+            cargarTransferencias();
+            cargarProductos();
+            cargarDependencias();
+
+            $('#estadoFilter').on('change', cargarTransferencias);
+
+            $('#productoSelect').on('change', function() {
+                const idProducto = $(this).val();
+                if (idProducto) {
+                    cargarUbicacionesProducto(idProducto);
+                }
+            });
+
+            $('#origenSelect').on('change', function() {
+                const stockActual = $(this).find(':selected').data('stock');
+                if (stockActual !== undefined) {
+                    $('#stockOrigenInfo').html(`
+                        <div class="alert alert-info py-2">
+                            Stock disponible: <strong>${stockActual}</strong> unidades
+                        </div>
+                    `);
+                }
+            });
+        });
+
+        function cargarTransferencias() {
+            const estado = $('#estadoFilter').val();
+            let url = apiUrl + '/TransferenciaStock';
+            if (estado) {
+                url += '?estado=' + estado;
+            }
+
+            $.get(url)
+                .done(function(data) {
+                    mostrarTransferencias(data);
+                })
+                .fail(function() {
+                    $('#transferenciasContainer').html(
+                        '<div class="alert alert-danger">Error al cargar transferencias</div>'
+                    );
+                });
+        }
+
+        function mostrarTransferencias(data) {
+            let html = '';
+
+            if (data.length === 0) {
+                html = '<p class="text-center text-muted py-5">No se encontraron transferencias</p>';
+            } else {
+                html = '<div class="table-responsive"><table class="table table-hover">';
+                html += `
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Producto</th>
+                            <th>Origen</th>
+                            <th>Destino</th>
+                            <th>Cantidad</th>
+                            <th>Fecha Solicitud</th>
+                            <th>Estado</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                `;
+
+                data.forEach(function(t) {
+                    const fecha = new Date(t.fechaSolicitud).toLocaleDateString('es-CO');
+                    const estadoBadge = getEstadoBadge(t.estado);
+
+                    html += `
+                        <tr>
+                            <td><strong>#${t.idTransferencia}</strong></td>
+                            <td>${t.producto.nombre}</td>
+                            <td><small>${t.origen.sede}<br>${t.origen.dependencia}</small></td>
+                            <td><small>${t.destino.sede}<br>${t.destino.dependencia}</small></td>
+                            <td><span class="badge bg-info">${t.cantidad}</span></td>
+                            <td>${fecha}</td>
+                            <td>${estadoBadge}</td>
+                            <td>
+                                <button class="btn btn-sm btn-outline-primary" onclick="verDetalleTransferencia(${t.idTransferencia})">
+                                    <i class="bi bi-eye"></i> Ver
+                                </button>
+                            </td>
+                        </tr>
+                    `;
+                });
+
+                html += '</tbody></table></div>';
+            }
+
+            $('#transferenciasContainer').html(html);
+        }
+
+        function getEstadoBadge(estado) {
+            const badges = {
+                'Pendiente': 'bg-warning',
+                'Aprobada': 'bg-info',
+                'Ejecutada': 'bg-success',
+                'Rechazada': 'bg-danger',
+                'Cancelada': 'bg-secondary'
+            };
+            return `<span class="badge ${badges[estado] || 'bg-secondary'}">${estado}</span>`;
+        }
+
+        function cargarProductos() {
+            $.get(apiUrl + '/Productos?esCompartible=true')
+                .done(function(data) {
+                    data.forEach(function(p) {
+                        $('#productoSelect').append(
+                            `<option value="${p.idProducto}">${p.nombre} (Stock total: ${p.stockTotal})</option>`
+                        );
+                    });
+                });
+        }
+
+        function cargarDependencias() {
+            $.get(apiUrl + '/Dependencias')
+                .done(function(data) {
+                    data.forEach(function(d) {
+                        $('#destinoSelect').append(
+                            `<option value="${d.idDependencia}" data-sede="${d.idSedeNavigation.nombre}">
+                                ${d.idSedeNavigation.nombre} - ${d.nombre}
+                            </option>`
+                        );
+                    });
+                });
+        }
+
+        function cargarUbicacionesProducto(idProducto) {
+            $.get(apiUrl + '/Productos/' + idProducto + '/Disponibilidad')
+                .done(function(data) {
+                    $('#origenSelect').empty().append('<option value="">Seleccionar...</option>');
+
+                    if (data.ubicaciones && data.ubicaciones.length > 0) {
+                        data.ubicaciones.forEach(function(ub) {
+                            $('#origenSelect').append(
+                                `<option value="${ub.idDependencia}" data-stock="${ub.stockActual}">
+                                    ${ub.sede} - ${ub.dependencia} (Stock: ${ub.stockActual})
+                                </option>`
+                            );
+                        });
+
+                        $('#productoInfo').html(`
+                            <div class="alert alert-success py-2">
+                                <i class="bi bi-check-circle"></i> Disponible en ${data.ubicacionesDisponibles} ubicación(es)
+                            </div>
+                        `);
+                    } else {
+                        $('#productoInfo').html(`
+                            <div class="alert alert-warning py-2">
+                                <i class="bi bi-exclamation-triangle"></i> Sin stock disponible
+                            </div>
+                        `);
+                    }
+                });
+        }
+
+        function solicitarTransferencia() {
+            const datos = {
+                idProducto: parseInt($('#productoSelect').val()),
+                idDependenciaOrigen: parseInt($('#origenSelect').val()),
+                idDependenciaDestino: parseInt($('#destinoSelect').val()),
+                cantidad: parseInt($('#cantidadInput').val()),
+                motivo: $('#motivoSelect').val(),
+                idUsuarioSolicita: idUsuario,
+                observaciones: $('#observacionesInput').val() || null,
+                costoTransporte: parseFloat($('#costoTransporteInput').val()) || null
+            };
+
+            if (!datos.idProducto || !datos.idDependenciaOrigen || !datos.idDependenciaDestino || !datos.cantidad || !datos.motivo) {
+                alert('Por favor completa todos los campos obligatorios');
+                return;
+            }
+
+            if (datos.idDependenciaOrigen === datos.idDependenciaDestino) {
+                alert('El origen y destino no pueden ser la misma dependencia');
+                return;
+            }
+
+            const stockDisponible = parseInt($('#origenSelect').find(':selected').data('stock'));
+            if (datos.cantidad > stockDisponible) {
+                alert(`Stock insuficiente. Disponible: ${stockDisponible}`);
+                return;
+            }
+
+            $.ajax({
+                url: apiUrl + '/TransferenciaStock/Solicitar',
+                method: 'POST',
+                contentType: 'application/json',
+                data: JSON.stringify(datos),
+                success: function(response) {
+                    alert('✓ ' + response.message);
+                    $('#nuevaTransferenciaModal').modal('hide');
+                    $('#formNuevaTransferencia')[0].reset();
+                    cargarTransferencias();
+                },
+                error: function(xhr) {
+                    const error = xhr.responseJSON?.message || 'Error al solicitar transferencia';
+                    alert('✗ ' + error);
+                }
+            });
+        }
+
+        function verDetalleTransferencia(idTransferencia) {
+            $.get(apiUrl + '/TransferenciaStock/' + idTransferencia)
+                .done(function(data) {
+                    let html = `
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <h6>Información General</h6>
+                                <table class="table table-sm">
+                                    <tr><th>ID:</th><td>#${data.idTransferencia}</td></tr>
+                                    <tr><th>Producto:</th><td>${data.producto.nombre}</td></tr>
+                                    <tr><th>Cantidad:</th><td><span class="badge bg-info">${data.cantidad}</span></td></tr>
+                                    <tr><th>Motivo:</th><td>${data.motivo}</td></tr>
+                                    <tr><th>Estado:</th><td>${getEstadoBadge(data.estado)}</td></tr>
+                                </table>
+                            </div>
+                            <div class="col-md-6">
+                                <h6>Ubicaciones</h6>
+                                <div class="alert alert-light">
+                                    <strong>Origen:</strong><br>
+                                    ${data.origen.sede}<br>
+                                    ${data.origen.dependencia}
+                                </div>
+                                <div class="alert alert-light">
+                                    <strong>Destino:</strong><br>
+                                    ${data.destino.sede}<br>
+                                    ${data.destino.dependencia}
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <div class="col-12">
+                                <h6>Timeline</h6>
+                                <ul class="list-group">
+                                    <li class="list-group-item">
+                                        <i class="bi bi-check-circle text-success"></i>
+                                        <strong>Solicitado:</strong> ${new Date(data.fechaSolicitud).toLocaleString('es-CO')}
+                                        por ${data.usuarioSolicita.nombre}
+                                    </li>
+                    `;
+
+                    if (data.fechaAprobacion) {
+                        html += `
+                            <li class="list-group-item">
+                                <i class="bi bi-check-circle text-info"></i>
+                                <strong>Aprobado:</strong> ${new Date(data.fechaAprobacion).toLocaleString('es-CO')}
+                                por ${data.usuarioAprueba?.nombre || 'N/A'}
+                            </li>
+                        `;
+                    }
+
+                    if (data.fechaEjecucion) {
+                        html += `
+                            <li class="list-group-item">
+                                <i class="bi bi-check-circle-fill text-success"></i>
+                                <strong>Ejecutado:</strong> ${new Date(data.fechaEjecucion).toLocaleString('es-CO')}
+                            </li>
+                        `;
+                    }
+
+                    html += '</ul></div></div>';
+
+                    if (data.observaciones) {
+                        html += `
+                            <div class="alert alert-info">
+                                <strong>Observaciones:</strong><br>
+                                ${data.observaciones}
+                            </div>
+                        `;
+                    }
+
+                    $('#detalleTransferenciaContent').html(html);
+
+                    let footerHtml = '<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>';
+
+                    if (data.estado === 'Pendiente') {
+                        footerHtml += `
+                            <button type="button" class="btn btn-success" onclick="aprobarTransferencia(${idTransferencia})">
+                                <i class="bi bi-check-circle"></i> Aprobar
+                            </button>
+                            <button type="button" class="btn btn-danger" onclick="rechazarTransferencia(${idTransferencia})">
+                                <i class="bi bi-x-circle"></i> Rechazar
+                            </button>
+                        `;
+                    } else if (data.estado === 'Aprobada') {
+                        footerHtml += `
+                            <button type="button" class="btn btn-primary" onclick="ejecutarTransferencia(${idTransferencia})">
+                                <i class="bi bi-play-circle"></i> Ejecutar
+                            </button>
+                        `;
+                    }
+
+                    $('#detalleTransferenciaFooter').html(footerHtml);
+                    $('#detalleTransferenciaModal').modal('show');
+                });
+        }
+
+        function aprobarTransferencia(idTransferencia) {
+            if (!confirm('¿Aprobar esta transferencia?')) return;
+
+            $.ajax({
+                url: apiUrl + '/TransferenciaStock/' + idTransferencia + '/Aprobar',
+                method: 'PUT',
+                contentType: 'application/json',
+                data: JSON.stringify({ idUsuarioAprueba: idUsuario }),
+                success: function(response) {
+                    alert('✓ Transferencia aprobada');
+                    $('#detalleTransferenciaModal').modal('hide');
+                    cargarTransferencias();
+                },
+                error: function(xhr) {
+                    alert('✗ ' + (xhr.responseJSON?.message || 'Error al aprobar'));
+                }
+            });
+        }
+
+        function rechazarTransferencia(idTransferencia) {
+            const motivo = prompt('Motivo del rechazo:');
+            if (!motivo) return;
+
+            $.ajax({
+                url: apiUrl + '/TransferenciaStock/' + idTransferencia + '/Rechazar',
+                method: 'PUT',
+                contentType: 'application/json',
+                data: JSON.stringify({
+                    idUsuarioRechaza: idUsuario,
+                    motivoRechazo: motivo
+                }),
+                success: function(response) {
+                    alert('✓ Transferencia rechazada');
+                    $('#detalleTransferenciaModal').modal('hide');
+                    cargarTransferencias();
+                },
+                error: function(xhr) {
+                    alert('✗ ' + (xhr.responseJSON?.message || 'Error al rechazar'));
+                }
+            });
+        }
+
+        function ejecutarTransferencia(idTransferencia) {
+            if (!confirm('¿Ejecutar esta transferencia? Esta acción moverá el stock físicamente.')) return;
+
+            $.ajax({
+                url: apiUrl + '/TransferenciaStock/' + idTransferencia + '/Ejecutar',
+                method: 'PUT',
+                success: function(response) {
+                    alert('✓ Transferencia ejecutada exitosamente');
+                    $('#detalleTransferenciaModal').modal('hide');
+                    cargarTransferencias();
+                },
+                error: function(xhr) {
+                    alert('✗ ' + (xhr.responseJSON?.message || 'Error al ejecutar'));
+                }
+            });
+        }
+    </script>
+}
