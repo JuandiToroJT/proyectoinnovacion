@@ -297,5 +297,5 @@ SuperAdmin (Acceso Total)
 - **Juan Camilo Salazar Osorio** - *Desarrollador* - Universidad de Caldas
 - **Juan Estevan Zapata Correa** - *Desarrollador* - Universidad de Caldas
 - **Sebastian Rendon Giraldo** - *Desarrollador* - Universidad de Caldas
-- **Cristian David** - *Desarrollador* - Universidad de Caldas
+- **Cristian David Castaño Muñoz** - *Desarrollador* - Universidad de Caldas
 ---
