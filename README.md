@@ -153,27 +153,7 @@ cd ../ProyectoInventariosWebApp
 dotnet restore
 ```
 
-### 3. Configurar Base de Datos
-
-#### Crear base de datos y aplicar migraciones
-```bash
-cd ProyectoInventariosWebApi
-dotnet ef database update
-```
-
-#### Levantar el proyecto de la api
-```
-Este paso es muy importante para que puedan crearse los usuarios automáticamente antes de ejecutar el script,
-luego se debe detener el proyecto
-```
-
-#### Ejecutar script SQL completo
-```bash
-# Usar SQL Server Management Studio (SSMS)
-# Abrir y ejecutar: Script proyecto inventarios.sql
-```
-
-### 4. Configurar Cadenas de Conexión
+### 3. Configurar Cadenas de Conexión
 
 **Backend - `appsettings.json`:**
 ```json
@@ -194,6 +174,26 @@ luego se debe detener el proyecto
     "BaseUrl": "https://localhost:44387/api"
   }
 }
+```
+
+### 4. Configurar Base de Datos
+
+#### Crear base de datos y aplicar migraciones
+```bash
+cd ProyectoInventariosWebApi
+dotnet ef database update
+```
+
+#### Levantar el proyecto de la api
+```
+Este paso es muy importante para que puedan crearse los usuarios automáticamente antes de ejecutar el script,
+luego se debe detener el proyecto
+```
+
+#### Ejecutar script SQL completo
+```bash
+# Usar SQL Server Management Studio (SSMS)
+# Abrir y ejecutar: Script proyecto inventarios.sql
 ```
 
 ### 5. Ejecutar el Proyecto
