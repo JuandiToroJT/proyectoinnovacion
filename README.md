@@ -139,7 +139,7 @@ dotnet --version  # Debe mostrar 8.0.x
 
 ### 1. Clonar el Repositorio
 ```bash
-git clone https://github.com/usuario/proyecto-inventarios-ucaldas.git
+git clone https://github.com/JuandiToroJT/proyectoinnovacion.git
 ```
 
 ### 2. Restaurar Dependencias
